@@ -1,0 +1,165 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.amrizalns.botic.fragment.checkin_2"
+    android:background="@color/colorBackground"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/banner"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:scaleType="fitStart"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/banner_checkin1"
+            />
+
+        <TextView
+
+            android:paddingTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="left"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text = "Data tamu wisatawan"
+            android:textColor="@color/colorContent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView_tamu"
+        android:layout_below="@id/banner"
+        android:layout_centerHorizontal="true"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            >
+
+            <LinearLayout
+                android:id="@+id/checkin_tamu_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                >
+
+                <EditText
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/field_nama_tamu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nama"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@color/colorContent"
+                    android:textColorHint="@color/colorContent"
+                    android:backgroundTint="@color/colorContent"
+                    android:textColor="@color/colorContent"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:inputType="text"
+                    />
+
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/field_usia_tamu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="usia"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@color/colorContent"
+                    android:textColorHint="@color/colorContent"
+                    android:backgroundTint="@color/colorContent"
+                    android:textColor="@color/colorContent"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:inputType="text"
+                    />
+
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/field_asal_tamu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="asal wisatawan"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@color/colorContent"
+                    android:textColorHint="@color/colorContent"
+                    android:backgroundTint="@color/colorContent"
+                    android:textColor="@color/colorContent"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:inputType="text"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_check_tamu"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                >
+                <Button
+                    android:id="@+id/btn_checkin_tamu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAllCaps="false"
+                    android:text="Daftar"
+                    android:textColor="@color/colorMenu"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:background="@drawable/btn_set_act" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:gravity="center"
+                >
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/check_tamu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_set_border"
+                    />
+
+                <TextView
+                    android:id="@+id/pernyataan_pj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Saya bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut."
+                    android:textColor="@color/colorContent"
+                    android:textSize="12sp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="0dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

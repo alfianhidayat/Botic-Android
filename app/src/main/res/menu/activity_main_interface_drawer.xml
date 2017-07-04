@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorMain1"
+    >
+    <item android:title="Discover Bojonegoro"
+
+        >
+        <item
+            android:id="@+id/nav_beranda"
+            android:icon="@drawable/ic_menu_beranda"
+            android:title="Beranda" />
+        <item
+            android:id="@+id/nav_aktivitas"
+            android:icon="@drawable/ic_menu_activity"
+            android:title="Aktivitas saya" />
+        <item
+            android:id="@+id/nav_layanan"
+            android:icon="@drawable/ic_menu_service"
+            android:title="Pelayanan Publik" />
+        <item
+            android:id="@+id/nav_tmpIbadah"
+            android:icon="@drawable/ic_menu_ibadah"
+            android:title="Tempat Ibadah" />
+        <item
+            android:id="@+id/nav_keuangan"
+            android:icon="@drawable/ic_menu_keuangan"
+            android:title="Keuangan" />
+        <item
+            android:id="@+id/nav_transportasi"
+            android:icon="@drawable/ic_menu_transport"
+            android:title="Transportasi" />
+        <item
+            android:id="@+id/nav_aboutBjn"
+            android:icon="@drawable/ic_menu_about1"
+            android:title="Tentang Bojonegoro" />
+    </item>
+    <item android:title="Features">
+        <menu>
+            <item
+                android:id="@+id/nav_event"
+                android:icon="@drawable/ic_menu_event"
+                android:title="Event" />
+            <item
+                android:id="@+id/nav_booking"
+                android:icon="@drawable/ic_menu_booking"
+                android:title="Booking Assets" />
+            <item
+                android:id="@+id/nav_aboutApp"
+                android:icon="@drawable/ic_menu_info"
+                android:title="About App" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_logout"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

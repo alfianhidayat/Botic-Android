@@ -1,5 +1,6 @@
 package com.example.amrizalns.botic.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,9 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.botic.coreapps.callbacks.PageCallback;
+import com.botic.coreapps.models.ObjectItem;
+import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.itemObject;
 import com.example.amrizalns.botic.recyclerViewAdapter;
+import com.example.amrizalns.botic.utils.SessionLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +28,9 @@ public class belanja extends Fragment {
     private GridLayoutManager lLayout;
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
+    ProgressDialog dialog;
+    private List<itemObject> rowListItem = new ArrayList<>();
+    private recyclerViewAdapter rcAdapter;
 
     public static belanja newInstance(String param1, String param2) {
         belanja fragment = new belanja();
@@ -38,16 +46,48 @@ public class belanja extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_belanja, container, false);
-        List<itemObject> rowListItem = getAllItemList();
         lLayout = new GridLayoutManager(view.getContext(), 2);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
 
-        recyclerViewAdapter rcAdapter = new recyclerViewAdapter(view.getContext(), rowListItem);
+        rcAdapter = new recyclerViewAdapter(view.getContext(), rowListItem);
         rView.setAdapter(rcAdapter);
-
+        dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Loading...");
+        dialog.setCancelable(false);
+        getShopping();
         return view;
+    }
+
+    private void getShopping() {
+        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getShopping().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
+            @Override
+            protected void onFinish() {
+                dialog.dismiss();
+            }
+
+            @Override
+            protected void onStart() {
+                dialog.show();
+            }
+
+            @Override
+            protected void onSuccess(List<ObjectItem> data) {
+                super.onSuccess(data);
+                rowListItem.clear();
+                for (ObjectItem objectItem : data) {
+                    rowListItem.add(new itemObject(R.drawable.content_wisata2,
+                            objectItem.getName(),
+                            objectItem.getAddress(),
+                            objectItem.getPrice(),
+                            objectItem.getOpen(),
+                            objectItem.getClose(),
+                            objectItem.getDescription()));
+                }
+                rcAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private List<itemObject> getAllItemList() {

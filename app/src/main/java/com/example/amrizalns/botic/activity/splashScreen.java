@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.SessionLogin;
 
 public class splashScreen extends AppCompatActivity {
 
@@ -18,8 +19,13 @@ public class splashScreen extends AppCompatActivity {
                 super.run();
                 try{
                     sleep(3000);
-                    Intent i = new Intent(getApplicationContext(),signIn.class);
-                    startActivity(i);
+                    if (SessionLogin.isExist()) {
+                        Intent i = new Intent(getApplicationContext(), mainInterface.class);
+                        startActivity(i);
+                    }else{
+                        Intent i = new Intent(getApplicationContext(), signIn.class);
+                        startActivity(i);
+                    }
                     finish();
                 }catch (InterruptedException e){
                     e.printStackTrace();

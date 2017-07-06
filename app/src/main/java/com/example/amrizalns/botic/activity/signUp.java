@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.botic.coreapps.callbacks.PageCallback;
+import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.SessionLogin;
 import com.example.amrizalns.botic.viewholder.JSONParser;
 
 import org.apache.http.NameValuePair;
@@ -40,12 +43,46 @@ public class signUp extends AppCompatActivity {
         inputEmail = (EditText) findViewById(R.id.field_signUp_email);
         inputPass = (EditText) findViewById(R.id.field_signUp_password);
         inputConfPass = (EditText) findViewById(R.id.field_signUp_confirmPass);
-
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.setCancelable(false);
         regisButton = (Button) findViewById(R.id.sign_up_button);
         regisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Registrasi(inputName.getText().toString(),inputEmail.getText().toString(),inputPass.getText().toString(),inputConfPass.getText().toString());
+                if (inputPass.getText().toString().equals(inputConfPass.getText().toString()))
+                    RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                            .register(
+                                    inputName.getText().toString(),
+                                    inputEmail.getText().toString(),
+                                    inputPass.getText().toString()
+                            ).enqueue(new PageCallback<Object>(signUp.this) {
+                        @Override
+                        protected void onStart() {
+                            pDialog.show();
+                        }
+
+                        @Override
+                        protected void onFinish() {
+                            pDialog.dismiss();
+                        }
+
+                        @Override
+                        protected void onSuccess(Object data) {
+                            Toast.makeText(signUp.this, "Registrasi Berhasil", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(getApplicationContext(), signIn.class);
+                            startActivity(i);
+                        }
+
+                        @Override
+                        protected void onError(String message) {
+                            super.onError(message);
+                            Toast.makeText(signUp.this, "Registrasi Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                else
+                    Toast.makeText(signUp.this, "Confirm Password tidak sama !", Toast.LENGTH_SHORT).show();
+//                new Registrasi(inputName.getText().toString(),inputEmail.getText().toString(),inputPass.getText().toString(),inputConfPass.getText().toString());
             }
         });
     }

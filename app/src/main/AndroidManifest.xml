@@ -1,58 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.amrizalns.botic">
+    package="com.example.amrizalns.botic">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_botic"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_botic"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity
-            android:name=".activity.splashScreen"
-            >
+        <activity android:name=".activity.splashScreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.signIn"
-            />
-        <activity
-            android:name=".activity.signUp"
-            />
+        <activity android:name=".activity.signIn" />
+        <activity android:name=".activity.signUp" />
         <activity
             android:name=".activity.mainInterface"
 
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity
-            android:name=".activity.booking_gedung"
-            />
-        <activity
-            android:name=".activity.booking_gedung_finish"
-            />
-        <activity
-            android:name=".activity.booking_kesenian"
-            />
-        <activity
-            android:name=".activity.popUp_sk_gedung"
-            ></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activity.booking_gedung" />
+        <activity android:name=".activity.booking_gedung_finish" />
+        <activity android:name=".activity.booking_kesenian" />
+        <activity android:name=".activity.popUp_sk_gedung"></activity>
         <activity android:name=".activity.detail_content"></activity>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <metadata
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+            android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

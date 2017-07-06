@@ -44,5 +44,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:1.3.0'
 
     testCompile 'junit:junit:4.12'
+    compile project(path: ':coreapps')
 }
 apply plugin: 'com.google.gms.google-services'

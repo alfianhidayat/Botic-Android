@@ -18,7 +18,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.botic.coreapps.callbacks.PageCallback;
+import com.botic.coreapps.models.Token;
+import com.botic.coreapps.models.User;
+import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.SessionLogin;
 import com.example.amrizalns.botic.utils.SharedPrefManager;
 import com.example.amrizalns.botic.utils.Utils;
 import com.example.amrizalns.botic.viewholder.JSONParser;
@@ -46,6 +52,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.orhanobut.hawk.Hawk;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -54,6 +61,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class signIn extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
@@ -138,6 +150,8 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 //                startActivity(i);
 //            }
 //        });
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("Loading...");
     }
 
     @Override
@@ -152,8 +166,50 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                     mEmail.setError("Wajib Diisi!");
                     mPassword.setError("Wajib Diisi!");
                 } else {
-                    i = new Intent(signIn.this, mainInterface.class);
-                    startActivity(i);
+                    mProgressDialog.show();
+                    RetrofitApi.getInstance().getApiService("")
+                            .login("password",
+                                    "2",
+                                    "Ypsems1mc9lfAMSY3QAacVl7mVSE3FTuKk5s3n8S",
+                                    mEmail.getText().toString(),
+                                    mPassword.getText().toString(), "")
+                            .enqueue(new Callback<Token>() {
+                                @Override
+                                public void onResponse(Call<Token> call, Response<Token> response) {
+                                    if (response.isSuccessful()) {
+                                        SessionLogin.saveAccessToken(response.body());
+                                        Toast.makeText(signIn.this, R.string.success_login, Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(signIn.this, mainInterface.class);
+                                        startActivity(i);
+                                    } else if (response.code() == 401) {
+                                        Toast.makeText(signIn.this, R.string.failure_login, Toast.LENGTH_SHORT).show();
+                                    }
+                                    mProgressDialog.dismiss();
+                                }
+
+                                @Override
+                                public void onFailure(Call<Token> call, Throwable t) {
+                                    Toast.makeText(mContext, "Terjadi kesalahan server !", Toast.LENGTH_SHORT).show();
+                                    mProgressDialog.dismiss();
+                                }
+                            });
+//                            .enqueue(new PageCallback<Object>(this) {
+//                                @Override
+//                                protected void onFinish() {
+//                                    mProgressDialog.dismiss();
+//                                }
+//
+//                                @Override
+//                                protected void onStart() {
+//                                    mProgressDialog.show();
+//                                }
+//
+//                                @Override
+//                                protected void onSuccess(Object data) {
+//                                    Hawk.put(Constants.SHARED_PREF_TOKEN, )
+//                                    startActivity(new Intent(signIn.this, mainInterface.class));
+//                                }
+//                            });
 //                new SignInActivity(mEmail.getText().toString(), mPassword.getText().toString());
                 }
                 break;
@@ -162,10 +218,10 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                 startActivity(i);
                 break;
             case R.id.sign_in_g_button:
-                if (utils.isNetworkAvailable()){
+                if (utils.isNetworkAvailable()) {
                     signIn();
 
-                }else {
+                } else {
                     Toast.makeText(signIn.this, "Oops! no internet connection!", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -190,7 +246,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
         GraphRequest dataRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {
-                if (object != null){
+                if (object != null) {
 
                 }
                 Intent i = new Intent(signIn.this, mainInterface.class);
@@ -253,7 +309,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 
 
     //----------------API Google+-----------------------//
-    public void configureSignIn(){
+    public void configureSignIn() {
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -263,18 +319,22 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                 .build();
         mGoogleApiClient.connect();
     }
+
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
     @Override
     public void onConnectionSuspended(int i) {
 
     }
+
     @Override
     public void onConnected(Bundle bundle) {
 

@@ -25,7 +25,9 @@ import android.widget.TextView;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.fragment.beranda;
 import com.example.amrizalns.botic.fragment.booking;
+import com.example.amrizalns.botic.utils.SessionLogin;
 import com.example.amrizalns.botic.utils.SharedPrefManager;
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -33,6 +35,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.orhanobut.hawk.Hawk;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -189,6 +192,12 @@ public class mainInterface extends AppCompatActivity
         mGoogleApiClient.connect();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FacebookSdk.sdkInitialize(this);
+    }
+
     private void getUserProfileGoogle() {
         sharedPrefManager = new SharedPrefManager(mContext);
         mUsername = sharedPrefManager.getName();
@@ -206,7 +215,7 @@ public class mainInterface extends AppCompatActivity
                 .into(mProfileImageView);
     }
 
-    public void logoutFromFacebook(){
+    public void logoutFromFacebook() {
         LoginManager.getInstance().logOut();
         Intent intent = new Intent(mainInterface.this, signIn.class);
         startActivity(intent);
@@ -237,7 +246,7 @@ public class mainInterface extends AppCompatActivity
     //-----------End - User Google Sign in------------//
 
 
-    public void loadFragment(int id){
+    public void loadFragment(int id) {
         Fragment f = null;
 
         if (id == R.id.nav_beranda) {
@@ -264,9 +273,14 @@ public class mainInterface extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             logoutFromFacebook();
             signOut();
+            SessionLogin.reset();
+            if (SessionLogin.isExist()) {
+                Intent intent = new Intent(mainInterface.this, signIn.class);
+                startActivity(intent);
+            }
         }
 
-        if (f != null){
+        if (f != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.main_container, f);
             ft.commit();

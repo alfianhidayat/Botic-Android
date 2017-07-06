@@ -1,1 +1,1 @@
-include ':app', ':botictv'
+include ':app', ':botictv', ':coreapps'

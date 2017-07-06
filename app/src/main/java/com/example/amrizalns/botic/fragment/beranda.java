@@ -68,7 +68,7 @@ public class beranda extends Fragment {
                 wisata wisata = new wisata();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_container,wisata);
+                fragmentTransaction.replace(R.id.main_container, wisata);
                 fragmentTransaction.commit();
 //                Toast.makeText(getContext(), "Clicked ", Toast.LENGTH_LONG).show();
             }
@@ -81,7 +81,7 @@ public class beranda extends Fragment {
                 hotel hotel = new hotel();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_container,hotel);
+                fragmentTransaction.replace(R.id.main_container, hotel);
                 fragmentTransaction.commit();
             }
         });
@@ -93,7 +93,7 @@ public class beranda extends Fragment {
                 belanja belanja = new belanja();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_container,belanja);
+                fragmentTransaction.replace(R.id.main_container, belanja);
                 fragmentTransaction.commit();
             }
         });
@@ -105,7 +105,7 @@ public class beranda extends Fragment {
                 transportasi t = new transportasi();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_container,t);
+                fragmentTransaction.replace(R.id.main_container, t);
                 fragmentTransaction.commit();
             }
         });
@@ -117,7 +117,19 @@ public class beranda extends Fragment {
                 checkin_1 check_1 = new checkin_1();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_container,check_1);
+                fragmentTransaction.replace(R.id.main_container, check_1);
+                fragmentTransaction.commit();
+            }
+        });
+
+        ImageView kuliner = (ImageView) view.findViewById(R.id.menu_kuliner);
+        kuliner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                kuliner kuliner = new kuliner();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_container, kuliner);
                 fragmentTransaction.commit();
             }
         });

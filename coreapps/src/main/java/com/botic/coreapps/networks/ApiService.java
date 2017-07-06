@@ -44,4 +44,7 @@ public interface ApiService {
     @GET("api/shopping")
     Call<BaseResponse<List<ObjectItem>>> getShopping();
 
+    @GET("api/culinary")
+    Call<BaseResponse<List<ObjectItem>>> getCulinary();
+
 }

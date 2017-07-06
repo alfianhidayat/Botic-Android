@@ -1,42 +1,29 @@
 package com.example.amrizalns.botic.fragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.botic.coreapps.callbacks.PageCallback;
-import com.botic.coreapps.models.ObjectItem;
-import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.R;
-import com.example.amrizalns.botic.itemObject;
-import com.example.amrizalns.botic.recyclerViewAdapter;
-import com.example.amrizalns.botic.utils.SessionLogin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class kuliner extends Fragment {
 
+    ViewPager mViewPager;
+    TabLayout mTabLayout;
     private GridLayoutManager lLayout;
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
-    private List<itemObject> rowListItem = new ArrayList<>();
-    ProgressDialog dialog;
-    private recyclerViewAdapter rcAdapter;
-
-    public kuliner() {
-        // Required empty public constructor
-    }
-
-    public static kuliner newInstance(String param1, String param2) {
-        kuliner fragment = new kuliner();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,126 +33,52 @@ public class kuliner extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_kuliner, container, false);
-        lLayout = new GridLayoutManager(view.getContext(), 2);
-        RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        rView.setHasFixedSize(true);
-        rView.setLayoutManager(lLayout);
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_kuliner, null);
+        mViewPager = (ViewPager) view.findViewById(R.id.vp_kuliner);
+        setupViewPager(mViewPager);
 
-        rcAdapter = new recyclerViewAdapter(view.getContext(), rowListItem);
-        rView.setAdapter(rcAdapter);
-        dialog = new ProgressDialog(getActivity());
-        dialog.setMessage("Loading...");
-        dialog.setCancelable(false);
-        getCulinary();
+        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout_kuliner);
+        mTabLayout.setupWithViewPager(mViewPager);
+
         return view;
     }
 
-    private void getCulinary() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getCulinary().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
-            @Override
-            protected void onFinish() {
-                dialog.dismiss();
-            }
+    private void setupViewPager(ViewPager viewPager){
+        belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
+        adapter.addFragment(new item_content(), "Restaurant");
+        adapter.addFragment(new item_content(), "Cafe");
+        adapter.addFragment(new item_content(), "PKL");
 
-            @Override
-            protected void onStart() {
-                dialog.show();
-            }
-
-            @Override
-            protected void onSuccess(List<ObjectItem> data) {
-                super.onSuccess(data);
-                rowListItem.clear();
-                for (ObjectItem objectItem : data) {
-                    rowListItem.add(new itemObject(R.drawable.content_wisata1,
-                            objectItem.getName(),
-                            objectItem.getAddress(),
-                            objectItem.getPrice(),
-                            objectItem.getOpen(),
-                            objectItem.getClose(),
-                            objectItem.getDescription()));
-                }
-                rcAdapter.notifyDataSetChanged();
-            }
-        });
+        viewPager.setAdapter(adapter);
     }
 
-    private List<itemObject> getAllItemList() {
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        List<itemObject> allItems = new ArrayList<itemObject>();
-        allItems.add(new itemObject(R.drawable.content_hotel1,
-                "Aston City Conversation Hotel",
-                "JL MH Thamrin Kab.Bojonegoro",
-                "Rp.549.000,-",
-                "00.01 am",
-                "00.00 pm"
-                , "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, " +
-                "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        ));
-        allItems.add(new itemObject(R.drawable.content_hotel1,
-                "Aston City Conversation Hotel",
-                "JL MH Thamrin Kab.Bojonegoro",
-                "Rp.549.000,-",
-                "00.01 am",
-                "00.00 pm"
-                , "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, " +
-                "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        ));
-        allItems.add(new itemObject(R.drawable.content_hotel1,
-                "Aston City Conversation Hotel",
-                "JL MH Thamrin Kab.Bojonegoro",
-                "Rp.549.000,-",
-                "00.01 am",
-                "00.00 pm"
-                , "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, " +
-                "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        ));
-        allItems.add(new itemObject(R.drawable.content_hotel1,
-                "Aston City Conversation Hotel",
-                "JL MH Thamrin Kab.Bojonegoro",
-                "Rp.549.000,-",
-                "00.01 am",
-                "00.00 pm"
-                , "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, " +
-                "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        ));
-        allItems.add(new itemObject(R.drawable.content_hotel1,
-                "Aston City Conversation Hotel",
-                "JL MH Thamrin Kab.Bojonegoro",
-                "Rp.549.000,-",
-                "00.01 am",
-                "00.00 pm"
-                , "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, " +
-                "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        ));
-        allItems.add(new itemObject(R.drawable.content_hotel1,
-                "Aston City Conversation Hotel",
-                "JL MH Thamrin Kab.Bojonegoro",
-                "Rp.549.000,-",
-                "00.01 am",
-                "00.00 pm"
-                , "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, " +
-                "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        ));
-        allItems.add(new itemObject(R.drawable.content_hotel1,
-                "Aston City Conversation Hotel",
-                "JL MH Thamrin Kab.Bojonegoro",
-                "Rp.549.000,-",
-                "00.01 am",
-                "00.00 pm"
-                , "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, " +
-                "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        ));
-        allItems.add(new itemObject(R.drawable.content_hotel1,
-                "Aston City Conversation Hotel",
-                "JL MH Thamrin Kab.Bojonegoro",
-                "Rp.549.000,-",
-                "00.01 am",
-                "00.00 pm"
-                , "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, " +
-                "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        ));
-        return allItems;
+        public Adapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 }

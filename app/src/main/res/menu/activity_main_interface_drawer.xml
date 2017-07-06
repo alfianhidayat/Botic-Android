@@ -27,9 +27,13 @@
             android:icon="@drawable/ic_menu_keuangan"
             android:title="Keuangan" />
         <item
-            android:id="@+id/nav_transportasi"
-            android:icon="@drawable/ic_menu_transport"
-            android:title="Transportasi" />
+            android:id="@+id/nav_kesehatan"
+            android:icon="@drawable/ic_menu_kesehatan"
+            android:title="Kesehatan" />
+        <item
+            android:id="@+id/nav_leisure"
+            android:icon="@drawable/ic_menu_leisure"
+            android:title="Leisure" />
         <item
             android:id="@+id/nav_aboutBjn"
             android:icon="@drawable/ic_menu_about1"

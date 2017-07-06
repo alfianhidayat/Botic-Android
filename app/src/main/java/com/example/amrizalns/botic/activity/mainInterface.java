@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -25,6 +23,10 @@ import android.widget.TextView;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.fragment.beranda;
 import com.example.amrizalns.botic.fragment.booking;
+import com.example.amrizalns.botic.fragment.kesehatan;
+import com.example.amrizalns.botic.fragment.keuangan;
+import com.example.amrizalns.botic.fragment.pelayananpublik;
+import com.example.amrizalns.botic.fragment.tempatIbadah;
 import com.example.amrizalns.botic.utils.SessionLogin;
 import com.example.amrizalns.botic.utils.SharedPrefManager;
 import com.facebook.FacebookSdk;
@@ -35,7 +37,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.orhanobut.hawk.Hawk;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -254,12 +255,18 @@ public class mainInterface extends AppCompatActivity
         } else if (id == R.id.nav_aktivitas) {
 
         } else if (id == R.id.nav_layanan) {
+            f = new pelayananpublik();
 
         } else if (id == R.id.nav_tmpIbadah) {
+            f = new tempatIbadah();
 
         } else if (id == R.id.nav_keuangan) {
+            f = new keuangan();
 
-        } else if (id == R.id.nav_transportasi) {
+        } else if (id == R.id.nav_kesehatan) {
+            f = new kesehatan();
+
+        } else if (id == R.id.nav_leisure) {
 
         } else if (id == R.id.nav_aboutBjn) {
 

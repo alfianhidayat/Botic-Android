@@ -1,6 +1,5 @@
 package com.example.amrizalns.botic.fragment;
 
-
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,13 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amrizalns.botic.R;
-import com.example.amrizalns.botic.itemObject;
-import com.example.amrizalns.botic.recyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class transportasi extends Fragment {
+
+public class pelayananpublik extends Fragment {
 
     ViewPager mViewPager;
     TabLayout mTabLayout;
@@ -31,17 +29,17 @@ public class transportasi extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_transportasi, null);
-        mViewPager = (ViewPager) view.findViewById(R.id.vp_transportasi);
+        view = inflater.inflate(R.layout.fragment_pelayananpublik, null);
+        mViewPager = (ViewPager) view.findViewById(R.id.vp_pelayananpublik);
         setupViewPager(mViewPager);
 
-        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout_transportasi);
+        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout_pelayananpublik);
         mTabLayout.setupWithViewPager(mViewPager);
 
         return view;
@@ -49,9 +47,9 @@ public class transportasi extends Fragment {
 
     private void setupViewPager(ViewPager viewPager){
         belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Bus");
-        adapter.addFragment(new item_content(), "Kereta");
-        adapter.addFragment(new item_content(), "Angkutan Wisata");
+        adapter.addFragment(new item_content(), "Kedinasan");
+        adapter.addFragment(new item_content(), "Keamanan");
+        adapter.addFragment(new item_content(), "Umum");
 
         viewPager.setAdapter(adapter);
     }
@@ -84,5 +82,4 @@ public class transportasi extends Fragment {
             return mFragmentTitleList.get(position);
         }
     }
-
 }

@@ -70,7 +70,7 @@
 
                 <EditText
                     android:layout_marginTop="10dp"
-                    android:id="@+id/field_number_call"
+                    android:id="@+id/field_notelp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="nomor telepon"

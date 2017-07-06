@@ -10,25 +10,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.amrizalns.botic.R;
 
 public class checkin_1 extends Fragment {
+
+    private Button daftar_pj;
+    private EditText mNamaPJ, mNohp, mJumlahTamu;
+    private CheckBox aggrement;
     View view;
 
     public checkin_1() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment checkin_1.
-     */
-    // TODO: Rename and change types and number of parameters
     public static checkin_1 newInstance(String param1, String param2) {
         checkin_1 fragment = new checkin_1();
         return fragment;
@@ -45,19 +42,44 @@ public class checkin_1 extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_checkin_1, container, false);
 
-        Button daftar_pj = (Button) view.findViewById(R.id.btn_checkin_pj);
+        mNamaPJ = (EditText) view.findViewById(R.id.field_nama_pj);
+        mNohp = (EditText) view.findViewById(R.id.field_notelp);
+        mJumlahTamu = (EditText) view.findViewById(R.id.field_jumlah_tamu);
+
+        aggrement = (CheckBox) view.findViewById(R.id.check_pj);
+
+        daftar_pj = (Button) view.findViewById(R.id.btn_checkin_pj);
         daftar_pj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkin_2 check_2 = new checkin_2();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_container,check_2);
-                fragmentTransaction.commit();
+                VerifikasiDaftar();
             }
         });
 
-        return  view;
+        return view;
     }
 
+    private void VerifikasiDaftar() {
+        String namapj = mNamaPJ.getText().toString();
+        String noHp = mNohp.getText().toString();
+        String jmlTamu = mJumlahTamu.getText().toString();
+        if (namapj.length() == 0 && noHp.length() == 0 && jmlTamu.length() == 0) {
+            mNamaPJ.setError("Wajib Diisi!");
+            mNohp.setError("Wajib Diisi!");
+            mJumlahTamu.setError("Wajib Diisi!");
+        } else if (!aggrement.isChecked()) {
+            Toast.makeText(getActivity(), "Harus Dicentang!", Toast.LENGTH_SHORT).show();
+        } else {
+            String jumlah = mJumlahTamu.getText().toString();
+            Bundle bundle = new Bundle();
+            bundle.putString("daftar", jumlah);
+
+            checkin_2 check_2 = new checkin_2();
+            check_2.setArguments(bundle);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main_container, check_2);
+            fragmentTransaction.commit();
+        }
+    }
 }

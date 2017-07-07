@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,12 +47,13 @@ public class leisure extends Fragment {
 
         return view;
     }
-    private void setupViewPager(ViewPager viewPager){
+
+    private void setupViewPager(ViewPager viewPager) {
         belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Spa & Skin Care");
-        adapter.addFragment(new item_content(), "Gym");
-        adapter.addFragment(new item_content(), "Salon");
-        adapter.addFragment(new item_content(), "Panti Pijat");
+        adapter.addFragment(Utils.getFragmentWithArgument(32, Constants.TAG_LEISURE), "Spa & Skin Care");
+        adapter.addFragment(Utils.getFragmentWithArgument(51, Constants.TAG_LEISURE), "Gym");
+        adapter.addFragment(Utils.getFragmentWithArgument(31, Constants.TAG_LEISURE), "Salon");
+        adapter.addFragment(Utils.getFragmentWithArgument(55, Constants.TAG_LEISURE), "Panti Pijat");
 
         viewPager.setAdapter(adapter);
     }

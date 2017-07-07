@@ -12,6 +12,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by alfianh on 7/4/17.
@@ -44,10 +45,34 @@ public interface ApiService {
     @GET("api/shopping")
     Call<BaseResponse<List<ObjectItem>>> getShopping();
 
+    @GET("api/shopping/{id_category}")
+    Call<BaseResponse<List<ObjectItem>>> getShoppingByCategory(@Path("id_category") int idCategory);
+
     @GET("api/culinary")
     Call<BaseResponse<List<ObjectItem>>> getCulinary();
 
+    @GET("api/culinary/{id_category}")
+    Call<BaseResponse<List<ObjectItem>>> getCulinaryByCategory(@Path("id_category") int idCategory);
+
     @GET("api/transportation")
     Call<BaseResponse<List<ObjectItem>>> getTransportation();
+
+    @GET("api/transportation/{id_category}")
+    Call<BaseResponse<List<ObjectItem>>> getTransportationByCategory(@Path("id_category") int idCategory);
+
+    @GET("api/praying/{id_category}")
+    Call<BaseResponse<List<ObjectItem>>> getPrayingByCategory(@Path("id_category") int idCategory);
+
+    @GET("api/publicService/{id_category}")
+    Call<BaseResponse<List<ObjectItem>>> getPublicServiceByCategory(@Path("id_category") int idCategory);
+
+    @GET("api/finance/{id_category}")
+    Call<BaseResponse<List<ObjectItem>>> getFinanceByCategory(@Path("id_category") int idCategory);
+
+    @GET("api/health/{id_category}")
+    Call<BaseResponse<List<ObjectItem>>> getHealthByCategory(@Path("id_category") int idCategory);
+
+    @GET("api/leisure/{id_category}")
+    Call<BaseResponse<List<ObjectItem>>> getLeisureByCategory(@Path("id_category") int idCategory);
 
 }

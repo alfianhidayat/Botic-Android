@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +45,27 @@ public class belanja extends Fragment {
 
         return view;
     }
-    private void setupViewPager(ViewPager viewPager){
-        Adapter adapter = new Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Mall & Swalayan");
-        adapter.addFragment(new item_content(), "Minimarket");
-        adapter.addFragment(new item_content(), "Pasar");
 
+    private void setupViewPager(ViewPager viewPager) {
+        Adapter adapter = new Adapter(getFragmentManager());
+        Bundle bundleSwalayan = new Bundle();
+        item_content fragmentSwalayan = new item_content();
+        bundleSwalayan.putInt(Constants.TAG_ID_CATEGORY, 33);
+        bundleSwalayan.putString(Constants.TAG_OBJECT_TYPE, Constants.TAG_SHOPPING);
+        fragmentSwalayan.setArguments(bundleSwalayan);
+        adapter.addFragment(fragmentSwalayan, "Mall & Swalayan");
+        item_content fragmentMinimarket = new item_content();
+        Bundle bundleMinimarket = new Bundle();
+        bundleMinimarket.putInt(Constants.TAG_ID_CATEGORY, 36);
+        bundleMinimarket.putString(Constants.TAG_OBJECT_TYPE, Constants.TAG_SHOPPING);
+        fragmentMinimarket.setArguments(bundleMinimarket);
+        adapter.addFragment(fragmentMinimarket, "Minimarket");
+        item_content fragmentPasar = new item_content();
+        Bundle bundlePasar = new Bundle();
+        bundlePasar.putInt(Constants.TAG_ID_CATEGORY, 37);
+        bundlePasar.putString(Constants.TAG_OBJECT_TYPE, Constants.TAG_SHOPPING);
+        fragmentPasar.setArguments(bundlePasar);
+        adapter.addFragment(fragmentPasar, "Pasar");
         viewPager.setAdapter(adapter);
     }
 

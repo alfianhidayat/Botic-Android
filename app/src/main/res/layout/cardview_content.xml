@@ -35,7 +35,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical"
             android:gravity="start"
 
@@ -54,25 +54,24 @@
                     android:textSize="12sp"
                     android:text="Title"
                     android:textColor="@color/colorContent"/>
-                </LinearLayout>
+            </LinearLayout>
             <LinearLayout
-                android:gravity="top"
-                android:layout_gravity="top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:gravity="top"
                 android:orientation="vertical"
                 >
-                <RatingBar
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:rating="2"
-                    android:stepSize="1"
-                    android:theme="@style/RatingBar"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:id="@+id/content_loc"
+                    android:text="Location"
+                    android:textSize="8sp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorContent"
                     />
             </LinearLayout>
-
             <LinearLayout
                 android:gravity="top"
                 android:layout_gravity="top"
@@ -80,15 +79,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
-                <TextView
-                    android:visibility="invisible"
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
-                    android:id="@+id/content_loc"
-                    android:text="Location"
-                    android:textSize="10sp"
-                    android:textColor="@color/colorContent"
-                    />
                 <TextView
                     android:visibility="invisible"
                     android:layout_width="1dp"
@@ -124,5 +114,26 @@
             </LinearLayout>
 
             </LinearLayout>
+        <LinearLayout
+            android:gravity="bottom"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            >
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="2"
+                android:stepSize="1"
+                android:theme="@style/RatingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                />
         </LinearLayout>
+
+    </LinearLayout>
 </android.support.v7.widget.CardView>

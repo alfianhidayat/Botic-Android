@@ -4,134 +4,187 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.amrizalns.botic.activity.booking_gedung"
     android:background="@color/colorBackground"
-    >
+    tools:context="com.example.amrizalns.botic.activity.booking_gedung">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/banner"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:src="@drawable/banner_booking"
-            />
+            android:src="@drawable/banner_booking" />
     </LinearLayout>
 
     <ScrollView
         android:id="@+id/sc"
-        android:layout_below="@id/banner"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scrollbars="none"
+        android:layout_below="@id/banner"
         android:paddingBottom="30dp"
-        >
+        android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/booking_gedung_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
-            android:orientation="vertical">
+            android:layout_marginStart="50dp"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_gravity="start"
-                android:text = "@string/data_pemesan"
+                android:gravity="center"
+                android:text="@string/data_pemesan"
                 android:textColor="@color/colorContent"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <EditText
-                android:layout_marginTop="10dp"
                 android:id="@+id/field_no_identitas"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:hint="@string/nomor_indentitas"
-                android:textSize="14sp"
-                android:maxLines="1"
-                android:textCursorDrawable="@color/colorContent"
-                android:textColorHint="@color/colorContent"
                 android:backgroundTint="@color/colorContent"
-                android:textColor="@color/colorContent"
-                android:singleLine="true"
                 android:ellipsize="end"
+                android:hint="@string/nomor_indentitas"
                 android:inputType="numberDecimal"
                 android:maxLength="16"
-                />
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorContent"
+                android:textColorHint="@color/colorContent"
+                android:textCursorDrawable="@color/colorContent"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/identity_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="jenis Identitas : "
+                        android:textColor="@color/colorContent"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/jenis_identitas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </android.support.v7.widget.AppCompatSpinner>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_arrow_drop_down"
+                            />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
 
             <EditText
-                android:layout_marginTop="10dp"
                 android:id="@+id/field_number_call"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:hint="@string/nomor_telepon"
-                android:textSize="14sp"
-                android:maxLines="1"
-                android:textCursorDrawable="@color/colorContent"
-                android:textColorHint="@color/colorContent"
                 android:backgroundTint="@color/colorContent"
-                android:textColor="@color/colorContent"
-                android:singleLine="true"
                 android:ellipsize="end"
+                android:hint="@string/nomor_telepon"
                 android:inputType="numberDecimal"
-                />
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorContent"
+                android:textColorHint="@color/colorContent"
+                android:textCursorDrawable="@color/colorContent"
+                android:textSize="14sp" />
 
             <EditText
-                android:layout_marginTop="10dp"
                 android:id="@+id/field_desc_gedung"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:hint="@string/deskripsi_kegiatan"
-                android:textSize="14sp"
-                android:maxLines="10"
-                android:textCursorDrawable="@color/colorContent"
-                android:textColorHint="@color/colorContent"
                 android:backgroundTint="@color/colorContent"
-                android:textColor="@color/colorContent"
-                android:singleLine="true"
                 android:ellipsize="end"
-                android:maxLength="1000"
+                android:hint="@string/deskripsi_kegiatan"
                 android:inputType="textMultiLine"
-                />
+                android:maxLength="1000"
+                android:maxLines="10"
+                android:singleLine="true"
+                android:textColor="@color/colorContent"
+                android:textColorHint="@color/colorContent"
+                android:textCursorDrawable="@color/colorContent"
+                android:textSize="14sp" />
+
             <LinearLayout
                 android:id="@+id/place_gedung"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="5dp">
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingStart="5dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:paddingEnd="5dp"
-                    android:gravity="start"
-                    >
+                    android:paddingStart="5dp"
+                    android:paddingTop="5dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/jenis_gedung"
                         android:textColor="@color/colorContent"
-                        android:textSize="14sp"
-                        />
-                    <android.support.v7.widget.AppCompatSpinner
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/jenis_gedung"
+                        android:layout_height="wrap_content">
 
-                        >
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/jenis_gedung"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </android.support.v7.widget.AppCompatSpinner>
 
-                    </android.support.v7.widget.AppCompatSpinner>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_arrow_drop_down"
+                            />
+
+                    </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -139,57 +192,56 @@
                 android:id="@+id/date_gedung"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
                 android:orientation="horizontal"
-                >
+                android:paddingTop="5dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
                     android:gravity="start"
-                    >
+                    android:paddingEnd="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingTop="5dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/tanggal_pesan"
                         android:textColor="@color/colorContent"
-                        android:textSize="14sp"
-                        />
+                        android:textSize="14sp" />
+
                     <TextView
                         android:id="@+id/txt_date"
-                        android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingStart="5dp"
                         android:paddingEnd="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
                         android:text="@string/dd_mm_yyyy"
                         android:textColor="@color/colorContent"
                         android:textSize="14sp"
-                        android:textStyle="italic"
-                        />
+                        android:textStyle="italic" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
 
                     >
+
                     <ImageButton
                         android:id="@+id/btn_date"
-                        android:background="@drawable/btn_set_act"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_menu_event"
-                        android:padding="5dp"
-                        android:layout_marginStart="30dp"
                         android:layout_marginEnd="5dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_set_act"
                         android:onClick="datePicker"
-                        />
+                        android:padding="5dp"
+                        android:src="@drawable/ic_menu_event" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -198,28 +250,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="10dp"
-                >
+                android:paddingTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/waktu_pesan"
                     android:textColor="@color/colorContent"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
+
                 <RadioGroup
                     android:id="@+id/rad_waktu_sewa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    >
+                    android:layout_marginTop="5dp">
 
                     <RadioButton
-                        android:buttonTint="@color/colorContent"
                         android:id="@+id/siang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorContent"
                         android:text="@string/siang_06_00_15_00_wib"
                         android:textColor="@color/colorContent"
                         android:textSize="14sp"
@@ -227,20 +278,19 @@
                         />
 
                     <RadioButton
-                        android:buttonTint="@color/colorContent"
                         android:id="@+id/malam"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorContent"
                         android:text="@string/malam_16_00_22_00_wib"
                         android:textColor="@color/colorContent"
-                        android:textSize="14sp"
-                        />
+                        android:textSize="14sp" />
 
                     <RadioButton
-                        android:buttonTint="@color/colorContent"
                         android:id="@+id/siangmalam"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorContent"
                         android:text="@string/siang_malam_24_jam"
                         android:textColor="@color/colorContent"
                         android:textSize="14sp"
@@ -248,18 +298,19 @@
                         />
                 </RadioGroup>
             </LinearLayout>
+
             <Button
-                android:layout_marginTop="10dp"
                 android:id="@+id/btn_next_gedung"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:textAllCaps="false"
+                android:background="@drawable/btn_set_act"
                 android:text="@string/selesaikan_pemesanan"
+                android:textAllCaps="false"
                 android:textColor="@color/colorMenu"
-                android:textStyle="bold"
                 android:textSize="14sp"
-                android:background="@drawable/btn_set_act" />
-            </LinearLayout>
+                android:textStyle="bold" />
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>

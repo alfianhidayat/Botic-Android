@@ -7,13 +7,14 @@ import java.io.Serializable;
  */
 
 public class Booking implements Serializable {
-    private String noIdentitas, noHP, desGedung, jenisGedung, datePick, waktu;
+    private String noIdentitas, jenisIdentitas, noHP, desGedung, jenisGedung, datePick, waktu;
 
     public Booking() {
     }
 
-    public Booking(String noIdentitas, String noHP, String desGedung, String jenisGedung, String datePick, String waktu) {
+    public Booking(String noIdentitas, String jenisIdentitas, String noHP, String desGedung, String jenisGedung, String datePick, String waktu) {
         this.noIdentitas = noIdentitas;
+        this.jenisIdentitas = jenisIdentitas;
         this.noHP = noHP;
         this.desGedung = desGedung;
         this.jenisGedung = jenisGedung;
@@ -23,6 +24,14 @@ public class Booking implements Serializable {
 
     public String getNoIdentitas() {
         return noIdentitas;
+    }
+
+    public String getJenisIdentitas() {
+        return jenisIdentitas;
+    }
+
+    public void setJenisIdentitas(String jenisIdentitas) {
+        this.jenisIdentitas = jenisIdentitas;
     }
 
     public void setNoIdentitas(String noIdentitas) {

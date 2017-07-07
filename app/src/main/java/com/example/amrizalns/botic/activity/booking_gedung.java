@@ -29,12 +29,12 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
 
     public static String SER_KEY = "com.example.amrizalns.botic.model.Booking";
     private EditText mNoIdentias, mNoHP, mDescGedung;
-    private Spinner mJenisGedung;
+    private Spinner mJenisGedung, mJenisIdentitas;
     private RadioGroup mRadioGroupWaktu;
     private RadioButton mRadioButton;
     private TextView mdates;
     private Button next;
-    private String mItemJenisGedung, mWaktu, mDate;
+    private String mItemJenisGedung, mItemJenisIdentitas, mWaktu, mDate;
 
 
     @Override
@@ -49,9 +49,17 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         mJenisGedung = (Spinner)findViewById(R.id.jenis_gedung);
         mJenisGedung.setOnItemSelectedListener(this);
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.array_gedung, R.layout.spinner_jenisgedung);
+        mJenisIdentitas = (Spinner)findViewById(R.id.jenis_identitas);
+        mJenisIdentitas.setOnItemSelectedListener(this);
+
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.array_gedung, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown);
         mJenisGedung.setAdapter(adapter);
+
+        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.array_identitas, R.layout.spinner_item);
+        a.setDropDownViewResource(R.layout.spinner_dropdown);
+        mJenisIdentitas.setAdapter(a);
+
 
         next = (Button) findViewById(R.id.btn_next_gedung);
         next.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +87,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         mBooking.setNoHP(mNoHP.getText().toString());
         mBooking.setDesGedung(mDescGedung.getText().toString());
         mBooking.setJenisGedung(String.valueOf(mItemJenisGedung));
+        mBooking.setJenisIdentitas(String.valueOf(mItemJenisIdentitas));
         mBooking.setDatePick(String.valueOf(mDate));
         mBooking.setWaktu(String.valueOf(mWaktu));
         Intent intent = new Intent(booking_gedung.this, booking_gedung_finish.class);
@@ -91,7 +100,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         mItemJenisGedung = mJenisGedung.getSelectedItem().toString();
-
+        mItemJenisIdentitas = mJenisIdentitas.getSelectedItem().toString();
     }
 
     @Override

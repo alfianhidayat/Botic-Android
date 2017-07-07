@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,7 @@ public class pelayananpublik extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,12 +47,12 @@ public class pelayananpublik extends Fragment {
         return view;
     }
 
-    private void setupViewPager(ViewPager viewPager){
+    private void setupViewPager(ViewPager viewPager) {
         belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Kedinasan");
-        adapter.addFragment(new item_content(), "Keamanan");
-        adapter.addFragment(new item_content(), "Umum");
-
+        adapter.addFragment(Utils.getFragmentWithArgument(19, Constants.TAG_PUBLIC_SERVICE), "Kedinasan");
+        adapter.addFragment(Utils.getFragmentWithArgument(21, Constants.TAG_PUBLIC_SERVICE), "Kecamatan & Perusahaan Daerah");
+        adapter.addFragment(Utils.getFragmentWithArgument(22, Constants.TAG_PUBLIC_SERVICE), "Keamanan");
+        adapter.addFragment(Utils.getFragmentWithArgument(23, Constants.TAG_PUBLIC_SERVICE), "Umum");
         viewPager.setAdapter(adapter);
     }
 

@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +46,16 @@ public class kuliner extends Fragment {
         return view;
     }
 
-    private void setupViewPager(ViewPager viewPager){
-        belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Restaurant");
-        adapter.addFragment(new item_content(), "Cafe");
-        adapter.addFragment(new item_content(), "PKL");
-
+    /*
+     48 Restaurant
+     49 Cafe
+     50 PKL
+     */
+    private void setupViewPager(ViewPager viewPager) {
+        Adapter adapter = new Adapter(getFragmentManager());
+        adapter.addFragment(Utils.getFragmentWithArgument(48, Constants.TAG_KULINER), "Restaurant");
+        adapter.addFragment(Utils.getFragmentWithArgument(49, Constants.TAG_KULINER), "Cafe");
+        adapter.addFragment(Utils.getFragmentWithArgument(50, Constants.TAG_KULINER), "PKL");
         viewPager.setAdapter(adapter);
     }
 

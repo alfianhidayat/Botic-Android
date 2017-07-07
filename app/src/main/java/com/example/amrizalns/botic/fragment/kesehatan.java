@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,13 +48,10 @@ public class kesehatan extends Fragment {
         return view;
     }
 
-    private void setupViewPager(ViewPager viewPager){
-        belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Masjid");
-        adapter.addFragment(new item_content(), "Gereja");
-        adapter.addFragment(new item_content(), "Vihara");
-        adapter.addFragment(new item_content(), "Pura");
-        adapter.addFragment(new item_content(), "Klenteng");
+    private void setupViewPager(ViewPager viewPager) {
+        Adapter adapter = new Adapter(getFragmentManager());
+        adapter.addFragment(Utils.getFragmentWithArgument(53, Constants.TAG_HEALTH), "Rumah Sakit");
+        adapter.addFragment(Utils.getFragmentWithArgument(54, Constants.TAG_HEALTH), "Puskesmas");
 
         viewPager.setAdapter(adapter);
     }

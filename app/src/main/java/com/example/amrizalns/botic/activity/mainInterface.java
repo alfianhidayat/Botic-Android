@@ -25,6 +25,7 @@ import com.example.amrizalns.botic.fragment.beranda;
 import com.example.amrizalns.botic.fragment.booking;
 import com.example.amrizalns.botic.fragment.kesehatan;
 import com.example.amrizalns.botic.fragment.keuangan;
+import com.example.amrizalns.botic.fragment.leisure;
 import com.example.amrizalns.botic.fragment.pelayananpublik;
 import com.example.amrizalns.botic.fragment.tempatIbadah;
 import com.example.amrizalns.botic.utils.SessionLogin;
@@ -267,7 +268,7 @@ public class mainInterface extends AppCompatActivity
             f = new kesehatan();
 
         } else if (id == R.id.nav_leisure) {
-
+            f = new leisure();
         } else if (id == R.id.nav_aboutBjn) {
 
         } else if (id == R.id.nav_event) {

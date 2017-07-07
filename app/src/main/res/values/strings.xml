@@ -59,5 +59,6 @@
 
     <string name="success_login">Berhasil Login</string>
     <string name="failure_login">Login Gagal, Email atau Password Anda Salah!</string>
+    <string name="title_activity_direction">Map</string>
 
 </resources>

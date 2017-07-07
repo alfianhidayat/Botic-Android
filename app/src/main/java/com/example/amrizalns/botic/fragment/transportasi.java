@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.itemObject;
 import com.example.amrizalns.botic.recyclerViewAdapter;
+import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,11 +50,10 @@ public class transportasi extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager){
-        belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Bus");
-        adapter.addFragment(new item_content(), "Kereta");
-        adapter.addFragment(new item_content(), "Angkutan Wisata");
-
+        Adapter adapter = new Adapter(getFragmentManager());
+        adapter.addFragment(Utils.getFragmentWithArgument(14, Constants.TAG_TRANSPORTASI), "Bus");
+        adapter.addFragment(Utils.getFragmentWithArgument(15, Constants.TAG_TRANSPORTASI), "Kereta");
+        adapter.addFragment(Utils.getFragmentWithArgument(46, Constants.TAG_TRANSPORTASI), "Angkutan Wisata");
         viewPager.setAdapter(adapter);
     }
 

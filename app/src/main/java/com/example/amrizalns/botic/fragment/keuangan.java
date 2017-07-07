@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +49,10 @@ public class keuangan extends Fragment {
 
     private void setupViewPager(ViewPager viewPager){
         belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Kantor Cabang");
-        adapter.addFragment(new item_content(), "Unit Pembantu");
-        adapter.addFragment(new item_content(), "Kantor Kas");
-        adapter.addFragment(new item_content(), "ATM");
+        adapter.addFragment(Utils.getFragmentWithArgument(40, Constants.TAG_FINANCE), "Kantor Cabang");
+        adapter.addFragment(Utils.getFragmentWithArgument(47, Constants.TAG_FINANCE), "Unit Pembantu");
+        adapter.addFragment(Utils.getFragmentWithArgument(56, Constants.TAG_FINANCE), "Kantor Kas");
+        adapter.addFragment(Utils.getFragmentWithArgument(57, Constants.TAG_FINANCE), "ATM");
 
         viewPager.setAdapter(adapter);
     }

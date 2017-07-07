@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +50,11 @@ public class tempatIbadah extends Fragment {
 
     private void setupViewPager(ViewPager viewPager){
         belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Masjid");
-        adapter.addFragment(new item_content(), "Gereja");
-        adapter.addFragment(new item_content(), "Vihara");
-        adapter.addFragment(new item_content(), "Pura");
-        adapter.addFragment(new item_content(), "Klenteng");
-
+        adapter.addFragment(Utils.getFragmentWithArgument(39, Constants.TAG_PRAYING), "Masjid");
+        adapter.addFragment(Utils.getFragmentWithArgument(41, Constants.TAG_PRAYING), "Gereja");
+        adapter.addFragment(Utils.getFragmentWithArgument(44, Constants.TAG_PRAYING), "Vihara");
+        adapter.addFragment(Utils.getFragmentWithArgument(43, Constants.TAG_PRAYING), "Pura");
+        adapter.addFragment(Utils.getFragmentWithArgument(42, Constants.TAG_PRAYING), "Klenteng");
         viewPager.setAdapter(adapter);
     }
 

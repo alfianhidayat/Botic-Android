@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.amrizalns.botic.R;
 
@@ -19,7 +20,9 @@ public class checkin_2 extends Fragment {
 
     View view;
     private LinearLayout mLinearLayout;
-    private EditText nama, usia, asal;
+    //    private EditText nama, usia, asal;
+//    private TextView nmr;
+    private int i = 0;
 
     public checkin_2() {
         // Required empty public constructor
@@ -44,13 +47,21 @@ public class checkin_2 extends Fragment {
         mLinearLayout = (LinearLayout) view.findViewById(R.id.checkin_tamu_form);
         String jumlah = getArguments().getString("daftar");
         int jmlTamu = Integer.parseInt(jumlah);
-        for (int i = 0; i < jmlTamu; i++) {
+        for (i = 0; i < jmlTamu; i++) {
             FormTamu();
         }
         return view;
     }
 
     private void FormTamu() {
+        TextView nomer = new TextView(getActivity());
+        nomer.setId(nomer.generateViewId());
+        nomer.setText("Tamu " + (i + 1));
+        nomer.setTextSize(14);
+        nomer.setTextColor(getResources().getColor(R.color.colorContent));
+        nomer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        mLinearLayout.addView(nomer);
+
         EditText nama = new EditText(getActivity());
         nama.setId(nama.generateViewId());
         nama.setHint("nama");

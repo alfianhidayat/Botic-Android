@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +48,7 @@ public class checkin_1 extends Fragment {
         mNohp = (EditText) view.findViewById(R.id.field_notelp);
         mJumlahTamu = (EditText) view.findViewById(R.id.field_jumlah_tamu);
 
+        mJumlahTamu.addTextChangedListener(mTextWatcher);
         aggrement = (CheckBox) view.findViewById(R.id.check_pj);
 
         daftar_pj = (Button) view.findViewById(R.id.btn_checkin_pj);
@@ -58,6 +61,28 @@ public class checkin_1 extends Fragment {
 
         return view;
     }
+
+    TextWatcher mTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (Integer.parseInt(s.toString()) <= 10 && Integer.parseInt(s.toString()) > 0){
+                daftar_pj.setEnabled(true);
+            }else{
+                daftar_pj.setEnabled(false);
+                Toast.makeText(getActivity(), "Maksimal 10", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     private void VerifikasiDaftar() {
         String namapj = mNamaPJ.getText().toString();

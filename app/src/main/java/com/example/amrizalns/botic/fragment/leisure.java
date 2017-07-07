@@ -1,5 +1,7 @@
 package com.example.amrizalns.botic.fragment;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -18,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class belanja extends Fragment {
-
+public class leisure extends Fragment {
     ViewPager mViewPager;
     TabLayout mTabLayout;
     private GridLayoutManager lLayout;
@@ -34,21 +35,22 @@ public class belanja extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_belanja, null);
+        view = inflater.inflate(R.layout.fragment_leisure, null);
 
-        mViewPager = (ViewPager) view.findViewById(R.id.vp_belanja);
+        mViewPager = (ViewPager) view.findViewById(R.id.vp_leisure);
         setupViewPager(mViewPager);
 
-        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout_belanja);
+        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout_leisure);
         mTabLayout.setupWithViewPager(mViewPager);
 
         return view;
     }
     private void setupViewPager(ViewPager viewPager){
-        Adapter adapter = new Adapter(getFragmentManager());
-        adapter.addFragment(new item_content(), "Mall & Swalayan");
-        adapter.addFragment(new item_content(), "Minimarket");
-        adapter.addFragment(new item_content(), "Pasar");
+        belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
+        adapter.addFragment(new item_content(), "Spa & Skin Care");
+        adapter.addFragment(new item_content(), "Gym");
+        adapter.addFragment(new item_content(), "Salon");
+        adapter.addFragment(new item_content(), "Panti Pijat");
 
         viewPager.setAdapter(adapter);
     }
@@ -81,5 +83,4 @@ public class belanja extends Fragment {
             return mFragmentTitleList.get(position);
         }
     }
-
 }

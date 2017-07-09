@@ -22,18 +22,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.botic.coreapps.callbacks.PageCallback;
+import com.botic.coreapps.models.Asset;
+import com.botic.coreapps.models.IdentityType;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.botic.coreapps.responses.BaseResponse;
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.SpinnerItemAdapter;
 import com.example.amrizalns.botic.model.Booking;
 import com.example.amrizalns.botic.utils.SessionLogin;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
-public class booking_gedung extends AppCompatActivity implements AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
+public class booking_gedung extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     public static String SER_KEY = "com.example.amrizalns.botic.model.Booking";
     private EditText mNoIdentias, mNoHP, mDescGedung, mName;
@@ -45,35 +50,60 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
     private String mItemJenisGedung, mItemJenisIdentitas, mWaktu, mDate;
     ProgressDialog dialog;
 
+    List<String> spListGedung = new ArrayList<>();
+    List<String> spListIdentity = new ArrayList<>();
+    SpinnerItemAdapter adapterGedung;
+    SpinnerItemAdapter adapterIdentity;
+    List<Asset> assets = new ArrayList<>();
+    List<IdentityType> identityTypes = new ArrayList<>();
+    int selectedItemAsset;
+    int selectedItemIdentity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_gedung);
 
-        mNoIdentias = (EditText)findViewById(R.id.field_no_identitas);
+        mNoIdentias = (EditText) findViewById(R.id.field_no_identitas);
         mName = (EditText) findViewById(R.id.field_name);
-        mNoHP = (EditText)findViewById(R.id.field_number_call);
-        mDescGedung = (EditText)findViewById(R.id.field_desc_gedung);
+        mNoHP = (EditText) findViewById(R.id.field_number_call);
+        mDescGedung = (EditText) findViewById(R.id.field_desc_gedung);
 
         mJenisGedung = (Spinner) findViewById(R.id.jenis_gedung);
-        mJenisGedung.setOnItemSelectedListener(this);
 
         mJenisIdentitas = (Spinner) findViewById(R.id.jenis_identitas);
-        mJenisIdentitas.setOnItemSelectedListener(this);
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.array_gedung, R.layout.spinner_item);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown);
-        mJenisGedung.setAdapter(adapter);
+        adapterGedung = new SpinnerItemAdapter(this, R.layout.spinner_item_lis, spListGedung);
+        mJenisGedung.setAdapter(adapterGedung);
+        mJenisGedung.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedItemAsset = position;
+            }
 
-        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.array_identitas, R.layout.spinner_item);
-        a.setDropDownViewResource(R.layout.spinner_dropdown);
-        mJenisIdentitas.setAdapter(a);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selectedItemAsset = 0;
+            }
+        });
+
+        adapterIdentity = new SpinnerItemAdapter(this, R.layout.spinner_item_lis, spListIdentity);
+        mJenisIdentitas.setAdapter(adapterIdentity);
+        mJenisIdentitas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedItemIdentity = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selectedItemIdentity = 0;
+            }
+        });
 
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading...");
         dialog.setCancelable(false);
-
 
         next = (Button) findViewById(R.id.btn_next_gedung);
         next.setOnClickListener(new View.OnClickListener() {
@@ -83,14 +113,14 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
                 View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
                 int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
                 RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
-                        .booking(mJenisIdentitas.getSelectedItemPosition() + 1,
+                        .booking(identityTypes.get(selectedItemIdentity).getId(),
                                 mNoIdentias.getText().toString(),
-                                "Alfian Testing",
+                                mName.getText().toString(),
                                 mNoHP.getText().toString(),
                                 mdates.getText().toString(),
                                 idx + "",
                                 mDescGedung.getText().toString(),
-                                2,
+                                assets.get(selectedItemAsset).getId(),
                                 29)
                         .enqueue(new PageCallback<Object>(booking_gedung.this) {
                             @Override
@@ -136,6 +166,70 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
                 startActivity(intent);
             }
         });
+        getListIdentity();
+        getListAsset();
+    }
+
+    private void getListAsset() {
+        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getListAsset()
+                .enqueue(new PageCallback<List<Asset>>(booking_gedung.this) {
+                    @Override
+                    protected void onStart() {
+
+                    }
+
+                    @Override
+                    protected void onFinish() {
+
+                    }
+
+                    @Override
+                    protected void onSuccess(List<Asset> data) {
+                        spListGedung.clear();
+                        assets.clear();
+                        assets.addAll(data);
+                        for (Asset asset : data) {
+                            spListGedung.add(asset.getName());
+                        }
+                        adapterGedung.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    protected void onError(String message) {
+                        super.onError(message);
+                    }
+                });
+    }
+
+    private void getListIdentity() {
+        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getListIdentity()
+                .enqueue(new PageCallback<List<IdentityType>>(booking_gedung.this) {
+                    @Override
+                    protected void onStart() {
+
+                    }
+
+                    @Override
+                    protected void onFinish() {
+
+                    }
+
+                    @Override
+                    protected void onSuccess(List<IdentityType> data) {
+                        spListIdentity.clear();
+                        identityTypes.clear();
+                        identityTypes.addAll(data);
+                        for (IdentityType dt : data) {
+                            spListIdentity.add(dt.getType());
+                        }
+                        adapterIdentity.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    protected void onError(String message) {
+                        super.onError(message);
+                    }
+                });
     }
 
     private void BookingGedung() {
@@ -144,7 +238,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         mBooking.setNama(mName.getText().toString());
         mBooking.setNoHP(mNoHP.getText().toString());
         mBooking.setDesGedung(mDescGedung.getText().toString());
-        mBooking.setJenisGedung(String.valueOf(mItemJenisGedung));
+        mBooking.setJenisGedung(assets.get(selectedItemAsset).getName());
         mBooking.setJenisIdentitas(String.valueOf(mItemJenisIdentitas));
         mBooking.setDatePick(String.valueOf(mDate));
         mBooking.setWaktu(String.valueOf(mWaktu));
@@ -153,17 +247,6 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         mBundle.putSerializable(SER_KEY, mBooking);
         intent.putExtras(mBundle);
         startActivity(intent);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        mItemJenisGedung = mJenisGedung.getSelectedItem().toString();
-        mItemJenisIdentitas = mJenisIdentitas.getSelectedItem().toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     public void datePicker(View view) {

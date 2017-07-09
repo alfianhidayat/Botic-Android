@@ -124,5 +124,4 @@ public class item_content extends Fragment {
                 }
             });
     }
-
 }

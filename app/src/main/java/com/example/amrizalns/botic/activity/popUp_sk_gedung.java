@@ -21,22 +21,5 @@ public class popUp_sk_gedung extends Activity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.pop_up_sk_gedung);
-
-//        DisplayMetrics dm = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(dm);
-//
-//        int width = dm.widthPixels;
-//        int height = dm.heightPixels;
-//
-//        getWindow().setLayout((int)(width*.8), (int) (height*.6));
-
-        Button btn = (Button) findViewById(R.id.sk_agree);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(popUp_sk_gedung.this, booking_gedung_finish.class);
-                startActivity(i);
-            }
-        });
     }
 }

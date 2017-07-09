@@ -36,11 +36,11 @@ import java.util.GregorianCalendar;
 public class booking_gedung extends AppCompatActivity implements AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
 
     public static String SER_KEY = "com.example.amrizalns.botic.model.Booking";
-    private EditText mNoIdentias, mNoHP, mDescGedung;
+    private EditText mNoIdentias, mNoHP, mDescGedung, mName;
     private Spinner mJenisGedung, mJenisIdentitas;
     private RadioGroup mRadioGroupWaktu;
     private RadioButton mRadioButton;
-    private TextView mdates;
+    private TextView mdates, mterm;
     private Button next;
     private String mItemJenisGedung, mItemJenisIdentitas, mWaktu, mDate;
     ProgressDialog dialog;
@@ -51,9 +51,10 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_gedung);
 
-        mNoIdentias = (EditText) findViewById(R.id.field_no_identitas);
-        mNoHP = (EditText) findViewById(R.id.field_number_call);
-        mDescGedung = (EditText) findViewById(R.id.field_desc_gedung);
+        mNoIdentias = (EditText)findViewById(R.id.field_no_identitas);
+        mName = (EditText) findViewById(R.id.field_name);
+        mNoHP = (EditText)findViewById(R.id.field_number_call);
+        mDescGedung = (EditText)findViewById(R.id.field_desc_gedung);
 
         mJenisGedung = (Spinner) findViewById(R.id.jenis_gedung);
         mJenisGedung.setOnItemSelectedListener(this);
@@ -126,11 +127,21 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
                 mWaktu = mRadioButton.getText().toString();
             }
         });
+
+        mterm = (TextView) findViewById(R.id.term);
+        mterm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(booking_gedung.this, popUp_sk_gedung.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void BookingGedung() {
         Booking mBooking = new Booking();
         mBooking.setNoIdentitas(mNoIdentias.getText().toString());
+        mBooking.setNama(mName.getText().toString());
         mBooking.setNoHP(mNoHP.getText().toString());
         mBooking.setDesGedung(mDescGedung.getText().toString());
         mBooking.setJenisGedung(String.valueOf(mItemJenisGedung));

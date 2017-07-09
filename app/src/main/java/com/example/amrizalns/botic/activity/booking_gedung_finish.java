@@ -12,8 +12,8 @@ import com.example.amrizalns.botic.model.Booking;
 
 public class booking_gedung_finish extends AppCompatActivity{
 
-    private TextView noIdentitas, noHP, desGedung, jenisGedung, datePick, waktu;
-    private Button sk;
+    private TextView noIdentitas, nama, noHP, desGedung, jenisGedung, datePick, waktu;
+    private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,24 +21,25 @@ public class booking_gedung_finish extends AppCompatActivity{
         setContentView(R.layout.activity_booking_gedung_finish);
 
         noIdentitas = (TextView)findViewById(R.id.tv_noIdentitas);
+        nama = (TextView) findViewById(R.id.tv_nama);
         noHP = (TextView)findViewById(R.id.tv_noHP);
         desGedung = (TextView)findViewById(R.id.tv_desGedung);
         jenisGedung = (TextView)findViewById(R.id.tv_jenisGedung);
         datePick = (TextView)findViewById(R.id.tv_tanggal);
         waktu = (TextView)findViewById(R.id.tv_waktu);
 
-        sk = (Button)findViewById(R.id.sk);
-        sk.setOnClickListener(new View.OnClickListener() {
+        mButton = (Button)findViewById(R.id.selesai_gedung);
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(booking_gedung_finish.this, popUp_sk_gedung.class);
+                Intent intent = new Intent(booking_gedung_finish.this, mainInterface.class);
                 startActivity(intent);
             }
         });
 
-
         Booking mBooking = (Booking)getIntent().getSerializableExtra(booking_gedung.SER_KEY);
         noIdentitas.setText(mBooking.getNoIdentitas());
+        nama.setText(mBooking.getNama());
         noHP.setText(mBooking.getNoHP());
         desGedung.setText(mBooking.getDesGedung());
         jenisGedung.setText(mBooking.getJenisGedung());

@@ -20,34 +20,45 @@
             />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/firstlane"
+        android:layout_below="@id/banner"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:text="Invoce Booking Gedung"
+            android:textStyle="bold"
+            android:textColor="@color/colorContent"/>
+
+        <View android:layout_width="fill_parent"
+            android:layout_height="3px"
+            android:background="@color/colorContent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/separator2" />
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/banner">
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_below="@id/firstlane">
 
         <LinearLayout
             android:id="@+id/date_gedung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
-            android:orientation="vertical"
-            android:layout_below="@+id/banner">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp"
-                android:textSize="20dp"
-                android:text="Invoce Booking Gedung"
-                android:textStyle="bold"
-                android:textColor="@color/colorContent"/>
-            <View android:layout_width="fill_parent"
-                  android:layout_height="2px"
-                  android:background="@color/colorContent"
-                  android:layout_marginBottom="5dp"
-                  android:layout_marginTop="5dp"
-                  android:id="@+id/separator2" />
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -61,6 +72,25 @@
                 android:textColor="@color/colorContent"/>
             <TextView
                 android:id="@+id/tv_noIdentitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
+                android:textColor="@color/colorContent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
+                android:text="Nama"
+                android:textStyle="bold"
+                android:textColor="@color/colorContent"/>
+            <TextView
+                android:id="@+id/tv_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
@@ -167,16 +197,16 @@
                 android:textColor="@color/colorContent"/>
 
             <Button
-                android:id="@+id/sk"
+                android:id="@+id/selesai_gedung"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Terms and Condition"
+                android:text="Selesai"
                 android:textAllCaps="false"
                 android:background="@drawable/btn_set_act"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"/>
-
+                android:layout_marginEnd="25dp" />
         </LinearLayout>
+
     </ScrollView>
 </RelativeLayout>

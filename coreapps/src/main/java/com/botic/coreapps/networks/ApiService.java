@@ -75,4 +75,16 @@ public interface ApiService {
     @GET("api/leisure/{id_category}")
     Call<BaseResponse<List<ObjectItem>>> getLeisureByCategory(@Path("id_category") int idCategory);
 
+    @FormUrlEncoded
+    @POST("api/booking")
+    Call<BaseResponse<Object>> booking(@Field("identity_type_id") int identityTypeId,
+                               @Field("identity_number") String identityNumber,
+                               @Field("name") String name,
+                               @Field("phone") String phone,
+                               @Field("date") String date,
+                               @Field("time") String time,
+                               @Field("description") String description,
+                               @Field("id_object") int idObject,
+                               @Field("id_category") int idCategory);
+
 }

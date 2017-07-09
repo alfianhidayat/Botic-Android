@@ -137,7 +137,7 @@
                     android:id="@+id/pernyataan_pj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Saya bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut."
+                    android:text="@string/termcondition_1"
                     android:textColor="@color/colorContent"
                     android:textSize="12sp"
                     android:paddingStart="10dp"

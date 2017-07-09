@@ -311,6 +311,51 @@
                 android:textColor="@color/colorMenu"
                 android:textSize="14sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/check_gedung"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_set_border"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="start"
+                    >
+
+                    <TextView
+                        android:id="@+id/pernyataan_pj"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termcondition_1"
+                        android:textColor="@color/colorContent"
+                        android:textSize="12sp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="0dp"
+                        />
+                    <TextView
+                        android:id="@+id/term"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Term and Condition"
+                        android:textColor="@color/colorMain1"
+                        android:textStyle="bold|italic"
+                        android:textSize="12sp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="0dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

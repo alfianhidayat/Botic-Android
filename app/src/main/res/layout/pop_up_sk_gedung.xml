@@ -263,31 +263,6 @@
                 android:textSize="10sp"
                 />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_gravity="bottom"
-            android:paddingBottom="10dp"
-            >
-            <Button
-                android:gravity="center"
-                android:padding="10dp"
-                android:id="@+id/sk_agree"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/btn_set_act"
-                android:text="Saya telah membaca dan mengerti tentang syarat dan ketentuan tersebut"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textColor="@color/colorMenu"
-                />
-        </LinearLayout>
-
-
     </LinearLayout>
     </ScrollView>
 </RelativeLayout>

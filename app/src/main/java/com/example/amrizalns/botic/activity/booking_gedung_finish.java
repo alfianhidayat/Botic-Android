@@ -13,7 +13,7 @@ import com.example.amrizalns.botic.model.Booking;
 public class booking_gedung_finish extends AppCompatActivity{
 
     private TextView noIdentitas, noHP, desGedung, jenisGedung, datePick, waktu;
-    private Button sk;
+    private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +27,14 @@ public class booking_gedung_finish extends AppCompatActivity{
         datePick = (TextView)findViewById(R.id.tv_tanggal);
         waktu = (TextView)findViewById(R.id.tv_waktu);
 
-        sk = (Button)findViewById(R.id.sk);
-        sk.setOnClickListener(new View.OnClickListener() {
+        mButton = (Button)findViewById(R.id.selesai_gedung);
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(booking_gedung_finish.this, popUp_sk_gedung.class);
+                Intent intent = new Intent(booking_gedung_finish.this, mainInterface.class);
                 startActivity(intent);
             }
         });
-
 
         Booking mBooking = (Booking)getIntent().getSerializableExtra(booking_gedung.SER_KEY);
         noIdentitas.setText(mBooking.getNoIdentitas());

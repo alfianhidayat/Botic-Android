@@ -32,7 +32,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
     private Spinner mJenisGedung, mJenisIdentitas;
     private RadioGroup mRadioGroupWaktu;
     private RadioButton mRadioButton;
-    private TextView mdates;
+    private TextView mdates, mterm;
     private Button next;
     private String mItemJenisGedung, mItemJenisIdentitas, mWaktu, mDate;
 
@@ -76,6 +76,15 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
                 int selected = mRadioGroupWaktu.getCheckedRadioButtonId();
                 mRadioButton = (RadioButton)findViewById(selected);
                 mWaktu = mRadioButton.getText().toString();
+            }
+        });
+
+        mterm = (TextView) findViewById(R.id.term);
+        mterm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(booking_gedung.this, popUp_sk_gedung.class);
+                startActivity(intent);
             }
         });
     }

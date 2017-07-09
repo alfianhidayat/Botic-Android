@@ -52,7 +52,6 @@ public class mainInterface extends AppCompatActivity
     private JSONObject response, profile_pic_data, profile_pic_url;
     private NavigationView mNavigationView;
     private TextView userName, userEmail;
-    private ImageView userPic;
     private CircleImageView mProfileImageView;
     private String mUsername, mEmail;
 
@@ -66,6 +65,7 @@ public class mainInterface extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         View header = mNavigationView.getHeaderView(0);
 
@@ -73,25 +73,24 @@ public class mainInterface extends AppCompatActivity
         mProfileImageView = (CircleImageView) header.findViewById(R.id.userpic);
         userEmail = (TextView) header.findViewById(R.id.email_profil);
 
-        Intent intent = getIntent();
-        //JSON Facebook
-        String jsondata = intent.getStringExtra("jsondata");
-//        setNavigationHeader();
-        setUserProfile(jsondata);
-
         configureSignIn();
         getUserProfileGoogle();
-
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+
+        //JSON Facebook
+        Intent intent = getIntent();
+        if (intent.hasExtra("jsondata")) {
+            String jsondata = intent.getStringExtra("jsondata");
+            setNavigationHeader();
+            setUserProfile(jsondata);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
-//
 
         loadFragment(R.id.nav_beranda);
     }
@@ -120,19 +119,14 @@ public class mainInterface extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_interface, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -152,15 +146,16 @@ public class mainInterface extends AppCompatActivity
 
         return true;
     }
+
     //-----------User Profil Facebook-----------
-//    public void setNavigationHeader() {
-//        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-//        View header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_interface, null);
-//        mNavigationView.addHeaderView(header);
-//        userName = (TextView) header.findViewById(R.id.name_profil);
-//        userPic = (ImageView) header.findViewById(R.id.userpic);
-//        userEmail = (TextView) header.findViewById(R.id.email_profil);
-//    }
+    public void setNavigationHeader() {
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_interface, null);
+        mNavigationView.addHeaderView(header);
+        userName = (TextView) header.findViewById(R.id.name_profil);
+        mProfileImageView = (CircleImageView) header.findViewById(R.id.userpic);
+        userEmail = (TextView) header.findViewById(R.id.email_profil);
+    }
 
     public void setUserProfile(String data) {
         try {

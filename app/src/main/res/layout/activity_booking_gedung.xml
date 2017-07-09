@@ -329,7 +329,7 @@
                         android:text="@string/siang_malam_24_jam"
                         android:textColor="@color/colorContent"
                         android:textSize="14sp"
-
+                        android:checked="true"
                         />
                 </RadioGroup>
             </LinearLayout>

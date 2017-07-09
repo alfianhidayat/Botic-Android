@@ -109,42 +109,50 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
-                View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
-                int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
-                RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
-                        .booking(identityTypes.get(selectedItemIdentity).getId(),
-                                mNoIdentias.getText().toString(),
-                                mName.getText().toString(),
-                                mNoHP.getText().toString(),
-                                mdates.getText().toString(),
-                                idx + "",
-                                mDescGedung.getText().toString(),
-                                assets.get(selectedItemAsset).getId(),
-                                29)
-                        .enqueue(new PageCallback<Object>(booking_gedung.this) {
-                            @Override
-                            protected void onStart() {
-                                dialog.show();
-                            }
+                if ( mName.length() == 0  || mNoIdentias.length() == 0 || mNoHP.length() == 0 || mDescGedung.length() == 0 ) {
+                    mName.setError("Nama wajib diisi!");
+                    mNoIdentias.setError("Nomor Identitas wajib diisi!");
+                    mNoHP.setError("Nomor HP wajib diisi!");
+                    mDescGedung.setError("Deskripsi Gedung wajib diisi");
+                } else {
 
-                            @Override
-                            protected void onFinish() {
-                                dialog.dismiss();
-                            }
+                    int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
+                    View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
+                    int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
+                    RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                            .booking(identityTypes.get(selectedItemIdentity).getId(),
+                                    mNoIdentias.getText().toString(),
+                                    mName.getText().toString(),
+                                    mNoHP.getText().toString(),
+                                    mdates.getText().toString(),
+                                    idx + "",
+                                    mDescGedung.getText().toString(),
+                                    assets.get(selectedItemAsset).getId(),
+                                    29)
+                            .enqueue(new PageCallback<Object>(booking_gedung.this) {
+                                @Override
+                                protected void onStart() {
+                                    dialog.show();
+                                }
 
-                            @Override
-                            protected void onSuccess(Object data) {
-                                Toast.makeText(booking_gedung.this, "Booking Berhasil", Toast.LENGTH_SHORT).show();
-                                BookingGedung();
-                            }
+                                @Override
+                                protected void onFinish() {
+                                    dialog.dismiss();
+                                }
 
-                            @Override
-                            protected void onError(String message) {
-                                super.onError(message);
-                                Toast.makeText(booking_gedung.this, "Booking Gagal", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                @Override
+                                protected void onSuccess(Object data) {
+                                    Toast.makeText(booking_gedung.this, "Booking Berhasil", Toast.LENGTH_SHORT).show();
+                                    BookingGedung();
+                                }
+
+                                @Override
+                                protected void onError(String message) {
+                                    super.onError(message);
+                                    Toast.makeText(booking_gedung.this, "Booking Gagal", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
             }
         });
 

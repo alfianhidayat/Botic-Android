@@ -78,14 +78,13 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
     private Intent mSigninIntent;
     private String idToken;
     public SharedPrefManager sharedPrefManager;
-    private SharedPreferences mSharedPreferences;
     private final Context mContext = this;
 
     private LoginButton mFacebook;
     private AccessTokenTracker mAccessTokenTracker;
     private ProfileTracker mProfileTracker;
 
-    private Button mSingIn, mSignOutButton;
+    private Button mSingIn;
     private TextView mRegis;
     private EditText mEmail, mPassword;
     private ProgressDialog mProgressDialog;
@@ -130,8 +129,6 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
         mSignInButton.setColorScheme(SignInButton.COLOR_AUTO);
         mSignInButton.setOnClickListener(this);
 
-//        mSignOutButton = (Button) findViewById(R.id.sign_out_button);
-//        mSignOutButton.setOnClickListener(this);
         configureSignIn();
 
         //Sign in Application
@@ -142,14 +139,6 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
         mRegis = (TextView) findViewById(R.id.link_regist);
         mRegis.setOnClickListener(this);
 
-//        TextView daftar = (TextView) findViewById(R.id.link_regist);
-//        daftar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(signIn.this, signUp.class);
-//                startActivity(i);
-//            }
-//        });
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("Loading...");
     }
@@ -193,24 +182,6 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                                     mProgressDialog.dismiss();
                                 }
                             });
-//                            .enqueue(new PageCallback<Object>(this) {
-//                                @Override
-//                                protected void onFinish() {
-//                                    mProgressDialog.dismiss();
-//                                }
-//
-//                                @Override
-//                                protected void onStart() {
-//                                    mProgressDialog.show();
-//                                }
-//
-//                                @Override
-//                                protected void onSuccess(Object data) {
-//                                    Hawk.put(Constants.SHARED_PREF_TOKEN, )
-//                                    startActivity(new Intent(signIn.this, mainInterface.class));
-//                                }
-//                            });
-//                new SignInActivity(mEmail.getText().toString(), mPassword.getText().toString());
                 }
                 break;
             case R.id.link_regist:
@@ -220,7 +191,6 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
             case R.id.sign_in_g_button:
                 if (utils.isNetworkAvailable()) {
                     signIn();
-
                 } else {
                     Toast.makeText(signIn.this, "Oops! no internet connection!", Toast.LENGTH_SHORT).show();
                 }
@@ -255,7 +225,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
             }
         });
         Bundle permission = new Bundle();
-        permission.putString("fields", "id,name,email,picture.width(70).height(70)");
+        permission.putString("fields", "id,name,email,picture");
         dataRequest.setParameters(permission);
         dataRequest.executeAsync();
     }
@@ -488,9 +458,8 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                 Intent i = new Intent(this, mainInterface.class);
                 startActivity(i);
             } else {
-                // Google Sign In failed, update UI appropriately
-                Log.e(TAG, "Login Unsuccessful. ");
-                Toast.makeText(this, "Login Unsuccessful", Toast.LENGTH_SHORT)
+                Log.e(TAG, "Login Google Unsuccessful. ");
+                Toast.makeText(this, "Login Google Unsuccessful", Toast.LENGTH_SHORT)
                         .show();
             }
         }

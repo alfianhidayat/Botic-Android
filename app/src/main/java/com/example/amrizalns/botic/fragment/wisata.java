@@ -91,7 +91,7 @@ public class wisata extends Fragment {
                 super.onSuccess(data);
                 rowListItem.clear();
                 for (ObjectItem objectItem : data) {
-                    rowListItem.add(new itemObject(R.drawable.content_wisata1,
+                    rowListItem.add(new itemObject(R.mipmap.ic_botic,
                             objectItem.getName(),
                             objectItem.getAddress(),
                             objectItem.getPrice(),

@@ -28,7 +28,7 @@ import java.util.GregorianCalendar;
 public class booking_gedung extends AppCompatActivity implements AdapterView.OnItemSelectedListener,DatePickerDialog.OnDateSetListener{
 
     public static String SER_KEY = "com.example.amrizalns.botic.model.Booking";
-    private EditText mNoIdentias, mNoHP, mDescGedung;
+    private EditText mNoIdentias, mNoHP, mDescGedung, mName;
     private Spinner mJenisGedung, mJenisIdentitas;
     private RadioGroup mRadioGroupWaktu;
     private RadioButton mRadioButton;
@@ -43,6 +43,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_booking_gedung);
 
         mNoIdentias = (EditText)findViewById(R.id.field_no_identitas);
+        mName = (EditText) findViewById(R.id.field_name);
         mNoHP = (EditText)findViewById(R.id.field_number_call);
         mDescGedung = (EditText)findViewById(R.id.field_desc_gedung);
 
@@ -93,6 +94,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
 
         Booking mBooking = new Booking();
         mBooking.setNoIdentitas(mNoIdentias.getText().toString());
+        mBooking.setNama(mName.getText().toString());
         mBooking.setNoHP(mNoHP.getText().toString());
         mBooking.setDesGedung(mDescGedung.getText().toString());
         mBooking.setJenisGedung(String.valueOf(mItemJenisGedung));

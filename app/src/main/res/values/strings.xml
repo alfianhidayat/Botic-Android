@@ -156,5 +156,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="termcondition_1">Saya bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut.</string>
+    <string name="namaIdentitas">nama ( sesuai identitas )</string>
 
 </resources>

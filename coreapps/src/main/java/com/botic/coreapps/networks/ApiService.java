@@ -1,5 +1,7 @@
 package com.botic.coreapps.networks;
 
+import com.botic.coreapps.models.Asset;
+import com.botic.coreapps.models.IdentityType;
 import com.botic.coreapps.models.Token;
 import com.botic.coreapps.models.ObjectItem;
 import com.botic.coreapps.models.User;
@@ -78,13 +80,19 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("api/booking")
     Call<BaseResponse<Object>> booking(@Field("identity_type_id") int identityTypeId,
-                               @Field("identity_number") String identityNumber,
-                               @Field("name") String name,
-                               @Field("phone") String phone,
-                               @Field("date") String date,
-                               @Field("time") String time,
-                               @Field("description") String description,
-                               @Field("id_object") int idObject,
-                               @Field("id_category") int idCategory);
+                                       @Field("identity_number") String identityNumber,
+                                       @Field("name") String name,
+                                       @Field("phone") String phone,
+                                       @Field("date") String date,
+                                       @Field("time") String time,
+                                       @Field("description") String description,
+                                       @Field("id_object") int idObject,
+                                       @Field("id_category") int idCategory);
+
+    @GET("api/listasset")
+    Call<BaseResponse<List<Asset>>> getListAsset();
+
+    @GET("api/listidentity")
+    Call<BaseResponse<List<IdentityType>>> getListIdentity();
 
 }

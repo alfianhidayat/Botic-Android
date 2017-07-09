@@ -3,6 +3,7 @@ package com.example.amrizalns.botic.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -65,7 +66,6 @@ public class mainInterface extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         View header = mNavigationView.getHeaderView(0);
 
@@ -82,7 +82,7 @@ public class mainInterface extends AppCompatActivity
         Intent intent = getIntent();
         if (intent.hasExtra("jsondata")) {
             String jsondata = intent.getStringExtra("jsondata");
-            setNavigationHeader();
+//            setNavigationHeader();
             setUserProfile(jsondata);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -148,14 +148,14 @@ public class mainInterface extends AppCompatActivity
     }
 
     //-----------User Profil Facebook-----------
-    public void setNavigationHeader() {
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-        View header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_interface, null);
-        mNavigationView.addHeaderView(header);
-        userName = (TextView) header.findViewById(R.id.name_profil);
-        mProfileImageView = (CircleImageView) header.findViewById(R.id.userpic);
-        userEmail = (TextView) header.findViewById(R.id.email_profil);
-    }
+//    public void setNavigationHeader() {
+//        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+//        View header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_interface, null);
+//        mNavigationView.addHeaderView(header);
+//        userName = (TextView) header.findViewById(R.id.name_profil);
+//        mProfileImageView = (CircleImageView) header.findViewById(R.id.userpic);
+//        userEmail = (TextView) header.findViewById(R.id.email_profil);
+//    }
 
     public void setUserProfile(String data) {
         try {

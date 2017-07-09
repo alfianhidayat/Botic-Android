@@ -200,6 +200,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/jenis_gedung"
                         android:textColor="@color/colorContent"
+                        android:layout_marginEnd="5dp"
                         android:textSize="14sp" />
 
                     <RelativeLayout
@@ -253,7 +254,6 @@
                         android:paddingEnd="5dp"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
-                        android:text="@string/dd_mm_yyyy"
                         android:textColor="@color/colorContent"
                         android:textSize="14sp"
                         android:textStyle="italic" />

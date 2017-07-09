@@ -2,11 +2,13 @@ package com.example.amrizalns.botic.activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.telecom.Call;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,15 +19,21 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.botic.coreapps.callbacks.PageCallback;
+import com.botic.coreapps.networks.RetrofitApi;
+import com.botic.coreapps.responses.BaseResponse;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.model.Booking;
+import com.example.amrizalns.botic.utils.SessionLogin;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class booking_gedung extends AppCompatActivity implements AdapterView.OnItemSelectedListener,DatePickerDialog.OnDateSetListener{
+public class booking_gedung extends AppCompatActivity implements AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
 
     public static String SER_KEY = "com.example.amrizalns.botic.model.Booking";
     private EditText mNoIdentias, mNoHP, mDescGedung, mName;
@@ -35,6 +43,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
     private TextView mdates, mterm;
     private Button next;
     private String mItemJenisGedung, mItemJenisIdentitas, mWaktu, mDate;
+    ProgressDialog dialog;
 
 
     @Override
@@ -47,10 +56,10 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         mNoHP = (EditText)findViewById(R.id.field_number_call);
         mDescGedung = (EditText)findViewById(R.id.field_desc_gedung);
 
-        mJenisGedung = (Spinner)findViewById(R.id.jenis_gedung);
+        mJenisGedung = (Spinner) findViewById(R.id.jenis_gedung);
         mJenisGedung.setOnItemSelectedListener(this);
 
-        mJenisIdentitas = (Spinner)findViewById(R.id.jenis_identitas);
+        mJenisIdentitas = (Spinner) findViewById(R.id.jenis_identitas);
         mJenisIdentitas.setOnItemSelectedListener(this);
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.array_gedung, R.layout.spinner_item);
@@ -61,12 +70,51 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         a.setDropDownViewResource(R.layout.spinner_dropdown);
         mJenisIdentitas.setAdapter(a);
 
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Loading...");
+        dialog.setCancelable(false);
+
 
         next = (Button) findViewById(R.id.btn_next_gedung);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BookingGedung();
+                int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
+                View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
+                int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
+                RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                        .booking(mJenisIdentitas.getSelectedItemPosition() + 1,
+                                mNoIdentias.getText().toString(),
+                                "Alfian Testing",
+                                mNoHP.getText().toString(),
+                                mdates.getText().toString(),
+                                idx + "",
+                                mDescGedung.getText().toString(),
+                                2,
+                                29)
+                        .enqueue(new PageCallback<Object>(booking_gedung.this) {
+                            @Override
+                            protected void onStart() {
+                                dialog.show();
+                            }
+
+                            @Override
+                            protected void onFinish() {
+                                dialog.dismiss();
+                            }
+
+                            @Override
+                            protected void onSuccess(Object data) {
+                                Toast.makeText(booking_gedung.this, "Booking Berhasil", Toast.LENGTH_SHORT).show();
+                                BookingGedung();
+                            }
+
+                            @Override
+                            protected void onError(String message) {
+                                super.onError(message);
+                                Toast.makeText(booking_gedung.this, "Booking Gagal", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
 
@@ -75,7 +123,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 int selected = mRadioGroupWaktu.getCheckedRadioButtonId();
-                mRadioButton = (RadioButton)findViewById(selected);
+                mRadioButton = (RadioButton) findViewById(selected);
                 mWaktu = mRadioButton.getText().toString();
             }
         });
@@ -90,8 +138,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
-    private void BookingGedung(){
-
+    private void BookingGedung() {
         Booking mBooking = new Booking();
         mBooking.setNoIdentitas(mNoIdentias.getText().toString());
         mBooking.setNama(mName.getText().toString());
@@ -119,14 +166,15 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
 
     }
 
-    public void datePicker(View view){
+    public void datePicker(View view) {
         DatePickerFragment fragment = new DatePickerFragment();
-        fragment.show(getSupportFragmentManager(),"date");
+        fragment.show(getSupportFragmentManager(), "date");
     }
 
-    public void setDate(final Calendar calendar){
+    public void setDate(final Calendar calendar) {
+        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
         final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
-         (mdates= (TextView)findViewById(R.id.txt_date)).setText(dateFormat.format(calendar.getTime()));
+        (mdates = (TextView) findViewById(R.id.txt_date)).setText(simpleFormat.format(calendar.getTime()));
         mDate = mdates.getText().toString();
     }
 
@@ -141,7 +189,7 @@ public class booking_gedung extends AppCompatActivity implements AdapterView.OnI
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar cal = Calendar.getInstance();
-            int year =  cal.get(Calendar.YEAR);
+            int year = cal.get(Calendar.YEAR);
             int mount = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
 

@@ -3,6 +3,7 @@ package com.example.amrizalns.botic.activity;
 import android.location.LocationListener;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.amrizalns.botic.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,7 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-public class directionActivity extends FragmentActivity implements OnMapReadyCallback {
+public class directionActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mGoogleMap;
     SupportMapFragment mMapFragment;
@@ -38,6 +39,7 @@ public class directionActivity extends FragmentActivity implements OnMapReadyCal
         LatLng sydney = new LatLng(-34, 151);
         mGoogleMap.addMarker(new MarkerOptions().position(sydney).title("yeay"));
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        drawMarker(sydney);
     }
 
     private void drawMarker(LatLng point) {

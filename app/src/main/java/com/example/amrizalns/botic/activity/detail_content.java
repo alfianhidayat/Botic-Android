@@ -7,16 +7,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.recyclerViewHolder;
 
 public class detail_content extends AppCompatActivity {
 
     ImageView img;
     TextView name, loc, desc, cost, time_open, time_close;
+    FloatingActionButton direction;
 
     int img_detail;
     String name_detail;
@@ -40,9 +43,10 @@ public class detail_content extends AppCompatActivity {
         cost = (TextView) findViewById(R.id.detail_cost);
         time_open = (TextView) findViewById(R.id.detail_time_open);
         time_close = (TextView) findViewById(R.id.detail_time_close);
+        direction = (FloatingActionButton) findViewById(R.id.find_location);
 
         Intent i = getIntent();
-        img_detail = i.getIntExtra("img",0);
+        img_detail = i.getIntExtra("img", 0);
         img.setImageResource(img_detail);
 
         name_detail = i.getStringExtra("name");
@@ -63,15 +67,13 @@ public class detail_content extends AppCompatActivity {
         desc_detail = i.getStringExtra("desc");
         desc.setText(desc_detail);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.find_location);
-        fab.setOnClickListener(new View.OnClickListener() {
+        direction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(detail_content.this, directionActivity.class);
+                startActivity(i);
             }
         });
 
     }
-
 }

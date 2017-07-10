@@ -86,7 +86,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedItemAsset = position;
-                selectAsset = (String)parent.getItemAtPosition(position);
+                selectAsset = (String) parent.getItemAtPosition(position);
 
             }
 
@@ -307,14 +307,11 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar cal = new GregorianCalendar(year, month, dayOfMonth);
         setDate(cal);
+        view.setMinDate(System.currentTimeMillis() - 1000);
+
     }
 
     public static class DatePickerFragment extends DialogFragment {
-        private DatePickerDialog.OnDateSetListener listener;
-
-        public void setListener(DatePickerDialog.OnDateSetListener listener) {
-            this.listener = listener;
-        }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -322,27 +319,14 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog dialog = new DatePickerDialog(getActivity(), listener, year, month, day);
-            Field mDatePickerField;
-            try {
-                mDatePickerField = dialog.getClass().getDeclaredField("mDatePicker");
-                mDatePickerField.setAccessible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), (DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
             dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
             return dialog;
-
-//
-//            return new DatePickerDialog(getActivity(),
-//                    (DatePickerDialog.OnDateSetListener)
-//                            getActivity(), year, month, day);
-
         }
 
     }
 
-    public String getCurrentDate(){
+    public String getCurrentDate() {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String formatdate = sdf.format(c.getTime());

@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="LOL"
+        android:background="#e0e0e0"
+        android:textColor="@color/colorContent"
         android:textSize="16sp" />
 
 </LinearLayout>

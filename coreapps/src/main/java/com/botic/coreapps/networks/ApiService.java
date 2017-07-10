@@ -95,4 +95,10 @@ public interface ApiService {
     @GET("api/listidentity")
     Call<BaseResponse<List<IdentityType>>> getListIdentity();
 
+    @FormUrlEncoded
+    @POST("api/login")
+    Call<Token> loginSocialite(@Field("name") String name,
+                               @Field("email") String email,
+                               @Field("provider") String provider);
+
 }

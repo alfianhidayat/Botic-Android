@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telecom.Call;
 import android.view.View;
@@ -109,7 +110,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( mName.length() == 0  || mNoIdentias.length() == 0 || mNoHP.length() == 0 || mDescGedung.length() == 0 ) {
+                if (mName.length() == 0 || mNoIdentias.length() == 0 || mNoHP.length() == 0 || mDescGedung.length() == 0) {
                     mName.setError("Nama wajib diisi!");
                     mNoIdentias.setError("Nomor Identitas wajib diisi!");
                     mNoHP.setError("Nomor HP wajib diisi!");
@@ -150,6 +151,14 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                                 protected void onError(String message) {
                                     super.onError(message);
                                     Toast.makeText(booking_gedung.this, "Booking Gagal", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                protected void onUnauthorized() {
+                                    SessionLogin.reset();
+                                    Intent intent = new Intent(booking_gedung.this, signIn.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
                                 }
                             });
                 }
@@ -206,6 +215,14 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                     protected void onError(String message) {
                         super.onError(message);
                     }
+
+                    @Override
+                    protected void onUnauthorized() {
+                        SessionLogin.reset();
+                        Intent intent = new Intent(booking_gedung.this, signIn.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
                 });
     }
 
@@ -236,6 +253,14 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                     @Override
                     protected void onError(String message) {
                         super.onError(message);
+                    }
+
+                    @Override
+                    protected void onUnauthorized() {
+                        SessionLogin.reset();
+                        Intent intent = new Intent(booking_gedung.this, signIn.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                     }
                 });
     }

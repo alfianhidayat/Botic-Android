@@ -36,6 +36,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     List<IdentityType> identityTypes = new ArrayList<>();
     int selectedItemAsset;
     int selectedItemIdentity;
+    String selectAsset, selectIdentity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +76,17 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
 
         mJenisIdentitas = (Spinner) findViewById(R.id.jenis_identitas);
 
+        mdates = (TextView) findViewById(R.id.txt_date);
+        mdates.setText(getCurrentDate());
+
         adapterGedung = new SpinnerItemAdapter(this, R.layout.spinner_item_lis, spListGedung);
         mJenisGedung.setAdapter(adapterGedung);
         mJenisGedung.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedItemAsset = position;
+                selectAsset = (String)parent.getItemAtPosition(position);
+
             }
 
             @Override
@@ -88,12 +95,14 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
             }
         });
 
+
         adapterIdentity = new SpinnerItemAdapter(this, R.layout.spinner_item_lis, spListIdentity);
         mJenisIdentitas.setAdapter(adapterIdentity);
         mJenisIdentitas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedItemIdentity = position;
+                selectIdentity = (String) parent.getItemAtPosition(position);
             }
 
             @Override
@@ -116,7 +125,6 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                     mNoHP.setError("Nomor HP wajib diisi!");
                     mDescGedung.setError("Deskripsi Gedung wajib diisi");
                 } else {
-
                     int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
                     View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
                     int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
@@ -289,7 +297,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
 
     public void setDate(final Calendar calendar) {
         SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
-        final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        final DateFormat dateFormat = DateFormat.getDateInstance();
         (mdates = (TextView) findViewById(R.id.txt_date)).setText(simpleFormat.format(calendar.getTime()));
         mDate = mdates.getText().toString();
     }
@@ -316,4 +324,10 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
 
     }
 
+    public String getCurrentDate(){
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String formatdate = sdf.format(c.getTime());
+        return formatdate;
+    }
 }

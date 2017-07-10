@@ -21,7 +21,7 @@
     <string name="nomor_indentitas">nomor indentitas</string>
     <string name="nomor_telepon">nomor telepon</string>
     <string name="deskripsi_kegiatan">deskripsi kegiatan</string>
-    <string name="jenis_gedung">jenis gedung : </string>
+    <string name="jenis_gedung">jenis gedung :  </string>
     <string name="tanggal_pesan">tanggal pesan :</string>
     <string name="dd_mm_yyyy">dd/mm/yyyy</string>
     <string name="waktu_pesan">Waktu pesan :</string>

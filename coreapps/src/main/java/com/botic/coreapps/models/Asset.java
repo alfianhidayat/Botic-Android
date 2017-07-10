@@ -33,10 +33,10 @@ public class Asset implements Parcelable
     private String description;
     @SerializedName("lat")
     @Expose
-    private int lat;
+    private float lat;
     @SerializedName("lng")
     @Expose
-    private int lng;
+    private float lng;
     @SerializedName("id_menu")
     @Expose
     private int idMenu;
@@ -64,8 +64,8 @@ public class Asset implements Parcelable
             instance.manager = ((String) in.readValue((String.class.getClassLoader())));
             instance.capacity = ((int) in.readValue((int.class.getClassLoader())));
             instance.description = ((String) in.readValue((String.class.getClassLoader())));
-            instance.lat = ((int) in.readValue((int.class.getClassLoader())));
-            instance.lng = ((int) in.readValue((int.class.getClassLoader())));
+            instance.lat = ((float) in.readValue((float.class.getClassLoader())));
+            instance.lng = ((float) in.readValue((float.class.getClassLoader())));
             instance.idMenu = ((int) in.readValue((int.class.getClassLoader())));
             instance.createdBy = ((int) in.readValue((int.class.getClassLoader())));
             instance.createdAt = ((String) in.readValue((String.class.getClassLoader())));
@@ -136,19 +136,19 @@ public class Asset implements Parcelable
         this.description = description;
     }
 
-    public int getLat() {
+    public float getLat() {
         return lat;
     }
 
-    public void setLat(int lat) {
+    public void setLat(float lat) {
         this.lat = lat;
     }
 
-    public int getLng() {
+    public float getLng() {
         return lng;
     }
 
-    public void setLng(int lng) {
+    public void setLng(float lng) {
         this.lng = lng;
     }
 

@@ -21,11 +21,6 @@ public class PageCallback<T> extends DefaultCallback<T> {
 
     @Override
     protected void onUnauthorized() {
-//        Hawk.deleteAll();
-
-//        Intent intent = new Intent(mContext, signIn.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
-
-//        mContext.startActivity(intent);
+        Toast.makeText(mContext, "Sesi anda habis, silahkan login kembali !", Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,8 +1,10 @@
 package com.example.amrizalns.botic.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.ObjectItem;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.activity.signIn;
 import com.example.amrizalns.botic.itemObject;
 import com.example.amrizalns.botic.recyclerViewAdapter;
 import com.example.amrizalns.botic.utils.SessionLogin;
@@ -100,6 +103,13 @@ public class wisata extends Fragment {
                             objectItem.getDescription()));
                 }
                 rcAdapter.notifyDataSetChanged();
+            }
+            @Override
+            protected void onUnauthorized() {
+                SessionLogin.reset();
+                Intent intent = new Intent(getActivity(), signIn.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                getActivity().startActivity(intent);
             }
         });
     }

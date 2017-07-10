@@ -211,6 +211,32 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 //        }
 //    }
 
+    private void loginSocialite(String name, String email, String provider) {
+        mProgressDialog.show();
+        RetrofitApi.getInstance().getApiService("")
+                .loginSocialite(name, email, provider)
+                .enqueue(new Callback<Token>() {
+                    @Override
+                    public void onResponse(Call<Token> call, Response<Token> response) {
+                        if (response.isSuccessful()) {
+                            SessionLogin.saveAccessToken(response.body());
+                            Toast.makeText(signIn.this, R.string.success_login, Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(signIn.this, mainInterface.class);
+                            startActivity(i);
+                        } else if (response.code() == 401) {
+                            Toast.makeText(signIn.this, R.string.failure_login, Toast.LENGTH_SHORT).show();
+                        }
+                        mProgressDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Token> call, Throwable t) {
+                        Toast.makeText(mContext, "Terjadi kesalahan server !", Toast.LENGTH_SHORT).show();
+                        mProgressDialog.dismiss();
+                    }
+                });
+    }
+
     protected void getUserInfo(LoginResult loginResult) {
 
         GraphRequest dataRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
@@ -455,8 +481,9 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                 sharedPrefManager.saveToken(mContext, idToken);
                 sharedPrefManager.saveIsLoggedIn(mContext, true);
 
-                Intent i = new Intent(this, mainInterface.class);
-                startActivity(i);
+//                Intent i = new Intent(this, mainInterface.class);
+//                startActivity(i);
+                loginSocialite(name, email, "google");
             } else {
                 Log.e(TAG, "Login Google Unsuccessful. ");
                 Toast.makeText(this, "Login Google Unsuccessful", Toast.LENGTH_SHORT)

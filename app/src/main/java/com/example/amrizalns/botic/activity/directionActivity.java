@@ -11,7 +11,7 @@
     import android.support.v4.content.ContextCompat;
     import android.support.v7.app.AlertDialog;
     import android.support.v7.app.AppCompatActivity;
-    import android.support.v7.app.ActionBar;
+    import android.support.v7.widget.Toolbar;
     import android.widget.Toast;
 
     import com.example.amrizalns.botic.R;
@@ -42,6 +42,7 @@
         Location mLastLocation;
         Marker mCurrentMarker;
         ArrayList<LatLng> mMarkerPoint;
+        Toolbar mActionBarToolbar;
 
 
         @Override
@@ -49,6 +50,8 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_direction);
 
+            mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+            setSupportActionBar(mActionBarToolbar);
             getSupportActionBar().setTitle("Direction");
 
             mMapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -75,7 +78,7 @@
                     buildGoogleApiClient();
                     mGoogleMap.setMyLocationEnabled(true);
                 } else {
-
+                    checkLocationPermission();
                 }
             } else {
                 buildGoogleApiClient();
@@ -146,10 +149,10 @@
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
             mCurrentMarker = mGoogleMap.addMarker(markerOptions);
 
-            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
         }
 
-        public static final int MY_PERMISSIONS_REQUEST_LOCATION = 100;
+        public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 
         private void checkLocationPermission() {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)

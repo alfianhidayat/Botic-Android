@@ -32,6 +32,7 @@ import com.example.amrizalns.botic.SpinnerItemAdapter;
 import com.example.amrizalns.botic.model.Booking;
 import com.example.amrizalns.botic.utils.SessionLogin;
 
+import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -309,17 +310,34 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     }
 
     public static class DatePickerFragment extends DialogFragment {
+        private DatePickerDialog.OnDateSetListener listener;
+
+        public void setListener(DatePickerDialog.OnDateSetListener listener) {
+            this.listener = listener;
+        }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar cal = Calendar.getInstance();
             int year = cal.get(Calendar.YEAR);
-            int mount = cal.get(Calendar.MONTH);
+            int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), listener, year, month, day);
+            Field mDatePickerField;
+            try {
+                mDatePickerField = dialog.getClass().getDeclaredField("mDatePicker");
+                mDatePickerField.setAccessible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+            return dialog;
 
-            return new DatePickerDialog(getActivity(),
-                    (DatePickerDialog.OnDateSetListener)
-                            getActivity(), year, mount, day);
+//
+//            return new DatePickerDialog(getActivity(),
+//                    (DatePickerDialog.OnDateSetListener)
+//                            getActivity(), year, month, day);
+
         }
 
     }

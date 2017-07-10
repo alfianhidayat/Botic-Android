@@ -2,202 +2,272 @@
 package com.botic.coreapps.models;
 
 import java.util.List;
-import javax.annotation.Generated;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
-public class ObjectItem {
+public class ObjectItem implements Parcelable
+{
 
-    @SerializedName("address")
-    private String mAddress;
-    @SerializedName("category")
-    private Category mCategory;
-    @SerializedName("close")
-    private String mClose;
-    @SerializedName("created_at")
-    private Object mCreatedAt;
-    @SerializedName("created_by")
-    private Long mCreatedBy;
-    @SerializedName("description")
-    private String mDescription;
     @SerializedName("id")
-    private Long mId;
-    @SerializedName("id_category")
-    private Long mIdCategory;
-    @SerializedName("id_menu")
-    private Long mIdMenu;
-    @SerializedName("lat")
-    private Long mLat;
-    @SerializedName("lng")
-    private Long mLng;
-    @SerializedName("manager")
-    private String mManager;
-    @SerializedName("menu")
-    private Menu mMenu;
+    @Expose
+    private int id;
     @SerializedName("name")
-    private String mName;
-    @SerializedName("open")
-    private String mOpen;
+    @Expose
+    private String name;
+    @SerializedName("address")
+    @Expose
+    private String address;
     @SerializedName("phone")
-    private String mPhone;
-    @SerializedName("picture")
-    private List<Object> mPicture;
+    @Expose
+    private String phone;
+    @SerializedName("description")
+    @Expose
+    private String description;
     @SerializedName("price")
-    private String mPrice;
+    @Expose
+    private String price;
+    @SerializedName("lat")
+    @Expose
+    private float lat;
+    @SerializedName("lng")
+    @Expose
+    private float lng;
+    @SerializedName("open")
+    @Expose
+    private String open;
+    @SerializedName("close")
+    @Expose
+    private String close;
+    @SerializedName("id_category")
+    @Expose
+    private int idCategory;
+    @SerializedName("id_menu")
+    @Expose
+    private int idMenu;
+    @SerializedName("created_by")
+    @Expose
+    private int createdBy;
+    @SerializedName("created_at")
+    @Expose
+    private Object createdAt;
     @SerializedName("updated_at")
-    private Object mUpdatedAt;
+    @Expose
+    private String updatedAt;
+    @SerializedName("picture")
+    @Expose
+    private List<Object> picture = null;
+    @SerializedName("category")
+    @Expose
+    private Category category;
+    @SerializedName("menu")
+    @Expose
+    private Menu menu;
+    public final static Creator<ObjectItem> CREATOR = new Creator<ObjectItem>() {
 
-    public String getAddress() {
-        return mAddress;
+
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public ObjectItem createFromParcel(Parcel in) {
+            ObjectItem instance = new ObjectItem();
+            instance.id = ((int) in.readValue((int.class.getClassLoader())));
+            instance.name = ((String) in.readValue((String.class.getClassLoader())));
+            instance.address = ((String) in.readValue((String.class.getClassLoader())));
+            instance.phone = ((String) in.readValue((String.class.getClassLoader())));
+            instance.description = ((String) in.readValue((String.class.getClassLoader())));
+            instance.price = ((String) in.readValue((String.class.getClassLoader())));
+            instance.lat = ((float) in.readValue((float.class.getClassLoader())));
+            instance.lng = ((float) in.readValue((float.class.getClassLoader())));
+            instance.open = ((String) in.readValue((String.class.getClassLoader())));
+            instance.close = ((String) in.readValue((String.class.getClassLoader())));
+            instance.idCategory = ((int) in.readValue((int.class.getClassLoader())));
+            instance.idMenu = ((int) in.readValue((int.class.getClassLoader())));
+            instance.createdBy = ((int) in.readValue((int.class.getClassLoader())));
+            instance.createdAt = ((Object) in.readValue((Object.class.getClassLoader())));
+            instance.updatedAt = ((String) in.readValue((String.class.getClassLoader())));
+            in.readList(instance.picture, (Object.class.getClassLoader()));
+            instance.category = ((Category) in.readValue((Category.class.getClassLoader())));
+            instance.menu = ((Menu) in.readValue((Menu.class.getClassLoader())));
+            return instance;
+        }
+
+        public ObjectItem[] newArray(int size) {
+            return (new ObjectItem[size]);
+        }
+
+    }
+    ;
+
+    public int getId() {
+        return id;
     }
 
-    public void setAddress(String address) {
-        mAddress = address;
-    }
-
-    public Category getCategory() {
-        return mCategory;
-    }
-
-    public void setCategory(Category category) {
-        mCategory = category;
-    }
-
-    public String getClose() {
-        return mClose;
-    }
-
-    public void setClose(String close) {
-        mClose = close;
-    }
-
-    public Object getCreatedAt() {
-        return mCreatedAt;
-    }
-
-    public void setCreatedAt(Object createdAt) {
-        mCreatedAt = createdAt;
-    }
-
-    public Long getCreatedBy() {
-        return mCreatedBy;
-    }
-
-    public void setCreatedBy(Long createdBy) {
-        mCreatedBy = createdBy;
-    }
-
-    public String getDescription() {
-        return mDescription;
-    }
-
-    public void setDescription(String description) {
-        mDescription = description;
-    }
-
-    public Long getId() {
-        return mId;
-    }
-
-    public void setId(Long id) {
-        mId = id;
-    }
-
-    public Long getIdCategory() {
-        return mIdCategory;
-    }
-
-    public void setIdCategory(Long idCategory) {
-        mIdCategory = idCategory;
-    }
-
-    public Long getIdMenu() {
-        return mIdMenu;
-    }
-
-    public void setIdMenu(Long idMenu) {
-        mIdMenu = idMenu;
-    }
-
-    public Long getLat() {
-        return mLat;
-    }
-
-    public void setLat(Long lat) {
-        mLat = lat;
-    }
-
-    public Long getLng() {
-        return mLng;
-    }
-
-    public void setLng(Long lng) {
-        mLng = lng;
-    }
-
-    public String getManager() {
-        return mManager;
-    }
-
-    public void setManager(String manager) {
-        mManager = manager;
-    }
-
-    public Menu getMenu() {
-        return mMenu;
-    }
-
-    public void setMenu(Menu menu) {
-        mMenu = menu;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
-    public String getOpen() {
-        return mOpen;
+    public String getAddress() {
+        return address;
     }
 
-    public void setOpen(String open) {
-        mOpen = open;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {
-        return mPhone;
+        return phone;
     }
 
     public void setPhone(String phone) {
-        mPhone = phone;
+        this.phone = phone;
     }
 
-    public List<Object> getPicture() {
-        return mPicture;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPicture(List<Object> picture) {
-        mPicture = picture;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPrice() {
-        return mPrice;
+        return price;
     }
 
     public void setPrice(String price) {
-        mPrice = price;
+        this.price = price;
     }
 
-    public Object getUpdatedAt() {
-        return mUpdatedAt;
+    public float getLat() {
+        return lat;
     }
 
-    public void setUpdatedAt(Object updatedAt) {
-        mUpdatedAt = updatedAt;
+    public void setLat(float lat) {
+        this.lat = lat;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public void setLng(float lng) {
+        this.lng = lng;
+    }
+
+    public String getOpen() {
+        return open;
+    }
+
+    public void setOpen(String open) {
+        this.open = open;
+    }
+
+    public String getClose() {
+        return close;
+    }
+
+    public void setClose(String close) {
+        this.close = close;
+    }
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
+    }
+
+    public int getIdMenu() {
+        return idMenu;
+    }
+
+    public void setIdMenu(int idMenu) {
+        this.idMenu = idMenu;
+    }
+
+    public int getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(int createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Object getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Object createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<Object> getPicture() {
+        return picture;
+    }
+
+    public void setPicture(List<Object> picture) {
+        this.picture = picture;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
+        dest.writeValue(name);
+        dest.writeValue(address);
+        dest.writeValue(phone);
+        dest.writeValue(description);
+        dest.writeValue(price);
+        dest.writeValue(lat);
+        dest.writeValue(lng);
+        dest.writeValue(open);
+        dest.writeValue(close);
+        dest.writeValue(idCategory);
+        dest.writeValue(idMenu);
+        dest.writeValue(createdBy);
+        dest.writeValue(createdAt);
+        dest.writeValue(updatedAt);
+        dest.writeList(picture);
+        dest.writeValue(category);
+        dest.writeValue(menu);
+    }
+
+    public int describeContents() {
+        return  0;
     }
 
 }

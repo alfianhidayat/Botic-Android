@@ -4,10 +4,15 @@
     import android.content.DialogInterface;
     import android.content.pm.PackageManager;
     import android.location.Location;
+
+    import com.google.android.gms.common.GoogleApiAvailability;
     import com.google.android.gms.location.LocationListener;
+
+    import android.net.Uri;
     import android.os.Build;
     import android.support.v4.app.ActivityCompat;
     import android.os.Bundle;
+    import android.support.v4.app.FragmentManager;
     import android.support.v4.content.ContextCompat;
     import android.support.v7.app.AlertDialog;
     import android.support.v7.app.AppCompatActivity;
@@ -27,8 +32,13 @@
     import com.google.android.gms.maps.model.LatLng;
     import com.google.android.gms.maps.model.Marker;
     import com.google.android.gms.maps.model.MarkerOptions;
+    import com.google.android.gms.maps.model.Polyline;
 
     import java.util.ArrayList;
+    import java.util.List;
+
+    import retrofit2.Retrofit;
+    import retrofit2.converter.gson.GsonConverterFactory;
 
     public class directionActivity extends AppCompatActivity implements OnMapReadyCallback,
             GoogleApiClient.ConnectionCallbacks,
@@ -41,9 +51,11 @@
         GoogleApiClient mGoogleApiClient;
         Location mLastLocation;
         Marker mCurrentMarker;
-        ArrayList<LatLng> mMarkerPoint;
+        ArrayList<LatLng> mMarkerPoints;
         Toolbar mActionBarToolbar;
-
+        LatLng origin;
+        LatLng dest;
+        Polyline line;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -85,10 +97,25 @@
                 mGoogleMap.setMyLocationEnabled(true);
             }
 
-//            LatLng sydney = new LatLng(-34, 151);
-//            mGoogleMap.addMarker(new MarkerOptions().position(sydney).title("yeay"));
-//            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//    //        drawMarker(sydney);
+            mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(LatLng latLng) {
+                    if (mMarkerPoints.size() > 1) {
+                        mGoogleMap.clear();
+                        mMarkerPoints.clear();
+                        mMarkerPoints = new ArrayList<>();
+                    }
+                    mMarkerPoints.add(latLng);
+                    MarkerOptions options = new MarkerOptions();
+                    options.position(latLng);
+                    drawMarker(latLng);
+                    mGoogleMap.addMarker(options);
+                    if (mMarkerPoints.size() >= 2){
+                        origin =  mMarkerPoints.get(0);
+                        dest = mMarkerPoints.get(1);
+                    }
+                }
+            });
         }
 
         protected synchronized void buildGoogleApiClient() {
@@ -101,12 +128,12 @@
         }
 
         private void drawMarker(LatLng point) {
-            mMarkerPoint.add(point);
+            mMarkerPoints.add(point);
 
             MarkerOptions options = new MarkerOptions();
-            if (mMarkerPoint.size() == 1) {
+            if (mMarkerPoints.size() == 1) {
                 options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-            } else if (mMarkerPoint.size() == 2) {
+            } else if (mMarkerPoints.size() == 2) {
                 options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             }
             mGoogleMap.addMarker(options);
@@ -149,7 +176,7 @@
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
             mCurrentMarker = mGoogleMap.addMarker(markerOptions);
 
-            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
         }
 
         public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;

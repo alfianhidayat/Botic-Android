@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.fragment.aktivitas_saya;
 import com.example.amrizalns.botic.fragment.beranda;
 import com.example.amrizalns.botic.fragment.booking;
 import com.example.amrizalns.botic.fragment.kesehatan;
@@ -250,7 +251,7 @@ public class mainInterface extends AppCompatActivity
         if (id == R.id.nav_beranda) {
             f = new beranda();
         } else if (id == R.id.nav_aktivitas) {
-
+            f = new aktivitas_saya();
         } else if (id == R.id.nav_layanan) {
             f = new pelayananpublik();
 

@@ -1,18 +1,21 @@
 package com.botic.coreapps.networks;
 
 import com.botic.coreapps.models.Asset;
+import com.botic.coreapps.models.CheckInParams;
 import com.botic.coreapps.models.IdentityType;
-import com.botic.coreapps.models.Token;
 import com.botic.coreapps.models.ObjectItem;
+import com.botic.coreapps.models.Token;
 import com.botic.coreapps.models.User;
 import com.botic.coreapps.responses.BaseResponse;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -30,6 +33,7 @@ public interface ApiService {
                       @Field("password") String password,
                       @Field("scope") String scope);
 
+    @FormUrlEncoded
     @POST("api/user")
     Call<BaseResponse<Object>> register(@Field("name") String name,
                                         @Field("email") String email,
@@ -100,5 +104,9 @@ public interface ApiService {
     Call<Token> loginSocialite(@Field("name") String name,
                                @Field("email") String email,
                                @Field("provider") String provider);
+
+    @Headers("Content-Type: application/json")
+    @POST("api/checkin")
+    Call<BaseResponse<Object>> checin(@Body CheckInParams params);
 
 }

@@ -16,7 +16,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.botic.coreapps.models.CheckInParams;
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.utils.SessionLogin;
 
 public class checkin_1 extends Fragment {
 
@@ -70,9 +72,9 @@ public class checkin_1 extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (Integer.parseInt(s.toString()) <= 10 && Integer.parseInt(s.toString()) > 0){
+            if (Integer.parseInt(s.toString()) <= 10 && Integer.parseInt(s.toString()) > 0) {
                 daftar_pj.setEnabled(true);
-            }else{
+            } else {
                 daftar_pj.setEnabled(false);
                 Toast.makeText(getActivity(), "Maksimal 10", Toast.LENGTH_SHORT).show();
             }
@@ -95,6 +97,16 @@ public class checkin_1 extends Fragment {
         } else if (!aggrement.isChecked()) {
             Toast.makeText(getActivity(), "Harus Dicentang!", Toast.LENGTH_SHORT).show();
         } else {
+            CheckInParams params = new CheckInParams();
+            params.setPhone(mNohp.getText().toString());
+            params.setLong_visit(1);
+            try {
+                int visitor = Integer.parseInt(mJumlahTamu.getText().toString());
+                params.setVisitor_number(visitor);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+            SessionLogin.saveCheckIn(params);
             String jumlah = mJumlahTamu.getText().toString();
             Bundle bundle = new Bundle();
             bundle.putString("daftar", jumlah);

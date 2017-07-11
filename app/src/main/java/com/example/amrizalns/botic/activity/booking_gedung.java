@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -51,6 +52,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     private TextView mdates, mterm;
     private Button next;
     private String mItemJenisGedung, mItemJenisIdentitas, mWaktu, mDate;
+    private CheckBox terms;
     ProgressDialog dialog;
 
     List<String> spListGedung = new ArrayList<>();
@@ -76,6 +78,8 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         mJenisGedung = (Spinner) findViewById(R.id.jenis_gedung);
 
         mJenisIdentitas = (Spinner) findViewById(R.id.jenis_identitas);
+
+        terms = (CheckBox) findViewById(R.id.check_gedung);
 
         mdates = (TextView) findViewById(R.id.txt_date);
         mdates.setText(getCurrentDate());
@@ -125,6 +129,8 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                     mNoIdentias.setError("Nomor Identitas wajib diisi!");
                     mNoHP.setError("Nomor HP wajib diisi!");
                     mDescGedung.setError("Deskripsi Gedung wajib diisi");
+                } else if (!terms.isChecked()) {
+                    terms.setError("Harus dicentang!");
                 } else {
                     int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
                     View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);

@@ -144,7 +144,7 @@ public class checkin_2 extends Fragment implements View.OnClickListener{
                             @Override
                             protected void onError(String message) {
                                 super.onError(message);
-                                Toast.makeText(getActivity(), "Booking Gagal", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Checkin Gagal", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override

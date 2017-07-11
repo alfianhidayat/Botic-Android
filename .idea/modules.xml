@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Botic-Android.iml" filepath="$PROJECT_DIR$/Botic-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/botictv/botictv.iml" filepath="$PROJECT_DIR$/botictv/botictv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/botic-tv/botic-tv.iml" filepath="$PROJECT_DIR$/botic-tv/botic-tv.iml" />
       <module fileurl="file://$PROJECT_DIR$/coreapps/coreapps.iml" filepath="$PROJECT_DIR$/coreapps/coreapps.iml" />
     </modules>
   </component>

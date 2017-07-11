@@ -4,6 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         applicationId "com.example.amrizalns.botic"
         minSdkVersion 16
@@ -25,9 +26,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-
-
 
     compile project(path: ':coreapps')
     compile 'com.android.support:appcompat-v7:25.3.1'

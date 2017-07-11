@@ -2,6 +2,7 @@ package com.example.amrizalns.botic.utils;
 
 import com.botic.coreapps.models.CheckInParams;
 import com.botic.coreapps.models.Token;
+import com.botic.coreapps.models.User;
 import com.orhanobut.hawk.Hawk;
 
 /**
@@ -33,12 +34,20 @@ public class SessionLogin {
         Hawk.put(Constants.SHARED_PREF_CHECK_IN_PARAMS, params);
     }
 
-    public static CheckInParams getCheckIn(){
+    public static CheckInParams getCheckIn() {
         return Hawk.get(Constants.SHARED_PREF_CHECK_IN_PARAMS);
     }
 
-    public static void deleteCheckInParams(){
+    public static void deleteCheckInParams() {
         Hawk.delete(Constants.SHARED_PREF_CHECK_IN_PARAMS);
+    }
+
+    public static void saveProfile(User user) {
+        Hawk.put(Constants.SHARED_PREF_PROFILE, user);
+    }
+
+    public static User getProfile() {
+        return Hawk.get(Constants.SHARED_PREF_PROFILE);
     }
 
 }

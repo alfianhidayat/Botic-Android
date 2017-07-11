@@ -20,5 +20,6 @@ public class Constants {
 
     //SharePref
     public static final String SHARED_PREF_TOKEN = "token";
+    public static final String SHARED_PREF_PROFILE = "profile";
     public static final String SHARED_PREF_CHECK_IN_PARAMS = "checkin";
 }

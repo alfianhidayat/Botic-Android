@@ -21,7 +21,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.botic.coreapps.models.User;
+import com.botic.coreapps.networks.RetrofitApi;
+import com.botic.coreapps.responses.BaseResponse;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.fragment.aktivitas_saya;
 import com.example.amrizalns.botic.fragment.beranda;
@@ -31,6 +35,7 @@ import com.example.amrizalns.botic.fragment.keuangan;
 import com.example.amrizalns.botic.fragment.leisure;
 import com.example.amrizalns.botic.fragment.pelayananpublik;
 import com.example.amrizalns.botic.fragment.tempatIbadah;
+import com.example.amrizalns.botic.utils.Constants;
 import com.example.amrizalns.botic.utils.SessionLogin;
 import com.example.amrizalns.botic.utils.SharedPrefManager;
 import com.facebook.FacebookSdk;
@@ -41,11 +46,15 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.orhanobut.hawk.Hawk;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class mainInterface extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -92,7 +101,12 @@ public class mainInterface extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         mNavigationView.setNavigationItemSelectedListener(this);
-
+        if (Hawk.contains(Constants.SHARED_PREF_PROFILE)) {
+            userEmail.setText(SessionLogin.getProfile().getEmail());
+            userName.setText(SessionLogin.getProfile().getName());
+        } else {
+            getProfile();
+        }
         loadFragment(R.id.nav_beranda);
     }
 
@@ -169,6 +183,28 @@ public class mainInterface extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void getProfile() {
+        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                .getProfile()
+                .enqueue(new Callback<BaseResponse<User>>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+                        if (response.isSuccessful()) {
+                            SessionLogin.saveProfile(response.body().getData());
+                            userName.setText(SessionLogin.getProfile().getName());
+                            userEmail.setText(SessionLogin.getProfile().getEmail());
+                        } else if (response.code() == 401) {
+                            Toast.makeText(mainInterface.this, R.string.failure_login, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+                        Toast.makeText(mContext, "Terjadi kesalahan server !", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
     //-----------End - User Profil Facebook-----------
 

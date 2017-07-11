@@ -22,6 +22,7 @@ import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.Token;
 import com.botic.coreapps.models.User;
 import com.botic.coreapps.networks.RetrofitApi;
+import com.botic.coreapps.responses.BaseResponse;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.utils.Constants;
 import com.example.amrizalns.botic.utils.SessionLogin;
@@ -53,6 +54,7 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.orhanobut.hawk.Hawk;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -96,6 +98,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
     private String name, email;
     private String photo;
     private Uri photoUri;
+    private Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +144,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("Loading...");
+        i = new Intent(signIn.this, mainInterface.class);
     }
 
     @Override
@@ -165,6 +169,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                             .enqueue(new Callback<Token>() {
                                 @Override
                                 public void onResponse(Call<Token> call, Response<Token> response) {
+//                                    getProfile();
                                     if (response.isSuccessful()) {
                                         SessionLogin.saveAccessToken(response.body());
                                         Toast.makeText(signIn.this, R.string.success_login, Toast.LENGTH_SHORT).show();
@@ -199,6 +204,32 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                 break;
         }
     }
+
+    private void getProfile() {
+        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                .getProfile()
+                .enqueue(new Callback<BaseResponse<User>>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+                        if (response.isSuccessful()) {
+                            SessionLogin.saveProfile(response.body().getData());
+                            Toast.makeText(signIn.this, R.string.success_login, Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(signIn.this, mainInterface.class);
+                            startActivity(i);
+                        } else if (response.code() == 401) {
+                            Toast.makeText(signIn.this, R.string.failure_login, Toast.LENGTH_SHORT).show();
+                        }
+                        mProgressDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+                        Toast.makeText(mContext, "Terjadi kesalahan server !", Toast.LENGTH_SHORT).show();
+                        mProgressDialog.dismiss();
+                    }
+                });
+    }
+
     //-------------API Facebook-------------------
 //    public void facebookLogin(){
 //        mSharedPreferences = getPreferences(MODE_PRIVATE);
@@ -221,12 +252,12 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                         if (response.isSuccessful()) {
                             SessionLogin.saveAccessToken(response.body());
                             Toast.makeText(signIn.this, R.string.success_login, Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(signIn.this, mainInterface.class);
                             startActivity(i);
                         } else if (response.code() == 401) {
                             Toast.makeText(signIn.this, R.string.failure_login, Toast.LENGTH_SHORT).show();
                         }
                         mProgressDialog.dismiss();
+//                        getProfile();
                     }
 
                     @Override
@@ -245,9 +276,19 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                 if (object != null) {
 
                 }
-                Intent i = new Intent(signIn.this, mainInterface.class);
+//                Intent i = new Intent(signIn.this, mainInterface.class);
+                i = new Intent(signIn.this, mainInterface.class);
                 i.putExtra("jsondata", object.toString());
-                startActivity(i);
+//                startActivity(i);
+                try {
+                    JSONObject res = new JSONObject(object.toString());
+                    String name = res.get("name").toString();
+                    String email = res.get("email").toString();
+                    Toast.makeText(mContext, name + " : " + email, Toast.LENGTH_SHORT).show();
+                    loginSocialite(name,  email, "facebook");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         Bundle permission = new Bundle();
@@ -437,7 +478,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
     protected void onDestroy() {
         super.onDestroy();
         mAccessTokenTracker.stopTracking();
-        mProfileTracker.stopTracking();
+//        mProfileTracker.stopTracking();
     }
 
     @Override

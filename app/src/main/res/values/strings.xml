@@ -155,7 +155,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="termcondition_1">Saya bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut.</string>
+    <string name="termcondition_1">Saya sudah membaca syarat dan ketentuan serta bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut.</string>
     <string name="namaIdentitas">nama ( sesuai identitas )</string>
 
 </resources>

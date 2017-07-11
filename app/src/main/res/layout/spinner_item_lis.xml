@@ -8,6 +8,7 @@
         android:id="@+id/tv_spinner_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#E0E0E0"
         android:padding="8dp"
         android:text="LOL"
         android:textSize="14sp"

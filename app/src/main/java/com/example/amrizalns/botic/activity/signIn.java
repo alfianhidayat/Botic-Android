@@ -152,8 +152,8 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
                 if (email.length() == 0 && password.length() == 0) {
-                    mEmail.setError("Wajib Diisi!");
-                    mPassword.setError("Wajib Diisi!");
+                    mEmail.setError("Required");
+                    mPassword.setError("Required");
                 } else {
                     mProgressDialog.show();
                     RetrofitApi.getInstance().getApiService("")
@@ -437,7 +437,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
     protected void onDestroy() {
         super.onDestroy();
         mAccessTokenTracker.stopTracking();
-        mProfileTracker.stopTracking();
+//        mProfileTracker.stopTracking();
     }
 
     @Override
@@ -449,6 +449,28 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(signIn.this);
+        builder.setTitle("Exit");
+        builder.setMessage("Are you sure to exit Botic App ?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @Override
@@ -546,6 +568,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 
             return null;
         }
+
 
         @Override
         protected void onPostExecute(String s) {

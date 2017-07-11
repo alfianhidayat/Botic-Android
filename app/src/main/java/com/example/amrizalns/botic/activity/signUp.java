@@ -43,6 +43,7 @@ public class signUp extends AppCompatActivity {
         inputEmail = (EditText) findViewById(R.id.field_signUp_email);
         inputPass = (EditText) findViewById(R.id.field_signUp_password);
         inputConfPass = (EditText) findViewById(R.id.field_signUp_confirmPass);
+
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
@@ -50,7 +51,18 @@ public class signUp extends AppCompatActivity {
         regisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (inputPass.getText().toString().equals(inputConfPass.getText().toString()))
+                String nama = inputName.getText().toString();
+                String email = inputEmail.getText().toString();
+                String pass = inputPass.getText().toString();
+                String confpass = inputConfPass.getText().toString();
+
+                if (nama.length() == 0 && email.length()== 0 && pass.length() == 0 && confpass.length() == 0){
+                    inputName.setError("Required");
+                    inputEmail.setError("Required");
+                    inputPass.setError("Required");
+                    inputConfPass.setError("Required");
+
+                } else if (inputPass.getText().toString().equals(inputConfPass.getText().toString()))
                     RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
                             .register(
                                     inputName.getText().toString(),

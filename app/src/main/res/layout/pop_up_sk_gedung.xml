@@ -99,7 +99,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pihak yang dapat memesan adalah warga Negara Kesatuan Republik Indonesia dengan menunjukkan kartu identitas resmi sebagai penandannya."
+                    android:text="Besaran sewa sesuai dengan PERHUB yang berlaku, Perhub Nomor 51 dan 52 Tahun 2015 "
                     android:textColor="@color/colorContent"
                     android:textSize="10sp"
                     />
@@ -120,7 +120,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pihak yang dapat memesan adalah warga Negara Kesatuan Republik Indonesia dengan menunjukkan kartu identitas resmi sebagai penandannya."
+                    android:text="Penyewa atau peminjam diharuskan melampirkan foto copy identitas diri saat melakukan pembayaran."
                     android:textColor="@color/colorContent"
                     android:textSize="10sp"
                     />
@@ -141,7 +141,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pihak yang dapat memesan adalah warga Negara Kesatuan Republik Indonesia dengan menunjukkan kartu identitas resmi sebagai penandannya."
+                    android:text="Untuk pembayaran DP Minimal 50% dari harga sewa."
                     android:textColor="@color/colorContent"
                     android:textSize="10sp"
                     />
@@ -162,7 +162,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pihak yang dapat memesan adalah warga Negara Kesatuan Republik Indonesia dengan menunjukkan kartu identitas resmi sebagai penandannya."
+                    android:text="Dalam waktu 24 jam sebelum hari H penyewa gedung harus sudah melunasi biaya administrasi."
                     android:textColor="@color/colorContent"
                     android:textSize="10sp"
                     />
@@ -183,7 +183,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pihak yang dapat memesan adalah warga Negara Kesatuan Republik Indonesia dengan menunjukkan kartu identitas resmi sebagai penandannya."
+                    android:text="Batas waktu sewa gedung : Siang = Pukul 06.00 WIB s/d 16.00 WIB | Malam = Pukul 18.00 WIB s/d 23.00 WIB | Siang-Malam = 24 Jam"
                     android:textColor="@color/colorContent"
                     android:textSize="10sp"
                     />
@@ -204,7 +204,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pihak yang dapat memesan adalah warga Negara Kesatuan Republik Indonesia dengan menunjukkan kartu identitas resmi sebagai penandannya."
+                    android:text="Selebihnya dari waktu yang ditentukan, peminjaman atau penyewa melanggar ketentuan tersebut maka penyewa akan dikenakan denda/kompensasi sebesar Rp. 100.000,- per jam."
                     android:textColor="@color/colorContent"
                     android:textSize="10sp"
                     />
@@ -225,11 +225,243 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pihak yang dapat memesan adalah warga Negara Kesatuan Republik Indonesia dengan menunjukkan kartu identitas resmi sebagai penandannya."
+                    android:text="Peminjam/penyewa bisa dibatalkan sewaktu-waktu apabila gedung dipakai untuk mengungsi yang diakibatkan adanya bencana alam (banjir) dan uang sewa akan dikembalikan."
                     android:textColor="@color/colorContent"
                     android:textSize="10sp"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Segala biaya yang dikeluarkan diluar ketentuan bukan menjadi tanggung jawab UPTD Gedung dan Museum Disbudpar Kabupaten Bojonegoro selaku pengelola."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apabila terjadi bencana alam pada tanggal yang telah disewa, maka secara otomatis akan dilakukan pembatalan booking gedung oleh pihak pengelola dikarenakan gedung digunakan sebagai tempat penanggulangan bencana atau pengungsian."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Batas konfirmasi booking selama 2 hari diluar durasi waktu booking dianggap batal."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pihak penyewa harus menjaga kebersihan dan kelengkapan sarana dan prasarana gedung."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jika terjadi kerusakan yang disebabkan oleh pihak penyewa, maka akan dikenakan denda sesuai harga barang yang rusak."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pembatalan booking gedung dapat dilakukan selambat-lambatnya 2 minggu sebelum acara dilangsungkan dan apabila pembatalan dilakukan dengan melanggar point sebelumnya maka penyewa tidak berhak mendapatkan pengembalian dana atau uang DP akan hangus."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apabila pembatalan penyewa dilakukan sebelum 2 minggu maka penyewa berhak mendapatkan pengembalian sebesar 25% dari DP atau total dana yang terlah dibayarkan."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pembayaran dana awal penyewaan gedung sekitar 50% dari total harga sewa."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Penyewaan gedung hanya diperbolehkan untuk kegiatan yang tidak melanggar norma dan hukum dan sudah mendapatkan rekomendasi dari pihak yang berwenang, kecuali acara pernikahan."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Segala bentuk kehilangan selama sebelum dan sesudah acara merupakan tanggung jawab pihak penyewa."
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18. "
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Informasi lebih lanjut dapat menghubungi call center : 081 232 617 797"
+                    android:textColor="@color/colorContent"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -238,30 +470,32 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             android:gravity="center"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TTD"
+                android:text="KA. UPTD Gedung dan Museum"
                 android:textColor="@color/colorContent"
                 android:textSize="10sp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="KEPALA DINAS KEBUDAYAAN"
+                android:text="Dinas Kebudayaan dan Pariwisata Kab. Bojonegoro"
                 android:textColor="@color/colorContent"
                 android:textSize="10sp"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DAN PARIWISATA KAB. BOJONEGORO"
-                android:textColor="@color/colorContent"
-                android:textSize="10sp"
-                />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="MUDIONO"-->
+                <!--android:textColor="@color/colorContent"-->
+                <!--android:textSize="10sp"-->
+                <!--android:textStyle="bold"-->
+                <!--/>-->
         </LinearLayout>
     </LinearLayout>
     </ScrollView>

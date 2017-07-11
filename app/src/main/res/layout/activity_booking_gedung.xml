@@ -107,19 +107,23 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         >
 
                         <android.support.v7.widget.AppCompatSpinner
                             android:id="@+id/jenis_identitas"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            >
                         </android.support.v7.widget.AppCompatSpinner>
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
                             android:src="@drawable/ic_arrow_drop_down"
                             />
 
@@ -205,18 +209,24 @@
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        >
 
                         <android.support.v7.widget.AppCompatSpinner
                             android:id="@+id/jenis_gedung"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            >
                         </android.support.v7.widget.AppCompatSpinner>
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/ic_arrow_drop_down"
                             />
 
@@ -382,7 +392,7 @@
                         android:id="@+id/term"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Term and Condition"
+                        android:text="Syarat dan Ketentuan"
                         android:textColor="@color/colorMain1"
                         android:textStyle="bold|italic"
                         android:textSize="12sp"

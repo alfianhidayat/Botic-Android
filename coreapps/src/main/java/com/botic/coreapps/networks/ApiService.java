@@ -108,7 +108,7 @@ public interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("api/checkin")
-    Call<BaseResponse<Object>> checin(@Body CheckInParams params);
+    Call<BaseResponse<Object>> checkIn(@Body CheckInParams params);
 
     @GET("api/review/{id}")
     Call<BaseResponse<List<Review>>> getReview(@Path("id") int id);

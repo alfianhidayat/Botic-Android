@@ -53,6 +53,8 @@ public class checkin_1 extends Fragment {
             }
         });
 
+        mNamaPJ.setText(SessionLogin.getProfile().getName());
+
         return view;
     }
 
@@ -83,7 +85,7 @@ public class checkin_1 extends Fragment {
         if (names.length() == 0) {
             mNamaPJ.requestFocus();
             mNamaPJ.setError("Wajib Diisi");
-        }else if (!names.matches("[a-zA-Z ]+")){
+        } else if (!names.matches("[a-zA-Z ]+")) {
             mNamaPJ.requestFocus();
             mNamaPJ.setError("Harus Huruf!");
         }

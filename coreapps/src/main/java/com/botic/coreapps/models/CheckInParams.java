@@ -52,6 +52,15 @@ public class CheckInParams {
         int age;
         String origin;
 
+        public Visitor() {
+        }
+
+        public Visitor(String name, int age, String origin) {
+            this.name = name;
+            this.age = age;
+            this.origin = origin;
+        }
+
         public String getName() {
             return name;
         }

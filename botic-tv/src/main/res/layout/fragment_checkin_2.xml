@@ -18,9 +18,9 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:scaleType="fitStart"
-            android:src="@drawable/banner_checkin1"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/banner_checkin"
             />
 
     </LinearLayout>

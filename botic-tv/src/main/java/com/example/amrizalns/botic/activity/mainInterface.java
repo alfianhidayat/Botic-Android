@@ -24,6 +24,7 @@ import com.botic.coreapps.models.User;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.botic.coreapps.responses.BaseResponse;
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.fragment.aboutbjn;
 import com.example.amrizalns.botic.fragment.aktivitas_saya;
 import com.example.amrizalns.botic.fragment.beranda;
 import com.example.amrizalns.botic.fragment.booking;
@@ -301,7 +302,7 @@ public class mainInterface extends AppCompatActivity
         } else if (id == R.id.nav_leisure) {
             f = new leisure();
         } else if (id == R.id.nav_aboutBjn) {
-
+            f = new aboutbjn();
         } else if (id == R.id.nav_event) {
 
         } else if (id == R.id.nav_booking) {

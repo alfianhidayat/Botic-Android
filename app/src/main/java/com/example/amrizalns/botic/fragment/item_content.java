@@ -54,7 +54,7 @@ public class item_content extends Fragment {
         dialog.setMessage("Loading...");
         dialog.setCancelable(false);
         tvError = (TextView) view.findViewById(R.id.tv_error);
-        lLayout = new GridLayoutManager(view.getContext(), 2);
+        lLayout = new GridLayoutManager(view.getContext(), 3);
         rView = (RecyclerView) view.findViewById(R.id.rv_itemcontent);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);

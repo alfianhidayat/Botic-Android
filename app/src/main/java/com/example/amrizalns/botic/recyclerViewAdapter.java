@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.botic.coreapps.models.ObjectItem;
 import com.example.amrizalns.botic.activity.detail_content;
 
 import java.util.List;
@@ -16,10 +17,10 @@ import java.util.List;
  */
 
 public class recyclerViewAdapter extends RecyclerView.Adapter<recyclerViewHolder> {
-    private List<itemObject> itemList;
+    private List<ObjectItem> itemList;
     private Context context;
 
-    public recyclerViewAdapter(Context context, List<itemObject> itemList) {
+    public recyclerViewAdapter(Context context, List<ObjectItem> itemList) {
         this.itemList = itemList;
         this.context = context;
     }
@@ -34,26 +35,20 @@ public class recyclerViewAdapter extends RecyclerView.Adapter<recyclerViewHolder
 
     @Override
     public void onBindViewHolder(recyclerViewHolder holder, final int position) {
-        holder.img.setImageResource(itemList.get(position).getImg());
-        holder.loc.setText(itemList.get(position).getLocation());
+        holder.img.setImageResource(R.mipmap.ic_botic);
+        holder.loc.setText(itemList.get(position).getAddress());
         holder.name.setText(itemList.get(position).getName());
-        holder.cost.setText(itemList.get(position).getCost());
-        holder.time_open.setText(itemList.get(position).getTime_open());
-        holder.time_close.setText(itemList.get(position).getTime_close());
-        holder.desc.setText(itemList.get(position).getDesc());
+        holder.cost.setText(itemList.get(position).getPrice());
+        holder.time_open.setText(itemList.get(position).getOpen());
+        holder.time_close.setText(itemList.get(position).getClose());
+        holder.desc.setText(itemList.get(position).getDescription());
+        holder.ratingBar.setRating(itemList.get(position).getRating());
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, detail_content.class);
-                i.putExtra("img", itemList.get(position).getImg());
-                i.putExtra("loc", itemList.get(position).getLocation());
-                i.putExtra("name", itemList.get(position).getName());
-                i.putExtra("cost", itemList.get(position).getCost());
-                i.putExtra("time_open", itemList.get(position).getTime_open());
-                i.putExtra("time_close", itemList.get(position).getTime_close());
-                i.putExtra("desc", itemList.get(position).getDesc());
-
+                i.putExtra("object", itemList.get(position));
                 context.startActivity(i);
             }
         });

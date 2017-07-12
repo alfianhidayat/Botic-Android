@@ -4,7 +4,7 @@ package com.botic.coreapps.models;
 import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -23,6 +23,9 @@ public class ObjectItem implements Parcelable
     @SerializedName("phone")
     @Expose
     private String phone;
+    @SerializedName("manager")
+    @Expose
+    private String manager;
     @SerializedName("description")
     @Expose
     private String description;
@@ -31,10 +34,10 @@ public class ObjectItem implements Parcelable
     private String price;
     @SerializedName("lat")
     @Expose
-    private float lat;
+    private int lat;
     @SerializedName("lng")
     @Expose
-    private float lng;
+    private int lng;
     @SerializedName("open")
     @Expose
     private String open;
@@ -50,12 +53,15 @@ public class ObjectItem implements Parcelable
     @SerializedName("created_by")
     @Expose
     private int createdBy;
+    @SerializedName("rating")
+    @Expose
+    private int rating;
     @SerializedName("created_at")
     @Expose
     private Object createdAt;
     @SerializedName("updated_at")
     @Expose
-    private String updatedAt;
+    private Object updatedAt;
     @SerializedName("picture")
     @Expose
     private List<Object> picture = null;
@@ -77,17 +83,19 @@ public class ObjectItem implements Parcelable
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
             instance.address = ((String) in.readValue((String.class.getClassLoader())));
             instance.phone = ((String) in.readValue((String.class.getClassLoader())));
+            instance.manager = ((String) in.readValue((String.class.getClassLoader())));
             instance.description = ((String) in.readValue((String.class.getClassLoader())));
             instance.price = ((String) in.readValue((String.class.getClassLoader())));
-            instance.lat = ((float) in.readValue((float.class.getClassLoader())));
-            instance.lng = ((float) in.readValue((float.class.getClassLoader())));
+            instance.lat = ((int) in.readValue((int.class.getClassLoader())));
+            instance.lng = ((int) in.readValue((int.class.getClassLoader())));
             instance.open = ((String) in.readValue((String.class.getClassLoader())));
             instance.close = ((String) in.readValue((String.class.getClassLoader())));
             instance.idCategory = ((int) in.readValue((int.class.getClassLoader())));
             instance.idMenu = ((int) in.readValue((int.class.getClassLoader())));
             instance.createdBy = ((int) in.readValue((int.class.getClassLoader())));
+            instance.rating = ((int) in.readValue((int.class.getClassLoader())));
             instance.createdAt = ((Object) in.readValue((Object.class.getClassLoader())));
-            instance.updatedAt = ((String) in.readValue((String.class.getClassLoader())));
+            instance.updatedAt = ((Object) in.readValue((Object.class.getClassLoader())));
             in.readList(instance.picture, (Object.class.getClassLoader()));
             instance.category = ((Category) in.readValue((Category.class.getClassLoader())));
             instance.menu = ((Menu) in.readValue((Menu.class.getClassLoader())));
@@ -133,6 +141,14 @@ public class ObjectItem implements Parcelable
         this.phone = phone;
     }
 
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -149,19 +165,19 @@ public class ObjectItem implements Parcelable
         this.price = price;
     }
 
-    public float getLat() {
+    public int getLat() {
         return lat;
     }
 
-    public void setLat(float lat) {
+    public void setLat(int lat) {
         this.lat = lat;
     }
 
-    public float getLng() {
+    public int getLng() {
         return lng;
     }
 
-    public void setLng(float lng) {
+    public void setLng(int lng) {
         this.lng = lng;
     }
 
@@ -205,6 +221,14 @@ public class ObjectItem implements Parcelable
         this.createdBy = createdBy;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     public Object getCreatedAt() {
         return createdAt;
     }
@@ -213,11 +237,11 @@ public class ObjectItem implements Parcelable
         this.createdAt = createdAt;
     }
 
-    public String getUpdatedAt() {
+    public Object getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(Object updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -250,6 +274,7 @@ public class ObjectItem implements Parcelable
         dest.writeValue(name);
         dest.writeValue(address);
         dest.writeValue(phone);
+        dest.writeValue(manager);
         dest.writeValue(description);
         dest.writeValue(price);
         dest.writeValue(lat);
@@ -259,6 +284,7 @@ public class ObjectItem implements Parcelable
         dest.writeValue(idCategory);
         dest.writeValue(idMenu);
         dest.writeValue(createdBy);
+        dest.writeValue(rating);
         dest.writeValue(createdAt);
         dest.writeValue(updatedAt);
         dest.writeList(picture);

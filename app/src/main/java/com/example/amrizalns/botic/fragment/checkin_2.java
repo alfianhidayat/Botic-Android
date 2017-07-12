@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.botic.coreapps.callbacks.PageCallback;
+import com.botic.coreapps.models.CheckInParams;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.AktivitasAdapter;
 import com.example.amrizalns.botic.ItemClickListener;
@@ -42,17 +43,18 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class checkin_2 extends Fragment implements View.OnClickListener, ItemClickListener{
+public class checkin_2 extends Fragment implements View.OnClickListener, ItemClickListener {
 
     View view;
     private LinearLayout mLinearLayout;
     Button btnCheckInSubmit;
     private int i = 0;
     private ProgressDialog dialog;
-    private List<CheckinData> mCheckinDataList =  new ArrayList<>();
+    private List<CheckinData> mCheckinDataList = new ArrayList<>();
     private RecyclerView recyclerView;
     private checkinAdapter mCheckinAdapter;
     String nama, asal;
+    List<CheckInParams.Visitor> visitors = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,12 +81,12 @@ public class checkin_2 extends Fragment implements View.OnClickListener, ItemCli
         String jumlah = getArguments().getString("daftar");
         int jmlTamu = Integer.parseInt(jumlah);
         for (int i = 0; i < jmlTamu; i++) {
-            CheckinData checkinData = new CheckinData((i+1)+". Isi Data Pengunjung "+ (i+1), asal);
+            CheckinData checkinData = new CheckinData((i + 1) + ". Isi Data Pengunjung " + (i + 1), asal);
             mCheckinDataList.add(checkinData);
         }
         mCheckinAdapter.notifyDataSetChanged();
 
-        dialog= new ProgressDialog(getActivity());
+        dialog = new ProgressDialog(getActivity());
         dialog.setMessage("Loading...");
         dialog.setCancelable(false);
         return view;
@@ -92,10 +94,17 @@ public class checkin_2 extends Fragment implements View.OnClickListener, ItemCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_checkin_tamu:
+                List<CheckInParams.Visitor> visitors = new ArrayList<>();
+                for (CheckinData data : mCheckinDataList) {
+                    visitors.add(new CheckInParams.Visitor(data.getNama(), Integer.parseInt(data.getUmur()), data.getAsal()));
+                }
+                CheckInParams params = SessionLogin.getCheckIn();
+                params.setVisitors(visitors);
+                SessionLogin.saveCheckIn(params);
                 RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
-                        .checin(SessionLogin.getCheckIn())
+                        .checkIn(SessionLogin.getCheckIn())
                         .enqueue(new PageCallback<Object>(getActivity()) {
                             @Override
                             protected void onStart() {
@@ -143,15 +152,16 @@ public class checkin_2 extends Fragment implements View.OnClickListener, ItemCli
         alertDialogBuilderUserInput.setView(mView);
         final EditText namaInputDialogEditText = (EditText) mView.findViewById(R.id.namaInputDialog);
         final EditText asalInputDialogEditText = (EditText) mView.findViewById(R.id.asalInputDialog);
-        EditText usiaInputDialogEditText = (EditText) mView.findViewById(R.id.usiaInputDialog);
+        final EditText usiaInputDialogEditText = (EditText) mView.findViewById(R.id.usiaInputDialog);
         alertDialogBuilderUserInput
                 .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogBox, int id) {
                         nama = namaInputDialogEditText.getText().toString();
                         asal = asalInputDialogEditText.getText().toString();
                         checkinData.setNama(nama);
                         checkinData.setAsal(asal);
+                        checkinData.setUmur(usiaInputDialogEditText.getText().toString());
                         mCheckinAdapter.notifyDataSetChanged();
                     }
                 })

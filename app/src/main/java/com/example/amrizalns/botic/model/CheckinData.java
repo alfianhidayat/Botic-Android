@@ -5,7 +5,15 @@ package com.example.amrizalns.botic.model;
  */
 
 public class CheckinData {
-    private String nama, asal;
+    private String nama, asal, umur;
+
+    public String getUmur() {
+        return umur;
+    }
+
+    public void setUmur(String umur) {
+        this.umur = umur;
+    }
 
     public CheckinData() {
     }

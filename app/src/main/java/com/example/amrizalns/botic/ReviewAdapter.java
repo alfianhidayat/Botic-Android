@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.amrizalns.botic.model.Review;
+import com.botic.coreapps.models.Review;
 
 import java.util.List;
 
@@ -14,11 +14,12 @@ import java.util.List;
  * Created by user on 12/07/2017.
  */
 
-public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder>{
+public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
     private List<Review> mReviewsList;
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView nama, review;
+
         public ViewHolder(View view) {
             super(view);
             nama = (TextView) view.findViewById(R.id.txt_nama_review);
@@ -41,7 +42,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Review review = mReviewsList.get(position);
-        holder.nama.setText(review.getNama());
+        holder.nama.setText(review.getUser().getName());
         holder.review.setText(review.getReview());
     }
 

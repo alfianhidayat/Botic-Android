@@ -5,6 +5,7 @@ package com.example.amrizalns.botic;
  */
 
 public class itemObject {
+    private int id;
     private String location;
     private String name;
     private int img;
@@ -13,7 +14,8 @@ public class itemObject {
     private String time_open;
     private String time_close;
 
-    public itemObject( int img, String name, String location, String cost, String time_open, String time_close, String desc) {
+    public itemObject(int id, int img, String name, String location, String cost, String time_open, String time_close, String desc) {
+        this.id = id;
         this.name = name;
         this.location = location;
         this.img = img;
@@ -21,6 +23,14 @@ public class itemObject {
         this.cost = cost;
         this.time_open = time_open;
         this.time_close = time_close;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLocation() {

@@ -25,12 +25,13 @@ public class hotel extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
     ProgressDialog dialog;
-    private List<itemObject> rowListItem = new ArrayList<>();
+    private List<ObjectItem> rowListItem = new ArrayList<>();
     private recyclerViewAdapter rcAdapter;
 
     public hotel() {
         // Required empty public constructor
     }
+
     // TODO: Rename and change types and number of parameters
     public static hotel newInstance(String param1, String param2) {
         hotel fragment = new hotel();
@@ -62,6 +63,12 @@ public class hotel extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getHotel();
+    }
+
     private void getHotel() {
         RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getHotel().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
             @Override
@@ -78,15 +85,7 @@ public class hotel extends Fragment {
             protected void onSuccess(List<ObjectItem> data) {
                 super.onSuccess(data);
                 rowListItem.clear();
-                for (ObjectItem objectItem : data) {
-                    rowListItem.add(new itemObject(R.drawable.content_hotel1,
-                            objectItem.getName(),
-                            objectItem.getAddress(),
-                            objectItem.getPrice(),
-                            objectItem.getOpen(),
-                            objectItem.getClose(),
-                            objectItem.getDescription()));
-                }
+                rowListItem.addAll(data);
                 rcAdapter.notifyDataSetChanged();
             }
         });

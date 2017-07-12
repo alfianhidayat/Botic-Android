@@ -1,9 +1,11 @@
 package com.example.amrizalns.botic.activity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,11 +21,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.botic.coreapps.callbacks.PageCallback;
+import com.botic.coreapps.models.ObjectItem;
+import com.botic.coreapps.models.Review;
+import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.ReviewAdapter;
-import com.example.amrizalns.botic.model.Review;
 import com.example.amrizalns.botic.recyclerViewHolder;
+import com.example.amrizalns.botic.utils.SessionLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +52,8 @@ public class detail_content extends AppCompatActivity {
     String cost_detail;
     String timeopen_detail;
     String timeclose_detail;
+    private ObjectItem objectItem;
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,26 +73,17 @@ public class detail_content extends AppCompatActivity {
         button_review = (Button) findViewById(R.id.btn_review);
 
         Intent i = getIntent();
-        img_detail = i.getIntExtra("img", 0);
-        img.setImageResource(img_detail);
-
-        name_detail = i.getStringExtra("name");
-        name.setText(name_detail);
-
-        loc_detail = i.getStringExtra("loc");
-        loc.setText(loc_detail);
-
-        cost_detail = i.getStringExtra("cost");
-        cost.setText(cost_detail);
-
-        timeopen_detail = i.getStringExtra("time_open");
-        time_open.setText(timeopen_detail);
-
-        timeclose_detail = i.getStringExtra("time_close");
-        time_close.setText(timeclose_detail);
-
-        desc_detail = i.getStringExtra("desc");
-        desc.setText(desc_detail);
+        if (i.hasExtra("object")) {
+            objectItem = i.getParcelableExtra("object");
+            img.setImageResource(R.mipmap.ic_botic);
+            name.setText(objectItem.getName());
+            loc.setText(objectItem.getAddress());
+            cost.setText(objectItem.getPrice());
+            time_open.setText(objectItem.getOpen());
+            time_close.setText(objectItem.getClose());
+            desc.setText(objectItem.getDescription());
+            getReview(objectItem.getId());
+        }
 
         direction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +92,8 @@ public class detail_content extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Loading...");
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_review);
         mAdapter = new ReviewAdapter(mReviewList);
@@ -100,9 +102,8 @@ public class detail_content extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
 
-        Review review = new Review("aaa", "aaaa");
-        mReviewList.add(review);
-
+//        Review review = new Review("aaa", "aaaa");
+//        mReviewList.add(review);
         button_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,10 +120,9 @@ public class detail_content extends AppCompatActivity {
                                 String reviews = reviewInput.getText().toString();
                                 String rating = String.valueOf(rb_review.getRating());
                                 float a = Float.parseFloat(rating);
-                                rb_review.setRating((float)a);
-                                Review review = new Review(reviews, rating);
-                                mReviewList.add(review);
-                                mAdapter.notifyDataSetChanged();
+                                rb_review.setRating((float) a);
+                                review(reviews, (int) rb_review.getRating());
+                                dialogBox.dismiss();
                             }
                         })
                         .setNegativeButton("Batal",
@@ -137,5 +137,83 @@ public class detail_content extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void review(String review, int rating) {
+        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                .review(review, rating, objectItem.getId(), objectItem.getIdMenu())
+                .enqueue(new PageCallback<Review>(detail_content.this) {
+                    @Override
+                    protected void onStart() {
+                        dialog.show();
+                    }
+
+                    @Override
+                    protected void onFinish() {
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    protected void onSuccess(Review data) {
+                        getReview(objectItem.getId());
+                        Toast.makeText(detail_content.this, "Berhasil Review", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    protected void onError(String message) {
+                        super.onError(message);
+                        Toast.makeText(detail_content.this, "Gagal Review", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    protected void onUnauthorized() {
+                        SessionLogin.reset();
+                        Intent intent = new Intent(detail_content.this, signIn.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+    }
+
+    private void getReview(int id) {
+        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                .getReview(id)
+                .enqueue(new PageCallback<List<Review>>(detail_content.this) {
+                    @Override
+                    protected void onStart() {
+
+                    }
+
+                    @Override
+                    protected void onFinish() {
+
+                    }
+
+                    @Override
+                    protected void onSuccess(List<Review> data) {
+                        mReviewList.clear();
+                        mReviewList.addAll(data);
+                        mAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    protected void onError(String message) {
+                        super.onError(message);
+                    }
+
+                    @Override
+                    protected void onUnauthorized() {
+                        SessionLogin.reset();
+                        Intent intent = new Intent(detail_content.this, signIn.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

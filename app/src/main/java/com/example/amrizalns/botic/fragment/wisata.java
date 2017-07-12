@@ -29,7 +29,7 @@ public class wisata extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
     ProgressDialog dialog;
-    List<itemObject> rowListItem = new ArrayList<>();
+    List<ObjectItem> rowListItem = new ArrayList<>();
     recyclerViewAdapter rcAdapter;
 
     public wisata() {
@@ -77,6 +77,12 @@ public class wisata extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getTourism();
+    }
+
     private void getTourism() {
         RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getTourism().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
             @Override
@@ -93,17 +99,10 @@ public class wisata extends Fragment {
             protected void onSuccess(List<ObjectItem> data) {
                 super.onSuccess(data);
                 rowListItem.clear();
-                for (ObjectItem objectItem : data) {
-                    rowListItem.add(new itemObject(R.mipmap.ic_botic,
-                            objectItem.getName(),
-                            objectItem.getAddress(),
-                            objectItem.getPrice(),
-                            objectItem.getOpen(),
-                            objectItem.getClose(),
-                            objectItem.getDescription()));
-                }
+                rowListItem.addAll(data);
                 rcAdapter.notifyDataSetChanged();
             }
+
             @Override
             protected void onUnauthorized() {
                 SessionLogin.reset();

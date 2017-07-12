@@ -7,8 +7,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Review implements Parcelable
-{
+public class Review implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -37,11 +36,12 @@ public class Review implements Parcelable
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    private User user;
     public final static Creator<Review> CREATOR = new Creator<Review>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
         public Review createFromParcel(Parcel in) {
             Review instance = new Review();
@@ -61,8 +61,7 @@ public class Review implements Parcelable
             return (new Review[size]);
         }
 
-    }
-    ;
+    };
 
     public int getId() {
         return id;
@@ -108,6 +107,14 @@ public class Review implements Parcelable
         return idMenu;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public void setIdMenu(int idMenu) {
         this.idMenu = idMenu;
     }
@@ -146,10 +153,11 @@ public class Review implements Parcelable
         dest.writeValue(idUser);
         dest.writeValue(createdAt);
         dest.writeValue(updatedAt);
+        dest.writeValue(user);
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }

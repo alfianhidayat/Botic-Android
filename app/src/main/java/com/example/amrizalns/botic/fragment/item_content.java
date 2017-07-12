@@ -39,10 +39,12 @@ public class item_content extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
     private recyclerViewAdapter rcAdapter;
-    private List<itemObject> rowListItem = new ArrayList<>();
+    private List<ObjectItem> rowListItem = new ArrayList<>();
     ProgressDialog dialog;
     private TextView tvError;
     private RecyclerView rView;
+    private int idCategory;
+    private String objectType;
 
     @Nullable
     @Override
@@ -58,10 +60,16 @@ public class item_content extends Fragment {
         rView.setLayoutManager(lLayout);
         rcAdapter = new recyclerViewAdapter(view.getContext(), rowListItem);
         rView.setAdapter(rcAdapter);
-        int idCategory = getArguments().getInt(Constants.TAG_ID_CATEGORY);
-        String objectType = getArguments().getString(Constants.TAG_OBJECT_TYPE);
+        idCategory = getArguments().getInt(Constants.TAG_ID_CATEGORY);
+        objectType = getArguments().getString(Constants.TAG_OBJECT_TYPE);
         getByCategory(idCategory, objectType);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getByCategory(idCategory, objectType);
     }
 
     private void getByCategory(int idCategory, String objectType) {
@@ -114,15 +122,7 @@ public class item_content extends Fragment {
                 protected void onSuccess(List<ObjectItem> data) {
                     super.onSuccess(data);
                     rowListItem.clear();
-                    for (ObjectItem objectItem : data) {
-                        rowListItem.add(new itemObject(R.mipmap.ic_botic,
-                                objectItem.getName(),
-                                objectItem.getAddress(),
-                                objectItem.getPrice(),
-                                objectItem.getOpen(),
-                                objectItem.getClose(),
-                                objectItem.getDescription()));
-                    }
+                    rowListItem.addAll(data);
                     rcAdapter.notifyDataSetChanged();
                 }
 

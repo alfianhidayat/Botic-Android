@@ -82,7 +82,7 @@
                     android:textColor="@color/colorContent"
                     android:singleLine="true"
                     android:ellipsize="end"
-                    android:inputType="numberDecimal"
+                    android:inputType="phone"
                     />
 
                 <EditText

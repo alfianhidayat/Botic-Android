@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ln_checkin_tamu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_nama_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:padding="5dp"
+            android:textColor="@color/colorContent"
+            android:textSize="14dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txt_review_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:padding="5dp"
+            android:textColor="@color/colorContent"/>
+
+        <View android:layout_width="fill_parent"
+              android:layout_height="1px"
+              android:background="@color/colorContent"
+              android:id="@+id/separator2" />
+    </LinearLayout>
+
+</RelativeLayout>

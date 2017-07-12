@@ -177,6 +177,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btn_review"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
@@ -194,6 +195,20 @@
                 android:text="@string/share"
                 android:textAllCaps="false"
                 android:textColor="@color/colorShare" />
+
         </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/r_review"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorContent"
+                android:scrollbars="vertical" />
+        </RelativeLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

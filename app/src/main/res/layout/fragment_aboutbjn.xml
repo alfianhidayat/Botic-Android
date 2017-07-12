@@ -23,7 +23,7 @@
 
     <android.support.design.widget.TabLayout
         android:layout_below="@id/header"
-        android:id="@+id/tablayout_belanja"
+        android:id="@+id/tablayout_about"
         android:orientation="horizontal"
         app:tabGravity="fill"
         style="@style/MyCustomTabLayout"
@@ -32,8 +32,8 @@
     </android.support.design.widget.TabLayout>
 
     <android.support.v4.view.ViewPager
-        android:layout_below="@id/tablayout_belanja"
-        android:id="@+id/vp_belanja"
+        android:layout_below="@id/tablayout_about"
+        android:id="@+id/vp_about"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.ObjectItem;
@@ -52,7 +53,7 @@ public class item_content extends Fragment {
         dialog.setMessage("Loading...");
         dialog.setCancelable(false);
         tvError = (TextView) view.findViewById(R.id.tv_error);
-        lLayout = new GridLayoutManager(view.getContext(), 2);
+        lLayout = new GridLayoutManager(view.getContext(), 5);
         rView = (RecyclerView) view.findViewById(R.id.rv_itemcontent);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);

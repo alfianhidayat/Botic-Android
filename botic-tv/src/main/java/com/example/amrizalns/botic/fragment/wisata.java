@@ -63,7 +63,7 @@ public class wisata extends Fragment {
         view = inflater.inflate(R.layout.fragment_wisata, container, false);
 
 //        rowListItem = getAllItemList();
-        lLayout = new GridLayoutManager(view.getContext(), 2);
+        lLayout = new GridLayoutManager(view.getContext(), 5);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);

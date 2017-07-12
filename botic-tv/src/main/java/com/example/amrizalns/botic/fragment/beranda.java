@@ -1,21 +1,18 @@
 package com.example.amrizalns.botic.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.amrizalns.botic.R;
-import com.example.amrizalns.botic.viewPagerAdapter;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class beranda extends Fragment {
 
@@ -54,31 +51,6 @@ public class beranda extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_beranda, null);
-
-        final ViewPager viewPager;
-
-        viewPager = (ViewPager) view.findViewById(R.id.vp);
-        viewPagerAdapter vp = new viewPagerAdapter(getActivity());
-        viewPager.setAdapter(vp);
-
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == 3) {
-                    currentPage = 0;
-                }
-                viewPager.setCurrentItem(currentPage++, true);
-            }
-        };
-
-        timer = new Timer(); // This will create a new Thread
-        timer.schedule(new TimerTask() { // task to be scheduled
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 500, 3000);
-
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
@@ -151,6 +123,18 @@ public class beranda extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_container, kuliner);
+                fragmentTransaction.commit();
+            }
+        });
+
+        Button mButton = (Button) view.findViewById(R.id.btn_booking_aset);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                booking booking = new booking();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_container, booking);
                 fragmentTransaction.commit();
             }
         });

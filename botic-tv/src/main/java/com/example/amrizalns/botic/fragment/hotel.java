@@ -48,7 +48,7 @@ public class hotel extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_hotel, container, false);
-        lLayout = new GridLayoutManager(view.getContext(), 2);
+        lLayout = new GridLayoutManager(view.getContext(), 5);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
@@ -79,7 +79,7 @@ public class hotel extends Fragment {
                 super.onSuccess(data);
                 rowListItem.clear();
                 for (ObjectItem objectItem : data) {
-                    rowListItem.add(new itemObject(R.drawable.content_hotel1,
+                    rowListItem.add(new itemObject(R.mipmap.ic_botic,
                             objectItem.getName(),
                             objectItem.getAddress(),
                             objectItem.getPrice(),

@@ -256,15 +256,16 @@ public class mainInterface extends AppCompatActivity
     private void signOut() {
         new SharedPrefManager(mContext).clear();
 
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                        Intent intent = new Intent(mainInterface.this, signIn.class);
-                        startActivity(intent);
+        if (!SessionLogin.isExist())
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(@NonNull Status status) {
+                            Intent intent = new Intent(mainInterface.this, signIn.class);
+                            startActivity(intent);
+                        }
                     }
-                }
-        );
+            );
 //        Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
 //                new ResultCallback<Status>() {
 //                    @Override

@@ -1,15 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorBackground"
-                tools:context="com.example.amrizalns.botic.fragment.checkin_2"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.example.amrizalns.botic.fragment.checkin_2"
+    android:orientation="horizontal"
     >
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:id="@+id/banner"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
@@ -19,21 +21,6 @@
             android:layout_height="120dp"
             android:scaleType="fitStart"
             android:src="@drawable/banner_checkin1"
-            />
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
-            android:gravity="center"
-            android:paddingTop="30dp"
-            android:text="Data tamu wisatawan"
-            android:textColor="@color/colorContent"
-            android:textSize="18sp"
-            android:textStyle="bold"
             />
 
     </LinearLayout>
@@ -52,6 +39,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginStart="50dp"
+                    android:gravity="center"
+                    android:paddingTop="30dp"
+                    android:text="Data tamu wisatawan"
+                    android:textColor="@color/colorContent"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/checkin_tamu_form"
@@ -125,4 +131,4 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-</RelativeLayout>
+</LinearLayout>

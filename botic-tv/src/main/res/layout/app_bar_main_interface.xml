@@ -17,13 +17,66 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorBackground"
             app:elevation="0dp"
-            app:theme="@style/AppTheme.ActionBar.Transparent">
+            app:theme="@style/AppTheme.ActionBar.Transparent"
+            >
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@mipmap/ic_botic"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@mipmap/ic_botic"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bojonegoro - TIC"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorMain1"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="powered by"
+                            android:textSize="8sp"
+                            android:textColor="@color/colorMain2"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" disbudparbjn"
+                            android:textSize="8sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorMain2"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
 

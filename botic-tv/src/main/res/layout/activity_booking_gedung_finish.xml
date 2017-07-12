@@ -14,38 +14,40 @@
         android:id="@+id/banner"
         >
         <ImageView
+            android:scaleType="fitXY"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/banner_booking"
             />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/firstlane"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/firstlane"
-        >
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
             android:text="Invoce Booking Gedung"
-            android:textStyle="bold"
-            android:textColor="@color/colorContent"/>
+            android:textColor="@color/colorContent"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-        <View android:layout_width="fill_parent"
+        <View
+            android:id="@+id/separator2"
+            android:layout_width="fill_parent"
             android:layout_height="3px"
-            android:background="@color/colorContent"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="40dp"
             android:layout_marginEnd="5dp"
-            android:id="@+id/separator2" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorContent" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -57,8 +59,8 @@
                 android:id="@+id/date_gedung"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="5dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -66,10 +68,11 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:text="Nomor Identitas"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tv_noIdentitas"
                     android:layout_width="match_parent"
@@ -77,18 +80,20 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:text="Nama"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tv_nama"
                     android:layout_width="match_parent"
@@ -96,18 +101,20 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:text="Nomor HP"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tv_noHP"
                     android:layout_width="match_parent"
@@ -115,18 +122,20 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:text="Deskripsi Gedung"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tv_desGedung"
                     android:layout_width="match_parent"
@@ -134,8 +143,8 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -143,10 +152,11 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:text="Jenis Gedung"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tv_jenisGedung"
                     android:layout_width="match_parent"
@@ -154,8 +164,8 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -163,10 +173,11 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:text="Tanggal Pemesanan"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tv_tanggal"
                     android:layout_width="match_parent"
@@ -174,18 +185,20 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:text="Waktu Sewa"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tv_waktu"
                     android:layout_width="match_parent"
@@ -193,19 +206,19 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorContent"/>
+                    android:textColor="@color/colorContent"
+                    android:textSize="15sp" />
 
                 <Button
                     android:id="@+id/selesai_gedung"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Selesai"
-                    android:textAllCaps="false"
-                    android:background="@drawable/btn_set_act"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="25dp"
                     android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp" />
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/btn_set_act"
+                    android:text="Selesai"
+                    android:textAllCaps="false" />
             </LinearLayout>
 
         </ScrollView>

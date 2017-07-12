@@ -116,7 +116,7 @@ public class checkin_2 extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.btn_checkin_tamu:
                 RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
-                        .checin(SessionLogin.getCheckIn())
+                        .checkIn(SessionLogin.getCheckIn())
                         .enqueue(new PageCallback<Object>(getActivity()) {
                             @Override
                             protected void onStart() {

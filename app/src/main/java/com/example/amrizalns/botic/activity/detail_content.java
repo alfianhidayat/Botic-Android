@@ -102,8 +102,6 @@ public class detail_content extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
 
-//        Review review = new Review("aaa", "aaaa");
-//        mReviewList.add(review);
         button_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

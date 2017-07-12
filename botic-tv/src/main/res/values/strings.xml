@@ -61,7 +61,7 @@
         <item>Pasport</item>
     </string-array>
 
-    <string name="facebook_app_id">248583198971501</string>
+    <string name="facebook_app_id">816484341852242</string>
 
     <string name="success_login">Berhasil Login</string>
     <string name="failure_login">Login Gagal, Email atau Password Anda Salah!</string>

@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:padding="5dp"
             android:textColor="@color/colorContent"
             android:textSize="14dp"
             android:textStyle="bold" />
@@ -28,8 +27,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:padding="5dp"
             android:textColor="@color/colorContent" />
+
+        <RatingBar
+            android:id="@+id/rating_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="1"
+            android:theme="@style/RatingBar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            />
 
         <View
             android:id="@+id/separator2"

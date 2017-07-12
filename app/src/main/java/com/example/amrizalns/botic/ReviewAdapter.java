@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.botic.coreapps.models.Review;
@@ -19,11 +20,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView nama, review;
+        public RatingBar rating;
 
         public ViewHolder(View view) {
             super(view);
             nama = (TextView) view.findViewById(R.id.txt_nama_review);
             review = (TextView) view.findViewById(R.id.txt_review_review);
+            rating = (RatingBar) view.findViewById(R.id.rating_review);
         }
     }
 
@@ -44,6 +47,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         Review review = mReviewsList.get(position);
         holder.nama.setText(review.getUser().getName());
         holder.review.setText(review.getReview());
+        holder.rating.setRating(review.getRating());
     }
 
     @Override

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.botic_tv">
+    package="com.example.amrizalns.botic">
 
     <uses-feature
         android:name="android.software.leanback"
@@ -11,23 +11,52 @@
 
     <application
         android:allowBackup="true"
-        android:roundIcon="@mipmap/ic_botic"
         android:icon="@mipmap/ic_botic"
         android:label="@string/app_name"
+        android:name=".MyApplication"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Design.NoActionBar"
-        >
-
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".activity.splasScreenActivity"
-            android:screenOrientation="landscape"
-            >
+            android:name=".activity.splashScreen"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activity.signIn" android:screenOrientation="landscape" />
+        <activity android:name=".activity.signUp" android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.mainInterface"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="landscape"
+            />
+        <activity android:name=".activity.booking_gedung" android:screenOrientation="landscape" />
+        <activity android:name=".activity.booking_gedung_finish" android:screenOrientation="landscape" />
+        <activity android:name=".activity.booking_kesenian" android:screenOrientation="landscape" />
+        <activity android:name=".activity.popUp_sk_gedung" android:screenOrientation="landscape" />
+        <activity android:name=".activity.detail_content" android:screenOrientation="landscape" />
+        <activity android:name=".activity.directionActivity" android:screenOrientation="landscape" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" android:screenOrientation="landscape" />
+
+        <metadata
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAeMDiCbBv1kuZdTuGnhSdG0X37XfcAoDY"/>
+
+
     </application>
 
 </manifest>

@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        applicationId "com.example.botic_tv"
+        applicationId "com.example.amrizalns.botic"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
@@ -44,3 +45,4 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:1.3.0'
     testCompile 'junit:junit:4.12'
 }
+apply plugin: 'com.google.gms.google-services'

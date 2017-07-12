@@ -1,0 +1,150 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.amrizalns.botic.fragment.checkin_1"
+    android:background="@color/colorBackground"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/banner"
+        >
+        <ImageView
+            android:scaleType="fitStart"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:src="@drawable/banner_checkin1"
+            />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/banner"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/checkin_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30dp"
+                android:orientation="vertical"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="start"
+                    android:text = "Data penanggung jawab"
+                    android:textColor="@color/colorContent"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+
+                <EditText
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/field_nama_pj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nama ketua rombongan"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@color/colorContent"
+                    android:textColorHint="@color/colorContent"
+                    android:backgroundTint="@color/colorContent"
+                    android:textColor="@color/colorContent"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:inputType="text"
+                    />
+
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/field_notelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nomor telepon"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@color/colorContent"
+                    android:textColorHint="@color/colorContent"
+                    android:backgroundTint="@color/colorContent"
+                    android:textColor="@color/colorContent"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:inputType="numberDecimal"
+                    />
+
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/field_jumlah_tamu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="jumlah tamu"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@color/colorContent"
+                    android:textColorHint="@color/colorContent"
+                    android:backgroundTint="@color/colorContent"
+                    android:textColor="@color/colorContent"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:inputType="number"
+                    />
+
+                <Button
+                    android:id="@+id/btn_checkin_pj"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="30dp"
+                    android:textAllCaps="false"
+                    android:text="Daftar"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:background="@drawable/btn_set_act" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkin_form"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                >
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/check_pj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_set_border"
+                    />
+
+                <TextView
+                    android:id="@+id/pernyataan_pj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termcondition_1"
+                    android:textColor="@color/colorContent"
+                    android:textSize="12sp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="0dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.amrizalns.botic.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,9 +17,14 @@ import com.example.amrizalns.botic.viewPagerAdapter;
 
 import com.example.amrizalns.botic.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class beranda extends Fragment {
 
     View view;
+    private int currentPage = 0;
+    private Timer timer;
 
     public beranda() {
         // Required empty public constructor
@@ -52,12 +58,29 @@ public class beranda extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_beranda, null);
 
-        ViewPager viewPager;
+        final ViewPager viewPager;
 
         viewPager = (ViewPager) view.findViewById(R.id.vp);
         viewPagerAdapter vp = new viewPagerAdapter(getActivity());
         viewPager.setAdapter(vp);
 
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == 3) {
+                    currentPage = 0;
+                }
+                viewPager.setCurrentItem(currentPage++, true);
+            }
+        };
+
+        timer = new Timer(); // This will create a new Thread
+        timer.schedule(new TimerTask() { // task to be scheduled
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 1500, 3000);
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 

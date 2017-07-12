@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "411617241873",
+    "project_id": "firebase-botic"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411617241873:android:b0cc953cb8c530f3",
+        "android_client_info": {
+          "package_name": "com.example.amrizalns.botic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411617241873-vdu8v380r7mvsnkvsh3cdabd7ea3c7e2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.amrizalns.botic",
+            "certificate_hash": "ba5e9afb5aa4af976654eb1ea088c8c6ec30ca45"
+          }
+        },
+        {
+          "client_id": "411617241873-29q0vbuq4d1ijmqvb0dhkfg3dtc0rqi3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ_2OT4bKll6zsArxsUyGQl4dO2RG8r88"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,14 +1,16 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.amrizalns.botic.fragment.booking"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:orientation="horizontal"
+    >
 
     <LinearLayout
         android:id="@+id/first_line"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -19,7 +21,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_vertical"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
@@ -104,4 +106,4 @@
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

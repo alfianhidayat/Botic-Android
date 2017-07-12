@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:src="@drawable/banner_kesenian"
+            android:src="@drawable/banner_booking"
             />
     </LinearLayout>
 

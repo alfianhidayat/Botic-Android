@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.activity.booking_gedung;
@@ -58,8 +59,10 @@ public class booking extends Fragment {
         crd_kesenian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), booking_kesenian.class);
-                startActivity(i);
+                Toast.makeText(getActivity(), "Menu belum tersedia", Toast.LENGTH_SHORT).show();
+
+//                Intent i = new Intent(getActivity(), booking_kesenian.class);
+//                startActivity(i);
             }
         });
 

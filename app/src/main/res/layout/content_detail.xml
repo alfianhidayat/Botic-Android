@@ -155,25 +155,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp">
-
-            <TextView
-                android:id="@+id/detail_review"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/review"
-                android:textColor="@color/colorContent"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:gravity="center"
+            android:gravity="end"
+            android:layout_marginEnd="20dp"
             android:orientation="horizontal">
 
             <Button
@@ -182,25 +167,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
-                android:background="@color/colorBackground"
-                android:text="@string/review"
+                android:background="@color/colorGplus"
+                android:text="@string/add_review"
                 android:textAllCaps="false"
-                android:textColor="@color/colorMain2" />
+                android:textSize="12sp"
+                android:textColor="@color/colorBackground" />
 
             <Button
                 android:id="@+id/btn_share"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="@color/colorBackground"
+                android:background="@color/colorShare"
                 android:text="@string/share"
                 android:textAllCaps="false"
-                android:textColor="@color/colorShare" />
+                android:textSize="12sp"
+                android:textColor="@color/colorBackground" />
 
         </LinearLayout>
         <RelativeLayout
             android:id="@+id/r_review"
-            android:layout_margin="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

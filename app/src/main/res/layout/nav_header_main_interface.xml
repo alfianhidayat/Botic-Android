@@ -13,6 +13,7 @@
     >
 
     <LinearLayout
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -21,9 +22,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userpic"
+            android:src="@mipmap/ic_botic"
             android:layout_marginTop="10dp"
             android:layout_width="70dp"
-            android:layout_height="70dp"/>
+            android:layout_height="70dp"
+            />
     </LinearLayout>
 
     <TextView

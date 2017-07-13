@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -57,6 +58,7 @@ public class detail_content extends AppCompatActivity {
     String timeclose_detail;
     private ObjectItem objectItem;
     ProgressDialog dialog;
+    boolean isChecked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +143,13 @@ public class detail_content extends AppCompatActivity {
             }
         });
 
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setChecked(!isChecked);
+            }
+        });
+
         button_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +161,9 @@ public class detail_content extends AppCompatActivity {
             }
         });
     }
+    private static final int[] mCheckedStateSet = {
+            android.R.attr.state_checked,
+    };
 
     private void review(String review, int rating) {
         RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
@@ -269,5 +281,18 @@ public class detail_content extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    private boolean isChecked(){
+        return isChecked;
+    }
+
+    private void setChecked(boolean checked){
+        isChecked = checked;
+        if (isChecked()){
+            fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite));
+        }else {
+            fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
+        }
     }
 }

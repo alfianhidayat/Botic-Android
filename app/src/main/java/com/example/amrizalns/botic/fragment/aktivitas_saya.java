@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.botic.coreapps.models.ObjectItem;
 import com.example.amrizalns.botic.AktivitasAdapter;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.model.Aktivitas;
@@ -22,7 +23,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class aktivitas_saya extends Fragment {
 
-    private List<Aktivitas> mAktivitasList = new ArrayList<>();
+    private List<ObjectItem> mAktivitasList = new ArrayList<>();
     private RecyclerView recyclerView;
     private AktivitasAdapter mAdapter;
 
@@ -50,18 +51,7 @@ public class aktivitas_saya extends Fragment {
     }
 
     private void prepareAktivitasData() {
-        Aktivitas aktivitas = new Aktivitas("Mad Max: Fury Road", "2015");
-        mAktivitasList.add(aktivitas);
-
-        aktivitas = new Aktivitas("Inside Out", "2015");
-        mAktivitasList.add(aktivitas);
-
-        aktivitas = new Aktivitas("Inside Out", "2015");
-        mAktivitasList.add(aktivitas);
-
-        aktivitas = new Aktivitas("Inside Out", "2015");
-        mAktivitasList.add(aktivitas);
-
-        mAdapter.notifyDataSetChanged();
+        ObjectItem favorite = new ObjectItem();
+        mAktivitasList.add(favorite);
     }
 }

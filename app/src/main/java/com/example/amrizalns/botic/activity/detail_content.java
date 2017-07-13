@@ -142,8 +142,7 @@ public class detail_content extends AppCompatActivity {
             public void onClick(View v) {
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName());
-                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getAddress());
+                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName() +"\n"+ objectItem.getAddress());
                 shareIntent.setType("text/plain");
                 startActivity(shareIntent);
             }

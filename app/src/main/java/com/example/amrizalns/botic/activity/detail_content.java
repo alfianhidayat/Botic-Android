@@ -43,7 +43,7 @@ public class detail_content extends AppCompatActivity {
     ImageView img;
     TextView name, loc, desc, cost, time_open, time_close;
     FloatingActionButton direction;
-    Button button_review;
+    Button button_review, button_share;
 
     int img_detail;
     String name_detail;
@@ -71,6 +71,7 @@ public class detail_content extends AppCompatActivity {
         time_close = (TextView) findViewById(R.id.detail_time_close);
         direction = (FloatingActionButton) findViewById(R.id.find_location);
         button_review = (Button) findViewById(R.id.btn_review);
+        button_share = (Button) findViewById(R.id.btn_share);
 
         Intent i = getIntent();
         if (i.hasExtra("object")) {
@@ -133,6 +134,17 @@ public class detail_content extends AppCompatActivity {
                 AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
                 alertDialogAndroid.show();
                 mAdapter.notifyDataSetChanged();
+            }
+        });
+
+        button_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName());
+                shareIntent.setType("text/plain");
+                startActivity(shareIntent);
             }
         });
     }

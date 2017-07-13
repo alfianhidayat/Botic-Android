@@ -1,7 +1,5 @@
 package com.example.amrizalns.botic.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -21,28 +19,26 @@ import com.example.amrizalns.botic.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class kesehatan extends Fragment {
-
+public class event extends Fragment {
     ViewPager mViewPager;
     TabLayout mTabLayout;
     private GridLayoutManager lLayout;
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_kesehatan, null);
-        mViewPager = (ViewPager) view.findViewById(R.id.vp_kesehatan);
+        view = inflater.inflate(R.layout.fragment_event, null);
+        mViewPager = (ViewPager) view.findViewById(R.id.vp_event);
         setupViewPager(mViewPager);
 
-        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout_kesehatan);
+        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout_event);
         mTabLayout.setupWithViewPager(mViewPager);
 
         return view;
@@ -50,8 +46,8 @@ public class kesehatan extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getFragmentManager());
-        adapter.addFragment(Utils.getFragmentWithArgument(53, Constants.TAG_HEALTH), "Rumah Sakit");
-        adapter.addFragment(Utils.getFragmentWithArgument(54, Constants.TAG_HEALTH), "Puskesmas");
+//        adapter.addFragment(Utils.getFragmentWithArgument(53, Constants.), "Rumah Sakit");
+//        adapter.addFragment(Utils.getFragmentWithArgument(54, Constants.TAG_HEALTH), "Puskesmas");
 
         viewPager.setAdapter(adapter);
     }

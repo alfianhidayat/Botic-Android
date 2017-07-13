@@ -544,8 +544,6 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                 sharedPrefManager.saveToken(mContext, idToken);
                 sharedPrefManager.saveIsLoggedIn(mContext, true);
 
-//                Intent i = new Intent(this, mainInterface.class);
-//                startActivity(i);
                 loginSocialite(name, email, "google");
             } else {
                 Log.e(TAG, "Login Google Unsuccessful. ");

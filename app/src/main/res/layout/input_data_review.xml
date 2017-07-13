@@ -57,6 +57,7 @@
             android:stepSize="1"
             android:theme="@style/RatingBar"
             android:progressBackgroundTint="@color/colorMain2"
+            android:backgroundTint="@color/colorMain2"
             />
     </LinearLayout>
 </LinearLayout>

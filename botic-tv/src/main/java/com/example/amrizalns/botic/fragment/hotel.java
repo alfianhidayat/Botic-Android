@@ -13,7 +13,6 @@ import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.ObjectItem;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.R;
-import com.example.amrizalns.botic.itemObject;
 import com.example.amrizalns.botic.recyclerViewAdapter;
 import com.example.amrizalns.botic.utils.SessionLogin;
 
@@ -25,12 +24,13 @@ public class hotel extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
     ProgressDialog dialog;
-    private List<itemObject> rowListItem = new ArrayList<>();
+    private List<ObjectItem> rowListItem = new ArrayList<>();
     private recyclerViewAdapter rcAdapter;
 
     public hotel() {
         // Required empty public constructor
     }
+
     // TODO: Rename and change types and number of parameters
     public static hotel newInstance(String param1, String param2) {
         hotel fragment = new hotel();
@@ -48,7 +48,7 @@ public class hotel extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_hotel, container, false);
-        lLayout = new GridLayoutManager(view.getContext(), 5);
+        lLayout = new GridLayoutManager(view.getContext(), 2);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
@@ -62,8 +62,14 @@ public class hotel extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getHotel();
+    }
+
     private void getHotel() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getHotel().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
+        RetrofitApi.getInstance(getActivity()).getApiService(SessionLogin.getAccessToken()).getHotel().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
             @Override
             protected void onFinish() {
                 dialog.dismiss();
@@ -78,15 +84,7 @@ public class hotel extends Fragment {
             protected void onSuccess(List<ObjectItem> data) {
                 super.onSuccess(data);
                 rowListItem.clear();
-                for (ObjectItem objectItem : data) {
-                    rowListItem.add(new itemObject(R.mipmap.ic_botic,
-                            objectItem.getName(),
-                            objectItem.getAddress(),
-                            objectItem.getPrice(),
-                            objectItem.getOpen(),
-                            objectItem.getClose(),
-                            objectItem.getDescription()));
-                }
+                rowListItem.addAll(data);
                 rcAdapter.notifyDataSetChanged();
             }
         });

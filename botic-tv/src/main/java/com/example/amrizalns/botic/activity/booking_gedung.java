@@ -124,7 +124,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                     int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
                     View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
                     int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
-                    RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                    RetrofitApi.getInstance(booking_gedung.this).getApiService(SessionLogin.getAccessToken())
                             .booking(identityTypes.get(selectedItemIdentity).getId(),
                                     mNoIdentias.getText().toString(),
                                     mName.getText().toString(),
@@ -196,7 +196,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
         View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
         int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getListAsset(idx, mdates.getText().toString())
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken()).getListAsset(idx, mdates.getText().toString())
                 .enqueue(new PageCallback<List<Asset>>(booking_gedung.this) {
                     @Override
                     protected void onStart() {
@@ -235,7 +235,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     }
 
     private void getListIdentity() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getListIdentity()
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken()).getListIdentity()
                 .enqueue(new PageCallback<List<IdentityType>>(booking_gedung.this) {
                     @Override
                     protected void onStart() {

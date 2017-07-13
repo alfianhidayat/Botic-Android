@@ -11,9 +11,9 @@
             android:icon="@drawable/ic_menu_beranda"
             android:title="Beranda" />
         <item
-            android:id="@+id/nav_aktivitas"
-            android:icon="@drawable/ic_menu_activity"
-            android:title="Aktivitas saya" />
+            android:id="@+id/nav_favorite"
+            android:icon="@drawable/ic_favorite_border_white"
+            android:title="Favorite" />
         <item
             android:id="@+id/nav_layanan"
             android:icon="@drawable/ic_menu_service"

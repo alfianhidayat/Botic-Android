@@ -3,8 +3,10 @@ package com.example.amrizalns.botic.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -14,26 +16,34 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.botic.coreapps.models.User;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.botic.coreapps.responses.BaseResponse;
+import com.example.amrizalns.botic.BuildConfig;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.fragment.aboutbjn;
-import com.example.amrizalns.botic.fragment.aktivitas_saya;
+import com.example.amrizalns.botic.fragment.favorite;
 import com.example.amrizalns.botic.fragment.beranda;
 import com.example.amrizalns.botic.fragment.booking;
+import com.example.amrizalns.botic.fragment.event;
 import com.example.amrizalns.botic.fragment.kesehatan;
 import com.example.amrizalns.botic.fragment.keuangan;
 import com.example.amrizalns.botic.fragment.leisure;
 import com.example.amrizalns.botic.fragment.pelayananpublik;
 import com.example.amrizalns.botic.fragment.tempatIbadah;
 import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.CustomPicasso;
 import com.example.amrizalns.botic.utils.SessionLogin;
 import com.example.amrizalns.botic.utils.SharedPrefManager;
 import com.facebook.FacebookSdk;
@@ -57,6 +67,8 @@ import retrofit2.Response;
 public class mainInterface extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
 
+    private PopupWindow mPopupWindow;
+    private CoordinatorLayout mCoordinatorLayout;
     Context mContext = this;
     private JSONObject response, profile_pic_data, profile_pic_url;
     private NavigationView mNavigationView;
@@ -73,6 +85,9 @@ public class mainInterface extends AppCompatActivity
         setContentView(R.layout.activity_main_interface);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.cor);
+
+        configureSignIn();
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         View header = mNavigationView.getHeaderView(0);
@@ -80,8 +95,6 @@ public class mainInterface extends AppCompatActivity
         userName = (TextView) header.findViewById(R.id.name_profil);
         mProfileImageView = (CircleImageView) header.findViewById(R.id.userpic);
         userEmail = (TextView) header.findViewById(R.id.email_profil);
-
-        configureSignIn();
         getUserProfileGoogle();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -161,15 +174,6 @@ public class mainInterface extends AppCompatActivity
     }
 
     //-----------User Profil Facebook-----------
-//    public void setNavigationHeader() {
-//        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-//        View header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_interface, null);
-//        mNavigationView.addHeaderView(header);
-//        userName = (TextView) header.findViewById(R.id.name_profil);
-//        mProfileImageView = (CircleImageView) header.findViewById(R.id.userpic);
-//        userEmail = (TextView) header.findViewById(R.id.email_profil);
-//    }
-
     public void setUserProfile(String data) {
         try {
             response = new JSONObject(data);
@@ -184,7 +188,7 @@ public class mainInterface extends AppCompatActivity
     }
 
     private void getProfile() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
                 .getProfile()
                 .enqueue(new Callback<BaseResponse<User>>() {
                     @Override
@@ -240,11 +244,10 @@ public class mainInterface extends AppCompatActivity
 
         userName.setText(mUsername);
         userEmail.setText(mEmail);
-
-        Picasso.with(mContext)
+        CustomPicasso.getInstance(mContext)
                 .load(uri)
-                .placeholder(android.R.drawable.sym_def_app_icon)
-                .error(android.R.drawable.sym_def_app_icon)
+                .placeholder(R.mipmap.ic_botic)
+                .error(R.mipmap.ic_botic)
                 .into(mProfileImageView);
     }
 
@@ -257,16 +260,15 @@ public class mainInterface extends AppCompatActivity
     private void signOut() {
         new SharedPrefManager(mContext).clear();
 
-        if (!SessionLogin.isExist())
-            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                    new ResultCallback<Status>() {
-                        @Override
-                        public void onResult(@NonNull Status status) {
-                            Intent intent = new Intent(mainInterface.this, signIn.class);
-                            startActivity(intent);
-                        }
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+                        Intent intent = new Intent(mainInterface.this, signIn.class);
+                        startActivity(intent);
                     }
-            );
+                }
+        );
 //        Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
 //                new ResultCallback<Status>() {
 //                    @Override
@@ -285,31 +287,26 @@ public class mainInterface extends AppCompatActivity
 
         if (id == R.id.nav_beranda) {
             f = new beranda();
-        } else if (id == R.id.nav_aktivitas) {
-            f = new aktivitas_saya();
+        } else if (id == R.id.nav_favorite) {
+            f = new favorite();
         } else if (id == R.id.nav_layanan) {
             f = new pelayananpublik();
-
         } else if (id == R.id.nav_tmpIbadah) {
             f = new tempatIbadah();
-
         } else if (id == R.id.nav_keuangan) {
             f = new keuangan();
-
         } else if (id == R.id.nav_kesehatan) {
             f = new kesehatan();
-
         } else if (id == R.id.nav_leisure) {
             f = new leisure();
         } else if (id == R.id.nav_aboutBjn) {
             f = new aboutbjn();
         } else if (id == R.id.nav_event) {
-
+            f = new event();
         } else if (id == R.id.nav_booking) {
             f = new booking();
-
         } else if (id == R.id.nav_aboutApp) {
-
+            showPopUp();
         } else if (id == R.id.nav_logout) {
             logoutFromFacebook();
             signOut();
@@ -325,5 +322,32 @@ public class mainInterface extends AppCompatActivity
             ft.replace(R.id.main_container, f);
             ft.commit();
         }
+    }
+
+    private void showPopUp() {
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        View customView = inflater.inflate(R.layout.popup, null);
+        mPopupWindow = new PopupWindow(
+                customView,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+        );
+        if (Build.VERSION.SDK_INT >= 21) {
+            mPopupWindow.setElevation(5.0f);
+        }
+
+        ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
+        TextView tvVersion = (TextView) customView.findViewById(R.id.tv_version);
+
+        tvVersion.setText("version " + BuildConfig.VERSION_NAME);
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPopupWindow.dismiss();
+            }
+        });
+        mPopupWindow.showAtLocation(mCoordinatorLayout, Gravity.CENTER, 0, 0);
     }
 }

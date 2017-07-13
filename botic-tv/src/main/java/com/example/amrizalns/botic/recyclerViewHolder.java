@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 /**
@@ -19,7 +20,7 @@ public class recyclerViewHolder extends RecyclerView.ViewHolder implements View.
     public TextView time_open;
     public TextView time_close;
     public ImageView img;
-
+    public RatingBar ratingBar;
 
 
     public LinearLayout linearLayout;
@@ -29,13 +30,14 @@ public class recyclerViewHolder extends RecyclerView.ViewHolder implements View.
         linearLayout = (LinearLayout) itemView.findViewById(R.id.crd_content);
 
         itemView.setOnClickListener(this);
-        loc = (TextView)itemView.findViewById(R.id.content_loc);
+        loc = (TextView) itemView.findViewById(R.id.content_loc);
         name = (TextView) itemView.findViewById(R.id.content_title);
-        img = (ImageView)itemView.findViewById(R.id.content_img);
+        img = (ImageView) itemView.findViewById(R.id.content_img);
         cost = (TextView) itemView.findViewById(R.id.content_cost);
         time_open = (TextView) itemView.findViewById(R.id.content_time_open);
         time_close = (TextView) itemView.findViewById(R.id.content_time_close);
         desc = (TextView) itemView.findViewById(R.id.content_desc);
+        ratingBar = (RatingBar) itemView.findViewById(R.id.rb_review);
 
     }
 

@@ -25,14 +25,6 @@ public class checkin_1 extends Fragment {
     private CheckBox aggrement;
     View view;
 
-    public checkin_1() {
-    }
-
-    public static checkin_1 newInstance(String param1, String param2) {
-        checkin_1 fragment = new checkin_1();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +50,8 @@ public class checkin_1 extends Fragment {
                 VerifikasiDaftar();
             }
         });
+
+        mNamaPJ.setText(SessionLogin.getProfile().getName());
 
         return view;
     }
@@ -85,15 +79,20 @@ public class checkin_1 extends Fragment {
     };
 
     private void VerifikasiDaftar() {
-        String namapj = mNamaPJ.getText().toString();
-        String noHp = mNohp.getText().toString();
-        String jmlTamu = mJumlahTamu.getText().toString();
-        if (namapj.length() == 0 && noHp.length() == 0 && jmlTamu.length() == 0) {
+        final String names = mNamaPJ.getText().toString();
+        if (names.length() == 0) {
+            mNamaPJ.requestFocus();
+            mNamaPJ.setError("Wajib Diisi");
+        } else if (!names.matches("[a-zA-Z ]+")) {
+            mNamaPJ.requestFocus();
+            mNamaPJ.setError("Harus Huruf!");
+        }
+
+        if (!aggrement.isChecked()) {
             mNamaPJ.setError("Wajib Diisi!");
             mNohp.setError("Wajib Diisi!");
             mJumlahTamu.setError("Wajib Diisi!");
-        } else if (!aggrement.isChecked()) {
-            Toast.makeText(getActivity(), "Harus Dicentang!", Toast.LENGTH_SHORT).show();
+            aggrement.setError("Harus Dicentang!");
         } else {
             CheckInParams params = new CheckInParams();
             params.setPhone(mNohp.getText().toString());

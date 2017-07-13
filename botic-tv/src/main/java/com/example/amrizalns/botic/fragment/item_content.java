@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.ObjectItem;
@@ -21,7 +20,6 @@ import com.botic.coreapps.networks.RetrofitApi;
 import com.botic.coreapps.responses.BaseResponse;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.activity.signIn;
-import com.example.amrizalns.botic.itemObject;
 import com.example.amrizalns.botic.recyclerViewAdapter;
 import com.example.amrizalns.botic.utils.Constants;
 import com.example.amrizalns.botic.utils.SessionLogin;
@@ -40,10 +38,12 @@ public class item_content extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
     private recyclerViewAdapter rcAdapter;
-    private List<itemObject> rowListItem = new ArrayList<>();
+    private List<ObjectItem> rowListItem = new ArrayList<>();
     ProgressDialog dialog;
     private TextView tvError;
     private RecyclerView rView;
+    private int idCategory;
+    private String objectType;
 
     @Nullable
     @Override
@@ -53,20 +53,26 @@ public class item_content extends Fragment {
         dialog.setMessage("Loading...");
         dialog.setCancelable(false);
         tvError = (TextView) view.findViewById(R.id.tv_error);
-        lLayout = new GridLayoutManager(view.getContext(), 5);
+        lLayout = new GridLayoutManager(view.getContext(), 3);
         rView = (RecyclerView) view.findViewById(R.id.rv_itemcontent);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
         rcAdapter = new recyclerViewAdapter(view.getContext(), rowListItem);
         rView.setAdapter(rcAdapter);
-        int idCategory = getArguments().getInt(Constants.TAG_ID_CATEGORY);
-        String objectType = getArguments().getString(Constants.TAG_OBJECT_TYPE);
+        idCategory = getArguments().getInt(Constants.TAG_ID_CATEGORY);
+        objectType = getArguments().getString(Constants.TAG_OBJECT_TYPE);
         getByCategory(idCategory, objectType);
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getByCategory(idCategory, objectType);
+    }
+
     private void getByCategory(int idCategory, String objectType) {
-        ApiService service = RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken());
+        ApiService service = RetrofitApi.getInstance(getActivity()).getApiService(SessionLogin.getAccessToken());
         Call<BaseResponse<List<ObjectItem>>> request = null;
         switch (objectType) {
             case Constants.TAG_KULINER:
@@ -115,15 +121,7 @@ public class item_content extends Fragment {
                 protected void onSuccess(List<ObjectItem> data) {
                     super.onSuccess(data);
                     rowListItem.clear();
-                    for (ObjectItem objectItem : data) {
-                        rowListItem.add(new itemObject(R.mipmap.ic_botic,
-                                objectItem.getName(),
-                                objectItem.getAddress(),
-                                objectItem.getPrice(),
-                                objectItem.getOpen(),
-                                objectItem.getClose(),
-                                objectItem.getDescription()));
-                    }
+                    rowListItem.addAll(data);
                     rcAdapter.notifyDataSetChanged();
                 }
 

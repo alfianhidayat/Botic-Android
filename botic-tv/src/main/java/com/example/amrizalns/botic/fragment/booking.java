@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.activity.booking_gedung;
-import com.example.amrizalns.botic.activity.booking_kesenian;
 
 public class booking extends Fragment {
     View view;
@@ -60,6 +59,7 @@ public class booking extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Menu belum tersedia", Toast.LENGTH_SHORT).show();
+
 //                Intent i = new Intent(getActivity(), booking_kesenian.class);
 //                startActivity(i);
             }

@@ -3,7 +3,6 @@ package com.example.amrizalns.botic.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,21 +23,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.botic.coreapps.models.User;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.botic.coreapps.responses.BaseResponse;
+import com.example.amrizalns.botic.BuildConfig;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.fragment.aboutbjn;
-import com.example.amrizalns.botic.fragment.aktivitas_saya;
 import com.example.amrizalns.botic.fragment.beranda;
 import com.example.amrizalns.botic.fragment.booking;
 import com.example.amrizalns.botic.fragment.event;
+import com.example.amrizalns.botic.fragment.favorite;
 import com.example.amrizalns.botic.fragment.kesehatan;
 import com.example.amrizalns.botic.fragment.keuangan;
 import com.example.amrizalns.botic.fragment.leisure;
@@ -290,7 +288,7 @@ public class mainInterface extends AppCompatActivity
         if (id == R.id.nav_beranda) {
             f = new beranda();
         } else if (id == R.id.nav_aktivitas) {
-            f = new aktivitas_saya();
+            f = new favorite();
         } else if (id == R.id.nav_layanan) {
             f = new pelayananpublik();
         } else if (id == R.id.nav_tmpIbadah) {
@@ -340,7 +338,9 @@ public class mainInterface extends AppCompatActivity
         }
 
         ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
+        TextView tvVersion = (TextView) customView.findViewById(R.id.tv_version);
 
+        tvVersion.setText("version " + BuildConfig.VERSION_NAME);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

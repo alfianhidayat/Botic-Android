@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_margin="16dp"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/dialogDataTamu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tambah Data Tamu"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/namaInputDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan Nama"
+        android:layout_margin="3dp"
+        android:inputType="text" />
+    <EditText
+        android:id="@+id/asalInputDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan Asal"
+        android:layout_margin="3dp"
+        android:inputType="text" />
+    <EditText
+        android:id="@+id/usiaInputDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan Usia"
+        android:layout_margin="3dp"
+        android:inputType="number" />
+
+</LinearLayout>

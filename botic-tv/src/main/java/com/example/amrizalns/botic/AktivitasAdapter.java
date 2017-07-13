@@ -4,9 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.amrizalns.botic.model.Aktivitas;
+import com.botic.coreapps.models.ObjectItem;
 
 import java.util.List;
 
@@ -15,20 +17,24 @@ import java.util.List;
  */
 
 public class AktivitasAdapter extends RecyclerView.Adapter<AktivitasAdapter.MyViewHolder> {
-    private List<Aktivitas> aktivitasList;
+    private List<ObjectItem> aktivitasList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, tgl;
+        public TextView title, location;
+        public RatingBar rating;
+        public ImageView image;
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.tv_nama_ak);
-            tgl = (TextView) view.findViewById(R.id.tv_tgl);
+            title = (TextView) view.findViewById(R.id.tv_title_fav);
+            location = (TextView) view.findViewById(R.id.tv_loc_fav);
+            rating = (RatingBar) view.findViewById(R.id.rb_fav);
+            image = (ImageView) view.findViewById(R.id.img_fav);
         }
     }
 
 
-    public AktivitasAdapter(List<Aktivitas> aktivitasList) {
+    public AktivitasAdapter(List<ObjectItem> aktivitasList) {
         this.aktivitasList = aktivitasList;
     }
 
@@ -42,9 +48,10 @@ public class AktivitasAdapter extends RecyclerView.Adapter<AktivitasAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Aktivitas aktivitas = aktivitasList.get(position);
-        holder.title.setText(aktivitas.getNama());
-        holder.tgl.setText(aktivitas.getTanggal());
+        ObjectItem aktivitas = aktivitasList.get(position);
+        holder.title.setText(aktivitas.getName());
+        holder.location.setText(aktivitas.getAddress());
+        holder.rating.setRating(aktivitas.getRating());
     }
 
     @Override

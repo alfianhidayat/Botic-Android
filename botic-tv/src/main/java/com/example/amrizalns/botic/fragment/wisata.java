@@ -16,7 +16,6 @@ import com.botic.coreapps.models.ObjectItem;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.activity.signIn;
-import com.example.amrizalns.botic.itemObject;
 import com.example.amrizalns.botic.recyclerViewAdapter;
 import com.example.amrizalns.botic.utils.SessionLogin;
 
@@ -29,7 +28,7 @@ public class wisata extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
     ProgressDialog dialog;
-    List<itemObject> rowListItem = new ArrayList<>();
+    List<ObjectItem> rowListItem = new ArrayList<>();
     recyclerViewAdapter rcAdapter;
 
     public wisata() {
@@ -63,7 +62,7 @@ public class wisata extends Fragment {
         view = inflater.inflate(R.layout.fragment_wisata, container, false);
 
 //        rowListItem = getAllItemList();
-        lLayout = new GridLayoutManager(view.getContext(), 5);
+        lLayout = new GridLayoutManager(view.getContext(), 3);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
@@ -77,8 +76,14 @@ public class wisata extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getTourism();
+    }
+
     private void getTourism() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getTourism().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
+        RetrofitApi.getInstance(getActivity()).getApiService(SessionLogin.getAccessToken()).getTourism().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
             @Override
             protected void onFinish() {
                 dialog.dismiss();
@@ -93,17 +98,10 @@ public class wisata extends Fragment {
             protected void onSuccess(List<ObjectItem> data) {
                 super.onSuccess(data);
                 rowListItem.clear();
-                for (ObjectItem objectItem : data) {
-                    rowListItem.add(new itemObject(R.mipmap.ic_botic,
-                            objectItem.getName(),
-                            objectItem.getAddress(),
-                            objectItem.getPrice(),
-                            objectItem.getOpen(),
-                            objectItem.getClose(),
-                            objectItem.getDescription()));
-                }
+                rowListItem.addAll(data);
                 rcAdapter.notifyDataSetChanged();
             }
+
             @Override
             protected void onUnauthorized() {
                 SessionLogin.reset();

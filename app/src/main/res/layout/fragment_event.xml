@@ -23,15 +23,15 @@
         android:layout_below="@id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
-        <TextView
-            android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:gravity="start">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Coming Soon"
-            android:textColor="@color/colorContent"
-            android:textStyle="bold"
-            />
+            android:background="@color/colorContent"
+            android:scrollbars="vertical" />
     </LinearLayout>
 
 </RelativeLayout>

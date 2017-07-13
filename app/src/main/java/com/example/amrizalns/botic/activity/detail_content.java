@@ -154,13 +154,13 @@ public class detail_content extends AppCompatActivity {
                     @Override
                     protected void onSuccess(Review data) {
                         getReview(objectItem.getId());
-                        Toast.makeText(detail_content.this, "Berhasil Review", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(detail_content.this, "Review berhasil ditambahkan", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     protected void onError(String message) {
                         super.onError(message);
-                        Toast.makeText(detail_content.this, "Gagal Review", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(detail_content.this, "Review gagal ditambahkan", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

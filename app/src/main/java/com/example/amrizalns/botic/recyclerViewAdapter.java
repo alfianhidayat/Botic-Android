@@ -7,9 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.botic.coreapps.AppsCore;
 import com.botic.coreapps.models.ObjectItem;
+import com.botic.coreapps.networks.RetrofitApi;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.resource.transcode.ResourceTranscoder;
 import com.example.amrizalns.botic.activity.detail_content;
+import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.CustomPicasso;
+import com.example.amrizalns.botic.utils.Utils;
 
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -36,6 +45,13 @@ public class recyclerViewAdapter extends RecyclerView.Adapter<recyclerViewHolder
     @Override
     public void onBindViewHolder(recyclerViewHolder holder, final int position) {
         holder.img.setImageResource(R.mipmap.ic_botic);
+        CustomPicasso.getInstance(context).load(AppsCore.BASE_URL + "image/" + ((itemList.get(position).getPicture().size() == 0) ? R.mipmap.ic_botic : itemList.get(position).getPicture().get(0).getOriginalFilename()))
+                .placeholder(R.mipmap.ic_botic)
+                .error(R.mipmap.ic_botic)
+                .into(holder.img);
+//        Glide.get(context).getRegistry()
+//                .register(GlideUrl.class, InputStream.class, (ResourceTranscoder<GlideUrl, InputStream>) new OkHttpUrlLoader.Factory(Utils.builder(context)));
+//        Glide.with(context).load(AppsCore.BASE_URL + "image/" + ((itemList.get(position).getPicture().size() == 0) ? R.mipmap.ic_botic : itemList.get(position).getPicture().get(0).getOriginalFilename())).into(holder.img);
         holder.loc.setText(itemList.get(position).getAddress());
         holder.name.setText(itemList.get(position).getName());
         holder.cost.setText(itemList.get(position).getPrice());

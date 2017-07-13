@@ -24,7 +24,7 @@
             android:layout_height="100dp"
             android:contentDescription="@string/action_settings"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_botic"
+            android:src="@drawable/ic_botic_whitespace"
             />
 
         <LinearLayout

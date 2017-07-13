@@ -185,57 +185,6 @@
                 android:textSize="14sp" />
 
             <LinearLayout
-                android:id="@+id/place_gedung"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:paddingEnd="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/jenis_gedung"
-                        android:textColor="@color/colorContent"
-                        android:layout_marginEnd="5dp"
-                        android:textSize="14sp" />
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        >
-
-                        <android.support.v7.widget.AppCompatSpinner
-                            android:id="@+id/jenis_gedung"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="5dp"
-                            >
-                        </android.support.v7.widget.AppCompatSpinner>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/ic_arrow_drop_down"
-                            />
-
-                    </RelativeLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/date_gedung"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -304,7 +253,7 @@
                     android:text="@string/waktu_pesan"
                     android:textColor="@color/colorContent"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    />
 
                 <RadioGroup
                     android:id="@+id/rad_waktu_sewa"
@@ -344,7 +293,56 @@
                         />
                 </RadioGroup>
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/place_gedung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/jenis_gedung"
+                        android:textColor="@color/colorContent"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        >
+
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/jenis_gedung"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            >
+                        </android.support.v7.widget.AppCompatSpinner>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/ic_arrow_drop_down"
+                            />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
             <Button
                 android:id="@+id/btn_next_gedung"
                 android:layout_width="match_parent"

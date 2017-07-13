@@ -45,6 +45,7 @@ import com.example.amrizalns.botic.fragment.leisure;
 import com.example.amrizalns.botic.fragment.pelayananpublik;
 import com.example.amrizalns.botic.fragment.tempatIbadah;
 import com.example.amrizalns.botic.utils.Constants;
+import com.example.amrizalns.botic.utils.CustomPicasso;
 import com.example.amrizalns.botic.utils.SessionLogin;
 import com.example.amrizalns.botic.utils.SharedPrefManager;
 import com.facebook.FacebookSdk;
@@ -245,8 +246,7 @@ public class mainInterface extends AppCompatActivity
 
         userName.setText(mUsername);
         userEmail.setText(mEmail);
-
-        Picasso.with(mContext)
+        CustomPicasso.getInstance(mContext)
                 .load(uri)
                 .placeholder(R.mipmap.ic_botic)
                 .error(R.mipmap.ic_botic)

@@ -102,7 +102,7 @@ public class RetrofitApi {
         return httpClient;
     }
 
-    private OkHttpClient.Builder builder() {
+    public static OkHttpClient.Builder builder() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
         CertificateFactory cf = null;
@@ -211,4 +211,6 @@ public class RetrofitApi {
         // creating a RestAdapter using the custom client
         return httpClient;
     }
+
+
 }

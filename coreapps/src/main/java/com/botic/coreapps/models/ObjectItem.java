@@ -1,10 +1,13 @@
 
 package com.botic.coreapps.models;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -53,9 +56,6 @@ public class ObjectItem implements Parcelable
     @SerializedName("created_by")
     @Expose
     private int createdBy;
-    @SerializedName("rating")
-    @Expose
-    private int rating;
     @SerializedName("created_at")
     @Expose
     private Object createdAt;
@@ -64,18 +64,24 @@ public class ObjectItem implements Parcelable
     private Object updatedAt;
     @SerializedName("picture")
     @Expose
-    private List<Object> picture = null;
+    private List<Picture> picture = new ArrayList<>();
+    @SerializedName("rating")
+    @Expose
+    private int rating;
     @SerializedName("category")
     @Expose
     private Category category;
     @SerializedName("menu")
     @Expose
     private Menu menu;
-    public final static Creator<ObjectItem> CREATOR = new Creator<ObjectItem>() {
+    @SerializedName("review")
+    @Expose
+    private List<Review> review = new ArrayList<>();
+    public final static Parcelable.Creator<ObjectItem> CREATOR = new Creator<ObjectItem>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
         public ObjectItem createFromParcel(Parcel in) {
             ObjectItem instance = new ObjectItem();
@@ -93,12 +99,13 @@ public class ObjectItem implements Parcelable
             instance.idCategory = ((int) in.readValue((int.class.getClassLoader())));
             instance.idMenu = ((int) in.readValue((int.class.getClassLoader())));
             instance.createdBy = ((int) in.readValue((int.class.getClassLoader())));
-            instance.rating = ((int) in.readValue((int.class.getClassLoader())));
             instance.createdAt = ((Object) in.readValue((Object.class.getClassLoader())));
             instance.updatedAt = ((Object) in.readValue((Object.class.getClassLoader())));
-            in.readList(instance.picture, (Object.class.getClassLoader()));
+            in.readList(instance.picture, (Picture.class.getClassLoader()));
+            instance.rating = ((int) in.readValue((int.class.getClassLoader())));
             instance.category = ((Category) in.readValue((Category.class.getClassLoader())));
             instance.menu = ((Menu) in.readValue((Menu.class.getClassLoader())));
+            in.readList(instance.review, (Review.class.getClassLoader()));
             return instance;
         }
 
@@ -107,7 +114,7 @@ public class ObjectItem implements Parcelable
         }
 
     }
-    ;
+            ;
 
     public int getId() {
         return id;
@@ -221,14 +228,6 @@ public class ObjectItem implements Parcelable
         this.createdBy = createdBy;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
     public Object getCreatedAt() {
         return createdAt;
     }
@@ -245,12 +244,20 @@ public class ObjectItem implements Parcelable
         this.updatedAt = updatedAt;
     }
 
-    public List<Object> getPicture() {
+    public List<Picture> getPicture() {
         return picture;
     }
 
-    public void setPicture(List<Object> picture) {
+    public void setPicture(List<Picture> picture) {
         this.picture = picture;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public Category getCategory() {
@@ -269,6 +276,14 @@ public class ObjectItem implements Parcelable
         this.menu = menu;
     }
 
+    public List<Review> getReview() {
+        return review;
+    }
+
+    public void setReview(List<Review> review) {
+        this.review = review;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
         dest.writeValue(name);
@@ -284,16 +299,17 @@ public class ObjectItem implements Parcelable
         dest.writeValue(idCategory);
         dest.writeValue(idMenu);
         dest.writeValue(createdBy);
-        dest.writeValue(rating);
         dest.writeValue(createdAt);
         dest.writeValue(updatedAt);
         dest.writeList(picture);
+        dest.writeValue(rating);
         dest.writeValue(category);
         dest.writeValue(menu);
+        dest.writeList(review);
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }

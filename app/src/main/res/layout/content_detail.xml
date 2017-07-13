@@ -127,71 +127,78 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingEnd="20dp"
             android:paddingStart="20dp"
-            android:paddingTop="20dp">
-
+            android:paddingTop="20dp"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
                 android:text="@string/review"
                 android:textColor="@color/colorContent"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:layout_alignParentBottom="true"
+                />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorContent">
+            <ImageView
+                android:id="@+id/btn_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="15dp"
+                android:paddingStart="10dp"
+                android:layout_toLeftOf="@+id/btn_fav"
+                android:src="@drawable/ic_comment" />
 
-            </View>
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/btn_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:layout_toLeftOf="@+id/btn_share"
+                android:src="@drawable/ic_favorite_border" />
+
+            <ImageView
+                android:id="@+id/btn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="0dp"
+                android:paddingStart="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_share_" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="end"
-            android:layout_marginEnd="20dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_review"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/colorGplus"
-                android:text="@string/add_review"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textColor="@color/colorBackground" />
-
-            <Button
-                android:id="@+id/btn_share"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:background="@color/colorShare"
-                android:text="@string/share"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textColor="@color/colorBackground" />
-
-        </LinearLayout>
-        <RelativeLayout
-            android:id="@+id/r_review"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorContent">
+            </View>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/r_review"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_review"

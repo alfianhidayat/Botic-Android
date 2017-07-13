@@ -40,10 +40,9 @@ public class detail_content extends AppCompatActivity {
     private List<Review> mReviewList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private ReviewAdapter mAdapter;
-    ImageView img;
+    ImageView img, button_share, button_review, fav;
     TextView name, loc, desc, cost, time_open, time_close;
     FloatingActionButton direction;
-    Button button_review, button_share;
 
     int img_detail;
     String name_detail;
@@ -70,8 +69,9 @@ public class detail_content extends AppCompatActivity {
         time_open = (TextView) findViewById(R.id.detail_time_open);
         time_close = (TextView) findViewById(R.id.detail_time_close);
         direction = (FloatingActionButton) findViewById(R.id.find_location);
-        button_review = (Button) findViewById(R.id.btn_review);
-        button_share = (Button) findViewById(R.id.btn_share);
+        button_review = (ImageView) findViewById(R.id.btn_review);
+        button_share = (ImageView) findViewById(R.id.btn_share);
+        fav = (ImageView) findViewById(R.id.btn_fav);
 
         Intent i = getIntent();
         if (i.hasExtra("object")) {

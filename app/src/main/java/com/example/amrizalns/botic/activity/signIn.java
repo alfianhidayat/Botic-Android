@@ -432,22 +432,6 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 //
 //        mProgressDialog.show();
 //    }
-//
-//    private void hideProgressDialog() {
-//        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-//            mProgressDialog.hide();
-//        }
-//    }
-//
-//    private void updateUI(boolean isSignedIn) {
-//        if (isSignedIn) {
-//            mSignInButton.setVisibility(View.GONE);
-//            mSignOutButton.setVisibility(View.VISIBLE);
-//        } else {
-//            mSignInButton.setVisibility(View.VISIBLE);
-//            mSignOutButton.setVisibility(View.GONE);
-//        }
-//    }
 
     //----------------End - API Google+-----------------//
 

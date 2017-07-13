@@ -73,7 +73,7 @@ public class item_content extends Fragment {
     }
 
     private void getByCategory(int idCategory, String objectType) {
-        ApiService service = RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken());
+        ApiService service = RetrofitApi.getInstance(getActivity()).getApiService(SessionLogin.getAccessToken());
         Call<BaseResponse<List<ObjectItem>>> request = null;
         switch (objectType) {
             case Constants.TAG_KULINER:

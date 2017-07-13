@@ -52,7 +52,6 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     private TextView mdates, mterm;
     private Button next;
     private String mItemJenisGedung, mItemJenisIdentitas, mWaktu, mDate;
-    private CheckBox terms;
     ProgressDialog dialog;
 
     List<String> spListGedung = new ArrayList<>();
@@ -78,8 +77,6 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         mJenisGedung = (Spinner) findViewById(R.id.jenis_gedung);
 
         mJenisIdentitas = (Spinner) findViewById(R.id.jenis_identitas);
-
-        terms = (CheckBox) findViewById(R.id.check_gedung);
 
         mdates = (TextView) findViewById(R.id.txt_date);
         mdates.setText(getCurrentDate());
@@ -129,13 +126,11 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                     mNoIdentias.setError("Nomor Identitas wajib diisi!");
                     mNoHP.setError("Nomor HP wajib diisi!");
                     mDescGedung.setError("Deskripsi Gedung wajib diisi");
-                } else if (!terms.isChecked()) {
-                    terms.setError("Harus dicentang!");
                 } else {
                     int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
                     View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
                     int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
-                    RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                    RetrofitApi.getInstance(booking_gedung.this).getApiService(SessionLogin.getAccessToken())
                             .booking(identityTypes.get(selectedItemIdentity).getId(),
                                     mNoIdentias.getText().toString(),
                                     mName.getText().toString(),
@@ -187,6 +182,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                 int selected = mRadioGroupWaktu.getCheckedRadioButtonId();
                 mRadioButton = (RadioButton) findViewById(selected);
                 mWaktu = mRadioButton.getText().toString();
+                getListAsset();
             }
         });
 
@@ -203,7 +199,10 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     }
 
     private void getListAsset() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getListAsset()
+        int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
+        View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
+        int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken()).getListAsset(idx, mdates.getText().toString())
                 .enqueue(new PageCallback<List<Asset>>(booking_gedung.this) {
                     @Override
                     protected void onStart() {
@@ -242,7 +241,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     }
 
     private void getListIdentity() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getListIdentity()
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken()).getListIdentity()
                 .enqueue(new PageCallback<List<IdentityType>>(booking_gedung.this) {
                     @Override
                     protected void onStart() {
@@ -307,6 +306,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         final DateFormat dateFormat = DateFormat.getDateInstance();
         (mdates = (TextView) findViewById(R.id.txt_date)).setText(simpleFormat.format(calendar.getTime()));
         mDate = mdates.getText().toString();
+        getListAsset();
     }
 
     @Override

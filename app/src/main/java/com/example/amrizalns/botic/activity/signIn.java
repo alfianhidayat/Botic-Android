@@ -160,7 +160,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                     mPassword.setError("Required");
                 } else {
                     mProgressDialog.show();
-                    RetrofitApi.getInstance().getApiService("")
+                    RetrofitApi.getInstance(this).getApiService("")
                             .login("password",
                                     "2",
                                     "Ypsems1mc9lfAMSY3QAacVl7mVSE3FTuKk5s3n8S",
@@ -183,6 +183,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 
                                 @Override
                                 public void onFailure(Call<Token> call, Throwable t) {
+                                    Log.e("Error", t.getLocalizedMessage());
                                     Toast.makeText(mContext, "Terjadi kesalahan server !", Toast.LENGTH_SHORT).show();
                                     mProgressDialog.dismiss();
                                 }
@@ -206,7 +207,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
     }
 
     private void getProfile() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
                 .getProfile()
                 .enqueue(new Callback<BaseResponse<User>>() {
                     @Override
@@ -244,7 +245,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 
     private void loginSocialite(String name, String email, String provider) {
         mProgressDialog.show();
-        RetrofitApi.getInstance().getApiService("")
+        RetrofitApi.getInstance(this).getApiService("")
                 .loginSocialite(name, email, provider)
                 .enqueue(new Callback<Token>() {
                     @Override
@@ -285,7 +286,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                     String name = res.get("name").toString();
                     String email = res.get("email").toString();
                     Toast.makeText(mContext, name + " : " + email, Toast.LENGTH_SHORT).show();
-                    loginSocialite(name,  email, "facebook");
+                    loginSocialite(name, email, "facebook");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

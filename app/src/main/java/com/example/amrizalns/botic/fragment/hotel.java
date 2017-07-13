@@ -70,7 +70,7 @@ public class hotel extends Fragment {
     }
 
     private void getHotel() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getHotel().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
+        RetrofitApi.getInstance(getActivity()).getApiService(SessionLogin.getAccessToken()).getHotel().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
             @Override
             protected void onFinish() {
                 dialog.dismiss();

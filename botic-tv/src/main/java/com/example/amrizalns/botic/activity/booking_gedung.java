@@ -176,6 +176,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                 int selected = mRadioGroupWaktu.getCheckedRadioButtonId();
                 mRadioButton = (RadioButton) findViewById(selected);
                 mWaktu = mRadioButton.getText().toString();
+                getListAsset();
             }
         });
 
@@ -192,7 +193,10 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     }
 
     private void getListAsset() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getListAsset()
+        int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
+        View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
+        int idx = mRadioGroupWaktu.indexOfChild(radioButton) + 1;
+        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getListAsset(idx, mdates.getText().toString())
                 .enqueue(new PageCallback<List<Asset>>(booking_gedung.this) {
                     @Override
                     protected void onStart() {
@@ -296,6 +300,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         final DateFormat dateFormat = DateFormat.getDateInstance();
         (mdates = (TextView) findViewById(R.id.txt_date)).setText(simpleFormat.format(calendar.getTime()));
         mDate = mdates.getText().toString();
+        getListAsset();
     }
 
     @Override

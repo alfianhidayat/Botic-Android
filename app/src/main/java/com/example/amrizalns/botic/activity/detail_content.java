@@ -140,7 +140,7 @@ public class detail_content extends AppCompatActivity {
     }
 
     private void review(String review, int rating) {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
                 .review(review, rating, objectItem.getId(), objectItem.getIdMenu())
                 .enqueue(new PageCallback<Review>(detail_content.this) {
                     @Override
@@ -176,7 +176,7 @@ public class detail_content extends AppCompatActivity {
     }
 
     private void getReview(int id) {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
                 .getReview(id)
                 .enqueue(new PageCallback<List<Review>>(detail_content.this) {
                     @Override

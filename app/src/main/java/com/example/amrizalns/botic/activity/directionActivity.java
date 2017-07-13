@@ -55,7 +55,6 @@
         Toolbar mActionBarToolbar;
         LatLng origin;
         LatLng dest;
-        Polyline line;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {

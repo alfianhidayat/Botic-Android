@@ -248,8 +248,8 @@ public class mainInterface extends AppCompatActivity
 
         Picasso.with(mContext)
                 .load(uri)
-                .placeholder(android.R.drawable.sym_def_app_icon)
-                .error(android.R.drawable.sym_def_app_icon)
+                .placeholder(R.mipmap.ic_botic)
+                .error(R.mipmap.ic_botic)
                 .into(mProfileImageView);
     }
 

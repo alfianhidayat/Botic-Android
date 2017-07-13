@@ -37,10 +37,10 @@ public class ObjectItem implements Parcelable
     private String price;
     @SerializedName("lat")
     @Expose
-    private int lat;
+    private float lat;
     @SerializedName("lng")
     @Expose
-    private int lng;
+    private float lng;
     @SerializedName("open")
     @Expose
     private String open;
@@ -92,8 +92,8 @@ public class ObjectItem implements Parcelable
             instance.manager = ((String) in.readValue((String.class.getClassLoader())));
             instance.description = ((String) in.readValue((String.class.getClassLoader())));
             instance.price = ((String) in.readValue((String.class.getClassLoader())));
-            instance.lat = ((int) in.readValue((int.class.getClassLoader())));
-            instance.lng = ((int) in.readValue((int.class.getClassLoader())));
+            instance.lat = ((float) in.readValue((int.class.getClassLoader())));
+            instance.lng = ((float) in.readValue((int.class.getClassLoader())));
             instance.open = ((String) in.readValue((String.class.getClassLoader())));
             instance.close = ((String) in.readValue((String.class.getClassLoader())));
             instance.idCategory = ((int) in.readValue((int.class.getClassLoader())));
@@ -172,19 +172,19 @@ public class ObjectItem implements Parcelable
         this.price = price;
     }
 
-    public int getLat() {
+    public float getLat() {
         return lat;
     }
 
-    public void setLat(int lat) {
+    public void setLat(float lat) {
         this.lat = lat;
     }
 
-    public int getLng() {
+    public float getLng() {
         return lng;
     }
 
-    public void setLng(int lng) {
+    public void setLng(float lng) {
         this.lng = lng;
     }
 

@@ -103,7 +103,7 @@ public class checkin_2 extends Fragment implements View.OnClickListener, ItemCli
                 CheckInParams params = SessionLogin.getCheckIn();
                 params.setVisitors(visitors);
                 SessionLogin.saveCheckIn(params);
-                RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                RetrofitApi.getInstance(getActivity()).getApiService(SessionLogin.getAccessToken())
                         .checkIn(SessionLogin.getCheckIn())
                         .enqueue(new PageCallback<Object>(getActivity()) {
                             @Override

@@ -19,6 +19,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by alfianh on 7/4/17.
@@ -95,7 +96,8 @@ public interface ApiService {
                                        @Field("id_category") int idCategory);
 
     @GET("api/listasset")
-    Call<BaseResponse<List<Asset>>> getListAsset();
+    Call<BaseResponse<List<Asset>>> getListAsset(@Query("id_time") int idTime,
+                                                 @Query("date") String date);
 
     @GET("api/listidentity")
     Call<BaseResponse<List<IdentityType>>> getListIdentity();

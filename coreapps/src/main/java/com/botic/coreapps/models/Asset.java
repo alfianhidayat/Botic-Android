@@ -27,16 +27,16 @@ public class Asset implements Parcelable
     private String manager;
     @SerializedName("capacity")
     @Expose
-    private int capacity;
+    private String capacity;
     @SerializedName("description")
     @Expose
     private String description;
     @SerializedName("lat")
     @Expose
-    private float lat;
+    private int lat;
     @SerializedName("lng")
     @Expose
-    private float lng;
+    private int lng;
     @SerializedName("id_menu")
     @Expose
     private int idMenu;
@@ -45,10 +45,10 @@ public class Asset implements Parcelable
     private int createdBy;
     @SerializedName("created_at")
     @Expose
-    private String createdAt;
+    private Object createdAt;
     @SerializedName("updated_at")
     @Expose
-    private String updatedAt;
+    private Object updatedAt;
     public final static Creator<Asset> CREATOR = new Creator<Asset>() {
 
 
@@ -62,14 +62,14 @@ public class Asset implements Parcelable
             instance.address = ((String) in.readValue((String.class.getClassLoader())));
             instance.phone = ((String) in.readValue((String.class.getClassLoader())));
             instance.manager = ((String) in.readValue((String.class.getClassLoader())));
-            instance.capacity = ((int) in.readValue((int.class.getClassLoader())));
+            instance.capacity = ((String) in.readValue((String.class.getClassLoader())));
             instance.description = ((String) in.readValue((String.class.getClassLoader())));
-            instance.lat = ((float) in.readValue((float.class.getClassLoader())));
-            instance.lng = ((float) in.readValue((float.class.getClassLoader())));
+            instance.lat = ((int) in.readValue((int.class.getClassLoader())));
+            instance.lng = ((int) in.readValue((int.class.getClassLoader())));
             instance.idMenu = ((int) in.readValue((int.class.getClassLoader())));
             instance.createdBy = ((int) in.readValue((int.class.getClassLoader())));
-            instance.createdAt = ((String) in.readValue((String.class.getClassLoader())));
-            instance.updatedAt = ((String) in.readValue((String.class.getClassLoader())));
+            instance.createdAt = ((Object) in.readValue((Object.class.getClassLoader())));
+            instance.updatedAt = ((Object) in.readValue((Object.class.getClassLoader())));
             return instance;
         }
 
@@ -120,11 +120,11 @@ public class Asset implements Parcelable
         this.manager = manager;
     }
 
-    public int getCapacity() {
+    public String getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 
@@ -136,19 +136,19 @@ public class Asset implements Parcelable
         this.description = description;
     }
 
-    public float getLat() {
+    public int getLat() {
         return lat;
     }
 
-    public void setLat(float lat) {
+    public void setLat(int lat) {
         this.lat = lat;
     }
 
-    public float getLng() {
+    public int getLng() {
         return lng;
     }
 
-    public void setLng(float lng) {
+    public void setLng(int lng) {
         this.lng = lng;
     }
 
@@ -168,19 +168,19 @@ public class Asset implements Parcelable
         this.createdBy = createdBy;
     }
 
-    public String getCreatedAt() {
+    public Object getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Object createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getUpdatedAt() {
+    public Object getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(Object updatedAt) {
         this.updatedAt = updatedAt;
     }
 

@@ -189,7 +189,7 @@ public class mainInterface extends AppCompatActivity
     }
 
     private void getProfile() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
                 .getProfile()
                 .enqueue(new Callback<BaseResponse<User>>() {
                     @Override

@@ -63,7 +63,7 @@ public class signUp extends AppCompatActivity {
                     inputConfPass.setError("Required");
 
                 } else if (inputPass.getText().toString().equals(inputConfPass.getText().toString()))
-                    RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+                    RetrofitApi.getInstance(signUp.this).getApiService(SessionLogin.getAccessToken())
                             .register(
                                     inputName.getText().toString(),
                                     inputEmail.getText().toString(),

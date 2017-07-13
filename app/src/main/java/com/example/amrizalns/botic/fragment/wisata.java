@@ -84,7 +84,7 @@ public class wisata extends Fragment {
     }
 
     private void getTourism() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken()).getTourism().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
+        RetrofitApi.getInstance(getActivity()).getApiService(SessionLogin.getAccessToken()).getTourism().enqueue(new PageCallback<List<ObjectItem>>(getActivity()) {
             @Override
             protected void onFinish() {
                 dialog.dismiss();

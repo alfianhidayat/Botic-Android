@@ -23,13 +23,16 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.botic.coreapps.AppsCore;
 import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.ObjectItem;
+import com.botic.coreapps.models.Picture;
 import com.botic.coreapps.models.Review;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.ReviewAdapter;
 import com.example.amrizalns.botic.recyclerViewHolder;
+import com.example.amrizalns.botic.utils.CustomPicasso;
 import com.example.amrizalns.botic.utils.SessionLogin;
 
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ import java.util.List;
 public class detail_content extends AppCompatActivity {
 
     private List<Review> mReviewList = new ArrayList<>();
+    private List<Picture> mPictureList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private ReviewAdapter mAdapter;
     ImageView img, button_share, button_review, fav;
@@ -84,13 +88,13 @@ public class detail_content extends AppCompatActivity {
             time_close.setText(objectItem.getClose());
             desc.setText(objectItem.getDescription());
             getReview(objectItem.getId());
+            getPicture(objectItem.getId());
         }
 
         direction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(detail_content.this, directionActivity.class);
-                startActivity(i);
+                directionActivity.start(detail_content.this, objectItem);
             }
         });
         dialog = new ProgressDialog(this);
@@ -142,7 +146,7 @@ public class detail_content extends AppCompatActivity {
             public void onClick(View v) {
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName() +"\n"+ objectItem.getAddress());
+                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName() + "\n" + objectItem.getAddress());
                 shareIntent.setType("text/plain");
                 startActivity(shareIntent);
             }
@@ -204,6 +208,46 @@ public class detail_content extends AppCompatActivity {
                         mReviewList.clear();
                         mReviewList.addAll(data);
                         mAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    protected void onError(String message) {
+                        super.onError(message);
+                    }
+
+                    @Override
+                    protected void onUnauthorized() {
+                        SessionLogin.reset();
+                        Intent intent = new Intent(detail_content.this, signIn.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+    }
+
+    private void getPicture(int id) {
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
+                .getPicture(id)
+                .enqueue(new PageCallback<List<Picture>>(detail_content.this) {
+                    @Override
+                    protected void onStart() {
+
+                    }
+
+                    @Override
+                    protected void onFinish() {
+
+                    }
+
+                    @Override
+                    protected void onSuccess(List<Picture> data) {
+                        mPictureList.clear();
+                        mPictureList.addAll(data);
+                        mAdapter.notifyDataSetChanged();
+                        CustomPicasso.getInstance(detail_content.this).load(AppsCore.BASE_URL + "image/" + ((mPictureList.size() == 0) ? R.mipmap.ic_botic : mPictureList.get(0).getOriginalFilename()))
+                                .placeholder(R.mipmap.ic_botic)
+                                .error(R.mipmap.ic_botic)
+                                .into(img);
                     }
 
                     @Override

@@ -1,6 +1,7 @@
 package com.botic.coreapps.callbacks;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.botic.coreapps.R;
 import com.botic.coreapps.networks.RetrofitApi;
@@ -29,6 +30,7 @@ public class DefaultCallback<T> implements Callback<BaseResponse<T>> {
         if (t instanceof ConnectException || t instanceof SocketTimeoutException) {
             onError("Please check your internet connection.");
         } else {
+            Log.e("Error", t.getLocalizedMessage());
             onError("An unknown error occurred.");
         }
 

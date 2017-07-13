@@ -4,6 +4,7 @@ import com.botic.coreapps.models.Asset;
 import com.botic.coreapps.models.CheckInParams;
 import com.botic.coreapps.models.IdentityType;
 import com.botic.coreapps.models.ObjectItem;
+import com.botic.coreapps.models.Picture;
 import com.botic.coreapps.models.Review;
 import com.botic.coreapps.models.Token;
 import com.botic.coreapps.models.User;
@@ -121,5 +122,8 @@ public interface ApiService {
                                       @Field("rating") int rating,
                                       @Field("id_object") int idObject,
                                       @Field("id_menu") int idMenu);
+
+    @GET("api/picture/{id}")
+    Call<BaseResponse<List<Picture>>> getPicture(@Path("id") int id);
 
 }

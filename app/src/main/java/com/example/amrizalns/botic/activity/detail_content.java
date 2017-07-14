@@ -38,6 +38,7 @@ import com.botic.coreapps.networks.RetrofitApi;
 import com.example.amrizalns.botic.ImgViewPageAdapter;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.ReviewAdapter;
+import com.example.amrizalns.botic.helper.RealmController;
 import com.example.amrizalns.botic.recyclerViewHolder;
 import com.example.amrizalns.botic.utils.CustomPicasso;
 import com.example.amrizalns.botic.utils.SessionLogin;
@@ -45,6 +46,8 @@ import com.example.amrizalns.botic.viewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.Realm;
 
 public class detail_content extends AppCompatActivity {
 
@@ -55,7 +58,7 @@ public class detail_content extends AppCompatActivity {
     ImageView img, button_share, button_review, fav;
     TextView name, loc, desc, cost, time_open, time_close;
     FloatingActionButton direction;
-
+    private Realm realm;
     int img_detail;
     String name_detail;
     String loc_detail;
@@ -80,11 +83,12 @@ public class detail_content extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.realm = RealmController.with(this).getRealm();
         setContentView(R.layout.activity_detail_content);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        img = (ImageView) findViewById(R.id.detail_img);
+        img = (ImageView) findViewById(R.id.iv_photo);
         name = (TextView) findViewById(R.id.detail_name);
         loc = (TextView) findViewById(R.id.detail_loc);
         desc = (TextView) findViewById(R.id.detail_desc);
@@ -98,9 +102,6 @@ public class detail_content extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.vp_content);
         slider = (LinearLayout) findViewById(R.id.sliderContent);
-        viewPagerAdapter = new ImgViewPageAdapter(this, layouts);
-        mViewPager.setAdapter(viewPagerAdapter);
-        slider();
 
         Intent i = getIntent();
         if (i.hasExtra("object")) {
@@ -183,20 +184,26 @@ public class detail_content extends AppCompatActivity {
                 startActivity(shareIntent);
             }
         });
+
+        com.example.amrizalns.botic.model.ObjectItem item = RealmController.with(this).getObject(objectItem.getId());
+        if (item != null) {
+            fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite));
+            isChecked = true;
+        }
     }
 
-    private void slider(){
+    private void slider() {
         imgcount = viewPagerAdapter.getCount();
         img_content = new ImageView[imgcount];
 
-        for (int i = 0; i < imgcount; i++){
+        for (int i = 0; i < imgcount; i++) {
             img_content[i] = new ImageView(this);
             img_content[i].setImageDrawable(getResources().getDrawable(R.drawable.nonactive_dots));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(4,0,4,0);
+            params.setMargins(4, 0, 4, 0);
             slider.addView(img_content[i], params);
         }
         img_content[0].setImageDrawable(getResources().getDrawable(R.drawable.actived_dots));
@@ -204,7 +211,7 @@ public class detail_content extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                for (int i = 0; i < imgcount; i++){
+                for (int i = 0; i < imgcount; i++) {
                     img_content[i].setImageDrawable(getResources().getDrawable(R.drawable.nonactive_dots));
                 }
                 img_content[position].setImageDrawable(getResources().getDrawable(R.drawable.actived_dots));
@@ -314,10 +321,18 @@ public class detail_content extends AppCompatActivity {
                         mPictureList.clear();
                         mPictureList.addAll(data);
                         mAdapter.notifyDataSetChanged();
-//                        CustomPicasso.getInstance(detail_content.this).load(AppsCore.BASE_URL + "image/" + ((mPictureList.size() == 0) ? R.mipmap.ic_botic : mPictureList.get(0).getOriginalFilename()))
-//                                .placeholder(R.mipmap.ic_botic)
-//                                .error(R.mipmap.ic_botic)
-//                                .into(img);
+                        viewPagerAdapter = new ImgViewPageAdapter(detail_content.this, layouts);
+                        viewPagerAdapter.setPictureList(mPictureList);
+                        mViewPager.setAdapter(viewPagerAdapter);
+                        if (mPictureList.size() != 0) {
+                            slider();
+                            img.setVisibility(View.GONE);
+                        } else {
+                            CustomPicasso.getInstance(detail_content.this).load(AppsCore.BASE_URL + "image/" + ((mPictureList.size() == 0) ? R.mipmap.ic_botic : mPictureList.get(0).getOriginalFilename()))
+                                    .placeholder(R.mipmap.ic_botic)
+                                    .error(R.mipmap.ic_botic)
+                                    .into(img);
+                        }
                     }
 
                     @Override
@@ -341,16 +356,31 @@ public class detail_content extends AppCompatActivity {
         finish();
     }
 
-    private boolean isChecked(){
+    private boolean isChecked() {
         return isChecked;
     }
 
-    private void setChecked(boolean checked){
+    private void setChecked(boolean checked) {
         isChecked = checked;
-        if (isChecked()){
+        if (isChecked()) {
             fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite));
-        }else {
+            com.example.amrizalns.botic.model.ObjectItem object = new com.example.amrizalns.botic.model.ObjectItem();
+            object.setId(objectItem.getId());
+            object.setPhone(objectItem.getPhone());
+            object.setAddress(objectItem.getAddress());
+            object.setClose(objectItem.getClose());
+            object.setDescription(objectItem.getDescription());
+            object.setIdCategory(objectItem.getIdCategory());
+            object.setRating(objectItem.getRating());
+            object.setIdMenu(objectItem.getIdMenu());
+            object.setOpen(objectItem.getOpen());
+            object.setName(objectItem.getName());
+            realm.beginTransaction();
+            realm.copyToRealm(object);
+            realm.commitTransaction();
+        } else {
             fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
+            RealmController.with(this).remove(objectItem.getId());
         }
     }
 }

@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         tools:src="@mipmap/ic_botic"
         android:id="@+id/img_pager_item"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:clickable="false"/>
 

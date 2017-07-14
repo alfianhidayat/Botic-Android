@@ -4,11 +4,14 @@ package com.botic.coreapps.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Event implements Parcelable
-{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Event implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -34,11 +37,14 @@ public class Event implements Parcelable
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    @SerializedName("picture")
+    @Expose
+    private List<Picture> picture = new ArrayList<>();
     public final static Creator<Event> CREATOR = new Creator<Event>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
         public Event createFromParcel(Parcel in) {
             Event instance = new Event();
@@ -50,6 +56,7 @@ public class Event implements Parcelable
             instance.createdBy = ((int) in.readValue((int.class.getClassLoader())));
             instance.createdAt = ((String) in.readValue((String.class.getClassLoader())));
             instance.updatedAt = ((String) in.readValue((String.class.getClassLoader())));
+            in.readList(instance.picture, (Picture.class.getClassLoader()));
             return instance;
         }
 
@@ -57,8 +64,7 @@ public class Event implements Parcelable
             return (new Event[size]);
         }
 
-    }
-    ;
+    };
 
     public int getId() {
         return id;
@@ -124,6 +130,14 @@ public class Event implements Parcelable
         this.updatedAt = updatedAt;
     }
 
+    public List<Picture> getPicture() {
+        return picture;
+    }
+
+    public void setPicture(List<Picture> picture) {
+        this.picture = picture;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
         dest.writeValue(name);
@@ -132,11 +146,12 @@ public class Event implements Parcelable
         dest.writeValue(idMenu);
         dest.writeValue(createdBy);
         dest.writeValue(createdAt);
+        dest.writeList(picture);
         dest.writeValue(updatedAt);
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }

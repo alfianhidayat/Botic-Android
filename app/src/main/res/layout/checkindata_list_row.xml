@@ -1,38 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/ln_checkin_tamu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorMain1"
+        android:background="#EEEEEE"
         android:orientation="vertical">
-
         <TextView
-            android:id="@+id/txt_nama_checkin"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="5dp"
-            android:text="Nama..."
-            android:textColor="@color/colorBackground"
-            android:textSize="16dp"
-            android:textStyle="bold"/>
+            android:text="Data Tamu"
+            android:layout_margin="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/colorContent"
+            android:textStyle="bold"
+            />
 
-        <TextView
-            android:id="@+id/txt_asal_checkin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Asal..."
-            android:layout_margin="3dp"
-            android:textColor="@color/colorBackground"/>
         <View android:layout_width="fill_parent"
-              android:layout_height="5px"
-              android:background="@color/colorBackground"
-              android:id="@+id/separator2" />
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorContent"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            >
+            <TextView
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textColor="@color/colorContent"
+                android:textSize="14sp"/>
+            <TextView
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : "
+                android:textColor="@color/colorContent"
+                android:textSize="14sp"/>
+            <TextView
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/txt_nama_checkin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama wisatawan"
+                android:textColor="@color/colorContent"
+                android:textSize="14sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            >
+            <TextView
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Asal"
+                android:textSize="14sp"
+                android:textColor="@color/colorContent"/>
+            <TextView
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : "
+                android:textColor="@color/colorContent"
+                android:textSize="14sp"/>
+            <TextView
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/txt_asal_checkin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Asal wisatawan"
+                android:textSize="14sp"
+                android:textColor="@color/colorContent"/>
+        </LinearLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorBackground"
+            android:id="@+id/separator2" />
     </LinearLayout>
 
 </RelativeLayout>

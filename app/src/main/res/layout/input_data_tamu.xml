@@ -1,37 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_margin="16dp"
-              android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_margin="16dp"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE"
+    >
 
     <TextView
         android:id="@+id/dialogDataTamu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tambah Data Tamu"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_margin="10dp"
+        android:textSize="16sp"
+        android:textColor="@color/colorContent"
+        android:textStyle="bold"
+        />
+
+    <View android:layout_width="fill_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/colorContent"
+        android:id="@+id/separator2" />
 
     <EditText
         android:id="@+id/namaInputDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Masukkan Nama"
-        android:layout_margin="3dp"
+        android:hint="Masukkan nama wisatawan"
+        android:layout_margin="5dp"
+        android:textSize="14sp"
+        android:textColorHint="@color/colorContent"
+        android:backgroundTint="@color/colorContent"
+        android:textColor="@color/colorContent"
         android:inputType="text" />
     <EditText
         android:id="@+id/asalInputDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Masukkan Asal"
-        android:layout_margin="3dp"
+        android:hint="Masukkan asal wisatawan"
+        android:layout_margin="5dp"
+        android:textSize="14sp"
+        android:textColorHint="@color/colorContent"
+        android:backgroundTint="@color/colorContent"
+        android:textColor="@color/colorContent"
         android:inputType="text" />
     <EditText
         android:id="@+id/usiaInputDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Masukkan Usia"
-        android:layout_margin="3dp"
+        android:hint="Masukkan usia wisatawan"
+        android:layout_margin="5dp"
+        android:textSize="14sp"
+        android:textColorHint="@color/colorContent"
+        android:backgroundTint="@color/colorContent"
+        android:textColor="@color/colorContent"
         android:inputType="number" />
 
 </LinearLayout>

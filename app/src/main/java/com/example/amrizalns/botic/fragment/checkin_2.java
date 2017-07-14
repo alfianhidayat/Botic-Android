@@ -81,7 +81,7 @@ public class checkin_2 extends Fragment implements View.OnClickListener, ItemCli
         String jumlah = getArguments().getString("daftar");
         int jmlTamu = Integer.parseInt(jumlah);
         for (int i = 0; i < jmlTamu; i++) {
-            CheckinData checkinData = new CheckinData((i + 1) + ". Isi Data Pengunjung " + (i + 1), asal);
+            CheckinData checkinData = new CheckinData("Isi Data Pengunjung - "+ (i + 1), asal);
             mCheckinDataList.add(checkinData);
         }
         mCheckinAdapter.notifyDataSetChanged();

@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import com.example.amrizalns.botic.ImgViewPageAdapter;
 import com.example.amrizalns.botic.viewPagerAdapter;
 
 import com.example.amrizalns.botic.R;
@@ -25,26 +27,11 @@ public class beranda extends Fragment {
     View view;
     private int currentPage = 0;
     private Timer timer;
-
-    public beranda() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment beranda.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static beranda newInstance(String param1, String param2) {
-        beranda fragment = new beranda();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    ViewPager mViewPager;
+    LinearLayout slider;
+    private int imgcount;
+    private ImageView[] img_content;
+    viewPagerAdapter viewPagerAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +68,13 @@ public class beranda extends Fragment {
                 handler.post(Update);
             }
         }, 1500, 3000);
+
+        mViewPager = (ViewPager) view.findViewById(R.id.vp);
+        slider = (LinearLayout) view.findViewById(R.id.sliderContent);
+        viewPagerAdapter = new viewPagerAdapter(getContext());
+        mViewPager.setAdapter(viewPagerAdapter);
+        slider();
+
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
@@ -158,5 +152,43 @@ public class beranda extends Fragment {
         });
 
         return view;
+    }
+
+    private void slider(){
+        imgcount = viewPagerAdapter.getCount();
+        img_content = new ImageView[imgcount];
+
+        for (int i = 0; i < imgcount; i++){
+            img_content[i] = new ImageView(getContext());
+            img_content[i].setImageDrawable(getResources().getDrawable(R.drawable.nonactive_dots));
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(4,0,4,0);
+            slider.addView(img_content[i], params);
+        }
+        img_content[0].setImageDrawable(getResources().getDrawable(R.drawable.actived_dots));
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                for (int i = 0; i < imgcount; i++){
+                    img_content[i].setImageDrawable(getResources().getDrawable(R.drawable.nonactive_dots));
+                }
+                img_content[position].setImageDrawable(getResources().getDrawable(R.drawable.actived_dots));
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }

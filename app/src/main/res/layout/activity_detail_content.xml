@@ -16,14 +16,26 @@
         android:fitsSystemWindows="true"
         android:theme="@style/AppBarOverlay">
 
-        <ImageView
-            android:id="@+id/detail_img"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/banner_beranda"
-            />
+            android:layout_height="match_parent">
 
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_bar_height">
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:id="@+id/sliderContent"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -37,6 +49,6 @@
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_placeholder"/>
 
-    <include layout="@layout/content_detail" />
+    <include layout="@layout/content_detail"/>
 
 </android.support.design.widget.CoordinatorLayout>

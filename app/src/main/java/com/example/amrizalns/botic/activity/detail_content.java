@@ -1,12 +1,15 @@
 package com.example.amrizalns.botic.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.IntentCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,10 +19,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,11 +35,13 @@ import com.botic.coreapps.models.ObjectItem;
 import com.botic.coreapps.models.Picture;
 import com.botic.coreapps.models.Review;
 import com.botic.coreapps.networks.RetrofitApi;
+import com.example.amrizalns.botic.ImgViewPageAdapter;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.ReviewAdapter;
 import com.example.amrizalns.botic.recyclerViewHolder;
 import com.example.amrizalns.botic.utils.CustomPicasso;
 import com.example.amrizalns.botic.utils.SessionLogin;
+import com.example.amrizalns.botic.viewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +66,16 @@ public class detail_content extends AppCompatActivity {
     private ObjectItem objectItem;
     ProgressDialog dialog;
     boolean isChecked = false;
+    ViewPager mViewPager;
+    LinearLayout slider;
+    private int imgcount;
+    private ImageView[] img_content;
+    ImgViewPageAdapter viewPagerAdapter;
+    private int[] layouts = new int[]{
+            R.drawable.banner_boticapps_1,
+            R.drawable.banner_boticapps_2,
+            R.drawable.banner_boticapps_3
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +84,7 @@ public class detail_content extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        img = (ImageView) findViewById(R.id.detail_img);
+//        img = (ImageView) findViewById(R.id.detail_img);
         name = (TextView) findViewById(R.id.detail_name);
         loc = (TextView) findViewById(R.id.detail_loc);
         desc = (TextView) findViewById(R.id.detail_desc);
@@ -79,10 +96,16 @@ public class detail_content extends AppCompatActivity {
         button_share = (ImageView) findViewById(R.id.btn_share);
         fav = (ImageView) findViewById(R.id.btn_fav);
 
+        mViewPager = (ViewPager) findViewById(R.id.vp_content);
+        slider = (LinearLayout) findViewById(R.id.sliderContent);
+        viewPagerAdapter = new ImgViewPageAdapter(this, layouts);
+        mViewPager.setAdapter(viewPagerAdapter);
+        slider();
+
         Intent i = getIntent();
         if (i.hasExtra("object")) {
             objectItem = i.getParcelableExtra("object");
-            img.setImageResource(R.mipmap.ic_botic);
+//            img.setImageResource(R.mipmap.ic_botic);
             name.setText(objectItem.getName());
             loc.setText(objectItem.getAddress());
             cost.setText(objectItem.getPrice());
@@ -161,9 +184,44 @@ public class detail_content extends AppCompatActivity {
             }
         });
     }
-    private static final int[] mCheckedStateSet = {
-            android.R.attr.state_checked,
-    };
+
+    private void slider(){
+        imgcount = viewPagerAdapter.getCount();
+        img_content = new ImageView[imgcount];
+
+        for (int i = 0; i < imgcount; i++){
+            img_content[i] = new ImageView(this);
+            img_content[i].setImageDrawable(getResources().getDrawable(R.drawable.nonactive_dots));
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(4,0,4,0);
+            slider.addView(img_content[i], params);
+        }
+        img_content[0].setImageDrawable(getResources().getDrawable(R.drawable.actived_dots));
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                for (int i = 0; i < imgcount; i++){
+                    img_content[i].setImageDrawable(getResources().getDrawable(R.drawable.nonactive_dots));
+                }
+                img_content[position].setImageDrawable(getResources().getDrawable(R.drawable.actived_dots));
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
 
     private void review(String review, int rating) {
         RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
@@ -256,10 +314,10 @@ public class detail_content extends AppCompatActivity {
                         mPictureList.clear();
                         mPictureList.addAll(data);
                         mAdapter.notifyDataSetChanged();
-                        CustomPicasso.getInstance(detail_content.this).load(AppsCore.BASE_URL + "image/" + ((mPictureList.size() == 0) ? R.mipmap.ic_botic : mPictureList.get(0).getOriginalFilename()))
-                                .placeholder(R.mipmap.ic_botic)
-                                .error(R.mipmap.ic_botic)
-                                .into(img);
+//                        CustomPicasso.getInstance(detail_content.this).load(AppsCore.BASE_URL + "image/" + ((mPictureList.size() == 0) ? R.mipmap.ic_botic : mPictureList.get(0).getOriginalFilename()))
+//                                .placeholder(R.mipmap.ic_botic)
+//                                .error(R.mipmap.ic_botic)
+//                                .into(img);
                     }
 
                     @Override

@@ -81,16 +81,21 @@ public class checkin_1 extends Fragment {
         }
     };
 
+    private boolean isValidMobile(String phone) {
+        return android.util.Patterns.PHONE.matcher(phone).matches();
+    }
+
     private void VerifikasiDaftar() {
-        final String names = mNamaPJ.getText().toString();
-        if (names.length() == 0) {
-            mNohp.requestFocus();
-            mNohp.setError("Wajib Diisi");
-        }
-        if (!aggrement.isChecked()) {
-            mNohp.setError("Wajib Diisi!");
-            mJumlahTamu.setError("Wajib Diisi!");
+        String noHP = mNohp.getText().toString();
+        String jml = mJumlahTamu.getText().toString();
+
+        if (noHP.isEmpty() && jml.isEmpty()) {
+            mNohp.setError("Harus Diisi!");
+            mJumlahTamu.setError("Harus Diisi!");
+        } else if (!aggrement.isChecked()) {
             aggrement.setError("Harus Dicentang!");
+        } else if (!isValidMobile(noHP)) {
+            mNohp.setError("Nomer HP harus sesuai");
         } else {
             CheckInParams params = new CheckInParams();
             params.setPhone(mNohp.getText().toString());

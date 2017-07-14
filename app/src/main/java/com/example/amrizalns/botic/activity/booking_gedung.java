@@ -51,8 +51,10 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     private RadioButton mRadioButton;
     private TextView mdates, mterm;
     private Button next;
-    private String mItemJenisGedung, mItemJenisIdentitas, mWaktu, mDate;
+    private String mItemJenisGedung, mItemJenisIdentitas, mDate;
+    String mWaktu = "Siang - Malam ( 24 Jam )";
     ProgressDialog dialog;
+    private CheckBox aggrement;
 
     List<String> spListGedung = new ArrayList<>();
     List<String> spListIdentity = new ArrayList<>();
@@ -73,6 +75,8 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         mName = (EditText) findViewById(R.id.field_name);
         mNoHP = (EditText) findViewById(R.id.field_number_call);
         mDescGedung = (EditText) findViewById(R.id.field_desc_gedung);
+
+        aggrement = (CheckBox) findViewById(R.id.check_gedung);
 
         mJenisGedung = (Spinner) findViewById(R.id.jenis_gedung);
 
@@ -121,11 +125,22 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mName.length() == 0 || mNoIdentias.length() == 0 || mNoHP.length() == 0 || mDescGedung.length() == 0) {
+                String nama = mName.getText().toString();
+                String noIdentitas = mNoIdentias.getText().toString();
+                String noHP = mNoHP.getText().toString();
+                String desGed = mDescGedung.getText().toString();
+
+                if (nama.isEmpty()  && noIdentitas.isEmpty() && noHP.isEmpty() && desGed.isEmpty()) {
                     mName.setError("Nama wajib diisi!");
                     mNoIdentias.setError("Nomor Identitas wajib diisi!");
                     mNoHP.setError("Nomor HP wajib diisi!");
                     mDescGedung.setError("Deskripsi Gedung wajib diisi");
+                } else if (!nama.matches("[a-zA-Z]+")){
+                    mName.setError("Nama Tidak Boleh Angka");
+                } else if (!isValidMobile(noHP)) {
+                    mNoHP.setError("Nomer HP harus sesuai");
+                } else if (!aggrement.isChecked()) {
+                    aggrement.setError("Harus Dicentang!");
                 } else {
                     int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
                     View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
@@ -196,6 +211,10 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         });
         getListIdentity();
         getListAsset();
+    }
+
+    private boolean isValidMobile(String phone) {
+        return android.util.Patterns.PHONE.matcher(phone).matches();
     }
 
     private void getListAsset() {
@@ -336,6 +355,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         Calendar c = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String formatdate = sdf.format(c.getTime());
+        mDate = formatdate;
         return formatdate;
     }
 }

@@ -84,15 +84,10 @@ public class checkin_1 extends Fragment {
     private void VerifikasiDaftar() {
         final String names = mNamaPJ.getText().toString();
         if (names.length() == 0) {
-            mNamaPJ.requestFocus();
-            mNamaPJ.setError("Wajib Diisi");
-        } else if (!names.matches("[a-zA-Z ]+")) {
-            mNamaPJ.requestFocus();
-            mNamaPJ.setError("Harus Huruf!");
+            mNohp.requestFocus();
+            mNohp.setError("Wajib Diisi");
         }
-
         if (!aggrement.isChecked()) {
-            mNamaPJ.setError("Wajib Diisi!");
             mNohp.setError("Wajib Diisi!");
             mJumlahTamu.setError("Wajib Diisi!");
             aggrement.setError("Harus Dicentang!");

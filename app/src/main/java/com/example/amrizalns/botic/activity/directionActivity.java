@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 
 import com.botic.coreapps.models.ObjectItem;
@@ -36,6 +37,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +61,7 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
     LatLng origin;
     LatLng dest;
     ObjectItem item;
+    PolylineOptions mPolylineOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,26 +110,6 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
             buildGoogleApiClient();
             mGoogleMap.setMyLocationEnabled(true);
         }
-
-//        mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-//            @Override
-//            public void onMapClick(LatLng latLng) {
-//                if (mMarkerPoints.size() > 1) {
-//                    mGoogleMap.clear();
-//                    mMarkerPoints.clear();
-//                    mMarkerPoints = new ArrayList<>();
-//                }
-//                mMarkerPoints.add(latLng);
-//                MarkerOptions options = new MarkerOptions();
-//                options.position(latLng);
-//                drawMarker(latLng);
-//                mGoogleMap.addMarker(options);
-//                if (mMarkerPoints.size() >= 2) {
-//                    origin = mMarkerPoints.get(0);
-//                    dest = mMarkerPoints.get(1);
-//                }
-//            }
-//        });
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -136,18 +119,6 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
                 .addApi(LocationServices.API)
                 .build();
         mGoogleApiClient.connect();
-    }
-
-    private void drawMarker(LatLng point) {
-        mMarkerPoints.add(point);
-
-        MarkerOptions options = new MarkerOptions();
-        if (mMarkerPoints.size() == 1) {
-            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        } else if (mMarkerPoints.size() == 2) {
-            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        }
-        mGoogleMap.addMarker(options);
     }
 
     @Override
@@ -183,19 +154,65 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
         LatLng latLngCurrent = new LatLng(location.getLatitude(), location.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLngCurrent);
-        markerOptions.title("here!");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+        markerOptions.title("Start");
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         mCurrentMarker = mGoogleMap.addMarker(markerOptions);
 
         LatLng latLngDestination = new LatLng(item.getLat(), item.getLng());
         markerOptions = new MarkerOptions();
         markerOptions.position(latLngDestination);
-        markerOptions.title("to!");
+        markerOptions.title("Tujuan");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
         mCurrentMarker = mGoogleMap.addMarker(markerOptions);
 
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngDestination, 13));
+//        String url = "http://maps.googleapis.com/maps/api/directions/xml?"
+//                + "origin=" + location.getLatitude() + "," + location.getLongitude()
+//                + "&destination=" + item.getLat() + "," + item.getLng()
+//                + "&sensor=false&units=metric&mode=DRIVING";
+
+//        mPolylineOptions.addAll(decodePoly(url));
+
+        mGoogleMap.addPolyline(new PolylineOptions()
+                .add(latLngCurrent, latLngDestination)
+                .width(5)
+                .geodesic(false)
+                .color(Color.RED));
+
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLngDestination));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
     }
+
+//    public List<LatLng> decodePoly(String encoded) {
+//// encoded is overview_polyline.points;
+//        List<LatLng> poly = new ArrayList<LatLng>();
+//        int index = 0, len = encoded.length();
+//        int lat = 0, lng = 0;
+//        while (index < len) {
+//            int b, shift = 0, result = 0;
+//            do {
+//                b = encoded.charAt(index++) - 63;
+//                result |= (b & 0x1f) << shift;
+//                shift += 5;
+//            } while (b >= 0x20);
+//            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+//            lat += dlat;
+//
+//            shift = 0;
+//            result = 0;
+//            do {
+//                b = encoded.charAt(index++) - 63;
+//                result |= (b & 0x1f) << shift;
+//                shift += 5;
+//            } while (b >= 0x20);
+//            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+//            lng += dlng;
+//
+//            LatLng p = new LatLng((((double) lat / 1E5)),
+//                    (((double) lng / 1E5)));
+//            poly.add(p);
+//        }
+//        return poly;
+//    }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 

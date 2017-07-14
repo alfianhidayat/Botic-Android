@@ -1,7 +1,5 @@
 package com.example.amrizalns.botic.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -19,9 +17,7 @@ import com.example.amrizalns.botic.model.Aktivitas;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
-
-public class aktivitas_saya extends Fragment {
+public class favorite extends Fragment {
 
     private List<ObjectItem> mAktivitasList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -37,7 +33,7 @@ public class aktivitas_saya extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_aktivitas_saya, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_aktivitas);
 
         mAdapter = new AktivitasAdapter(mAktivitasList);

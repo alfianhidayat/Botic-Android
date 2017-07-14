@@ -15,29 +15,53 @@
         android:id="@+id/ln"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_nama_ak"
+        <ImageView
+            android:id="@+id/img_fav"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/action_settings"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_botic_whitespace"
+            />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:textColor="@color/colorContent"
-            android:textSize="16dp"
-            android:textStyle="bold"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_tgl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/colorContent"/>
+            <TextView
+                android:id="@+id/tv_title_fav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Title"
+                android:textColor="@color/colorContent"
+                android:textSize="16dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_loc_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Location"
+                android:textColor="@color/colorContent"
+                android:textSize="12dp"/>
+
+            <RatingBar
+                android:id="@+id/rb_fav"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1"
+                android:theme="@style/RatingBar"
+                />
+        </LinearLayout>
     </LinearLayout>
-
-    <Switch
-        android:id="@+id/simpleSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@id/ln"/>
 
 </RelativeLayout>

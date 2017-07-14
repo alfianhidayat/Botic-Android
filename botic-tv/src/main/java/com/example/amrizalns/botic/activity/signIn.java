@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -46,13 +45,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -149,7 +142,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                     mPassword.setError("Required");
                 } else {
                     mProgressDialog.show();
-                    RetrofitApi.getInstance().getApiService("")
+                    RetrofitApi.getInstance(this).getApiService("")
                             .login("password",
                                     "2",
                                     "Ypsems1mc9lfAMSY3QAacVl7mVSE3FTuKk5s3n8S",
@@ -172,6 +165,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 
                                 @Override
                                 public void onFailure(Call<Token> call, Throwable t) {
+                                    Log.e("Error", t.getLocalizedMessage());
                                     Toast.makeText(mContext, "Terjadi kesalahan server !", Toast.LENGTH_SHORT).show();
                                     mProgressDialog.dismiss();
                                 }
@@ -195,7 +189,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
     }
 
     private void getProfile() {
-        RetrofitApi.getInstance().getApiService(SessionLogin.getAccessToken())
+        RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
                 .getProfile()
                 .enqueue(new Callback<BaseResponse<User>>() {
                     @Override
@@ -233,7 +227,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 
     private void loginSocialite(String name, String email, String provider) {
         mProgressDialog.show();
-        RetrofitApi.getInstance().getApiService("")
+        RetrofitApi.getInstance(this).getApiService("")
                 .loginSocialite(name, email, provider)
                 .enqueue(new Callback<Token>() {
                     @Override
@@ -274,7 +268,7 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                     String name = res.get("name").toString();
                     String email = res.get("email").toString();
                     Toast.makeText(mContext, name + " : " + email, Toast.LENGTH_SHORT).show();
-                    loginSocialite(name,  email, "facebook");
+                    loginSocialite(name, email, "facebook");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -421,24 +415,8 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 //
 //        mProgressDialog.show();
 //    }
-//
-//    private void hideProgressDialog() {
-//        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-//            mProgressDialog.hide();
-//        }
-//    }
-//
-//    private void updateUI(boolean isSignedIn) {
-//        if (isSignedIn) {
-//            mSignInButton.setVisibility(View.GONE);
-//            mSignOutButton.setVisibility(View.VISIBLE);
-//        } else {
-//            mSignInButton.setVisibility(View.VISIBLE);
-//            mSignOutButton.setVisibility(View.GONE);
-//        }
-//    }
 
-    //----------------End - API Google+-----------------//
+    //----------------End - API Google+-----------------//SSS
 
 
     @Override
@@ -533,8 +511,6 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
                 sharedPrefManager.saveToken(mContext, idToken);
                 sharedPrefManager.saveIsLoggedIn(mContext, true);
 
-//                Intent i = new Intent(this, mainInterface.class);
-//                startActivity(i);
                 loginSocialite(name, email, "google");
             } else {
                 Log.e(TAG, "Login Google Unsuccessful. ");
@@ -543,68 +519,4 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
             }
         }
     }
-
-    //--------------Sign In Aplikasi--------------
-    public class SignInActivity extends AsyncTask<String, String, String> {
-        private String email, password;
-
-        public SignInActivity(String email, String password) {
-            this.email = email;
-            this.password = password;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressDialog = new ProgressDialog(signIn.this);
-            mProgressDialog.setMessage("Loading...");
-            mProgressDialog.setCancelable(true);
-            mProgressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            List<NameValuePair> param = new ArrayList<NameValuePair>();
-            param.add(new BasicNameValuePair("email", email));
-            param.add(new BasicNameValuePair("password", password));
-
-            JSONObject json = mJSONParser.makeHttpRequest(url, "POST", param);
-
-            Log.d("Create Response", json.toString());
-
-            try {
-                int success = json.getInt(TAG_SUCCESS);
-                if (success == 1) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(signIn.this, R.string.success_login, Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(signIn.this, mainInterface.class);
-                            i.putExtra("user", email.toString());
-                            startActivity(i);
-                        }
-                    });
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(signIn.this, R.string.failure_login, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-            mProgressDialog.dismiss();
-        }
-    }
-    //--------------End - Sign In Aplikasi--------------
 }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.botic.coreapps.models.ObjectItem;
 import com.example.amrizalns.botic.AktivitasAdapter;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.model.Aktivitas;
@@ -16,9 +17,9 @@ import com.example.amrizalns.botic.model.Aktivitas;
 import java.util.ArrayList;
 import java.util.List;
 
-public class aktivitas_saya extends Fragment {
+public class favorite extends Fragment {
 
-    private List<Aktivitas> mAktivitasList = new ArrayList<>();
+    private List<ObjectItem> mAktivitasList = new ArrayList<>();
     private RecyclerView recyclerView;
     private AktivitasAdapter mAdapter;
 
@@ -32,7 +33,7 @@ public class aktivitas_saya extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_aktivitas_saya, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_aktivitas);
 
         mAdapter = new AktivitasAdapter(mAktivitasList);
@@ -46,18 +47,7 @@ public class aktivitas_saya extends Fragment {
     }
 
     private void prepareAktivitasData() {
-        Aktivitas aktivitas = new Aktivitas("Mad Max: Fury Road", "2015");
-        mAktivitasList.add(aktivitas);
-
-        aktivitas = new Aktivitas("Inside Out", "2015");
-        mAktivitasList.add(aktivitas);
-
-        aktivitas = new Aktivitas("Inside Out", "2015");
-        mAktivitasList.add(aktivitas);
-
-        aktivitas = new Aktivitas("Inside Out", "2015");
-        mAktivitasList.add(aktivitas);
-
-        mAdapter.notifyDataSetChanged();
+        ObjectItem favorite = new ObjectItem();
+        mAktivitasList.add(favorite);
     }
 }

@@ -36,11 +36,11 @@ public class kesehatan extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_tempat_ibadah, null);
-        mViewPager = (ViewPager) view.findViewById(R.id.vp_tempatibadah);
+        view = inflater.inflate(R.layout.fragment_kesehatan, null);
+        mViewPager = (ViewPager) view.findViewById(R.id.vp_kesehatan);
         setupViewPager(mViewPager);
 
-        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout_tempatibadah);
+        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout_kesehatan);
         mTabLayout.setupWithViewPager(mViewPager);
 
         return view;

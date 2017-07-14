@@ -40,7 +40,11 @@ public class DefaultCallback<T> implements Callback<BaseResponse<T>> {
     @Override
     public void onResponse(Call<BaseResponse<T>> call, Response<BaseResponse<T>> response) {
         if (response.isSuccessful()) {
-            onSuccess(response.body().data);
+            if (response.body().isError()) {
+                onError(response.body().getMessage());
+            } else {
+                onSuccess(response.body().data);
+            }
         } else if (response.code() == 401) {
             onUnauthorized();
         } else {

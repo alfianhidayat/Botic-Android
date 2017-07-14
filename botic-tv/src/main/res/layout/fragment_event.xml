@@ -1,42 +1,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.amrizalns.botic.fragment.kesehatan"
     android:orientation="horizontal"
-    tools:context="com.example.amrizalns.botic.fragment.aboutbjn"
-    >
+    android:background="@color/colorBackground">
 
     <LinearLayout
-        android:id="@+id/header"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:id="@+id/header"
         >
-
         <ImageView
             android:scaleType="fitXY"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/banner_aboutbjn"
+            android:src="@drawable/banner_event"
             />
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:padding="10dp"
+        android:gravity="start">
 
-        <TextView
-            android:gravity="center_horizontal"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Coming Soon"
-            android:textColor="@color/colorContent"
-            android:textStyle="bold"
-            />
+            android:background="@color/colorContent"
+            android:scrollbars="vertical" />
+
     </LinearLayout>
+
 </LinearLayout>

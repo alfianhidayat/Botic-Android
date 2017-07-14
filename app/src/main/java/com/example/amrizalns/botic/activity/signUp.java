@@ -89,7 +89,8 @@ public class signUp extends AppCompatActivity {
                         @Override
                         protected void onError(String message) {
                             super.onError(message);
-                            Toast.makeText(signUp.this, "Registrasi Gagal", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(signUp.this, message, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(signUp.this, "Registrasi Gagal", Toast.LENGTH_SHORT).show();
                         }
                     });
                 else

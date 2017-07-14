@@ -8,6 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.botic.coreapps.AppsCore;
+import com.botic.coreapps.models.Picture;
+import com.example.amrizalns.botic.utils.CustomPicasso;
+
+import java.util.List;
+
 /**
  * Created by user on 14/07/2017.
  */
@@ -15,15 +21,20 @@ import android.widget.LinearLayout;
 public class ImgViewPageAdapter extends PagerAdapter {
     private Context mContext;
     private int[] mResources;
+    private List<Picture> pictureList;
 
     public ImgViewPageAdapter(Context mContext, int[] mResources) {
         this.mContext = mContext;
         this.mResources = mResources;
     }
 
+    public void setPictureList(List<Picture> pictureList) {
+        this.pictureList = pictureList;
+    }
+
     @Override
     public int getCount() {
-        return mResources.length;
+        return pictureList.size();
     }
 
     @Override
@@ -36,7 +47,11 @@ public class ImgViewPageAdapter extends PagerAdapter {
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.pager_item, container, false);
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.img_pager_item);
-        imageView.setImageResource(mResources[position]);
+//        imageView.setImageResource(mResources[position]);
+        CustomPicasso.getInstance(mContext).load(AppsCore.BASE_URL + "image/" + ((pictureList.size() == 0) ? R.mipmap.ic_botic : pictureList.get(position).getOriginalFilename()))
+                .placeholder(R.mipmap.ic_botic)
+                .error(R.mipmap.ic_botic)
+                .into(imageView);
 
         container.addView(itemView);
 

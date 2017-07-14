@@ -66,12 +66,13 @@ public class checkin_1 extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (Integer.parseInt(s.toString()) <= 10 && Integer.parseInt(s.toString()) > 0) {
-                daftar_pj.setEnabled(true);
-            } else {
-                daftar_pj.setEnabled(false);
-                Toast.makeText(getActivity(), "Maksimal 10", Toast.LENGTH_SHORT).show();
-            }
+            if (!s.toString().isEmpty())
+                if (Integer.parseInt(s.toString()) <= 10 && Integer.parseInt(s.toString()) > 0) {
+                    daftar_pj.setEnabled(true);
+                } else {
+                    daftar_pj.setEnabled(false);
+                    Toast.makeText(getActivity(), "Maksimal 10", Toast.LENGTH_SHORT).show();
+                }
         }
 
         @Override

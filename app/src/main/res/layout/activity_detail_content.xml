@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.example.amrizalns.botic.activity.detail_content"
-    >
+    tools:context="com.example.amrizalns.botic.activity.detail_content">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -23,8 +21,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_content"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/app_bar_height">
-            </android.support.v4.view.ViewPager>
+                android:layout_height="@dimen/app_bar_height"></android.support.v4.view.ViewPager>
 
             <LinearLayout
                 android:id="@+id/sliderContent"
@@ -32,8 +29,13 @@
                 android:layout_height="20dp"
                 android:layout_alignParentBottom="true"
                 android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
-            </LinearLayout>
+                android:orientation="horizontal"></LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_botic" />
 
         </RelativeLayout>
 
@@ -47,8 +49,8 @@
         app:backgroundTint="@color/colorGplus"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_placeholder"/>
+        app:srcCompat="@drawable/ic_placeholder" />
 
-    <include layout="@layout/content_detail"/>
+    <include layout="@layout/content_detail" />
 
 </android.support.design.widget.CoordinatorLayout>

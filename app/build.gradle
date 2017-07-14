@@ -15,7 +15,6 @@ android {
     }
     buildTypes {
         release {
-//            shrinkResources true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -45,5 +44,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'io.realm:realm-android:0.82.1'
 }
 apply plugin: 'com.google.gms.google-services'

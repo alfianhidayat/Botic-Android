@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.botic.coreapps.models.ObjectItem;
 import com.example.amrizalns.botic.AktivitasAdapter;
 import com.example.amrizalns.botic.R;
+import com.example.amrizalns.botic.helper.RealmController;
 import com.example.amrizalns.botic.model.Aktivitas;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class favorite extends Fragment {
 
-    private List<ObjectItem> mAktivitasList = new ArrayList<>();
+    private List<com.example.amrizalns.botic.model.ObjectItem> mAktivitasList = new ArrayList<>();
     private RecyclerView recyclerView;
     private AktivitasAdapter mAdapter;
 
@@ -35,19 +36,12 @@ public class favorite extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_aktivitas);
-
-        mAdapter = new AktivitasAdapter(mAktivitasList);
+        mAktivitasList = RealmController.with(this).getObjects();
+        mAdapter = new AktivitasAdapter(getActivity(), mAktivitasList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
-
-        prepareAktivitasData();
         return view;
-    }
-
-    private void prepareAktivitasData() {
-        ObjectItem favorite = new ObjectItem();
-        mAktivitasList.add(favorite);
     }
 }

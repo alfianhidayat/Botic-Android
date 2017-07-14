@@ -2,6 +2,7 @@ package com.botic.coreapps.networks;
 
 import com.botic.coreapps.models.Asset;
 import com.botic.coreapps.models.CheckInParams;
+import com.botic.coreapps.models.Event;
 import com.botic.coreapps.models.IdentityType;
 import com.botic.coreapps.models.ObjectItem;
 import com.botic.coreapps.models.Picture;
@@ -126,4 +127,7 @@ public interface ApiService {
     @GET("api/picture/{id}")
     Call<BaseResponse<List<Picture>>> getPicture(@Path("id") int id);
 
+
+    @GET("api/event")
+    Call<BaseResponse<List<Event>>> getEvent();
 }

@@ -328,9 +328,9 @@ public class detail_content extends AppCompatActivity {
                             slider();
                             img.setVisibility(View.GONE);
                         } else {
-                            CustomPicasso.getInstance(detail_content.this).load(AppsCore.BASE_URL + "image/" + ((mPictureList.size() == 0) ? R.mipmap.ic_botic : mPictureList.get(0).getOriginalFilename()))
-                                    .placeholder(R.mipmap.ic_botic)
-                                    .error(R.mipmap.ic_botic)
+                            CustomPicasso.getInstance(detail_content.this).load(AppsCore.BASE_URL + "image/" + ((mPictureList.size() == 0) ? R.drawable.ic_no_photo : mPictureList.get(0).getOriginalFilename()))
+                                    .placeholder(R.drawable.ic_no_photo)
+                                    .error(R.drawable.ic_no_photo)
                                     .into(img);
                         }
                     }

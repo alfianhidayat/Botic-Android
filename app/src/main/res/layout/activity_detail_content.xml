@@ -21,7 +21,8 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_content"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/app_bar_height"></android.support.v4.view.ViewPager>
+                android:layout_height="@dimen/app_bar_height">
+            </android.support.v4.view.ViewPager>
 
             <LinearLayout
                 android:id="@+id/sliderContent"
@@ -29,13 +30,17 @@
                 android:layout_height="20dp"
                 android:layout_alignParentBottom="true"
                 android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal"></LinearLayout>
+                android:orientation="horizontal">
+
+            </LinearLayout>
 
             <ImageView
+                android:background="#EEEEEE"
                 android:id="@+id/iv_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@mipmap/ic_botic" />
+                android:scaleType="center"
+                android:src="@drawable/ic_no_photo" />
 
         </RelativeLayout>
 

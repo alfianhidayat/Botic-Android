@@ -23,8 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:contentDescription="@string/action_settings"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_botic_whitespace"
+            android:scaleType="center"
+            android:src="@drawable/ic_no_photo"
             />
 
         <LinearLayout

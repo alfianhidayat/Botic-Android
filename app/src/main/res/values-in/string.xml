@@ -13,14 +13,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="wisata">Tourism</string>
-    <string name="belanja">Shopping</string>
+    <string name="wisata">Wisata</string>
+    <string name="belanja">Belanja</string>
     <string name="hotel">Hotel</string>
-    <string name="kuliner">Culinary</string>
-    <string name="transportasi">Transpotation</string>
-    <string name="checkin_turis">Checkin Touris</string>
+    <string name="kuliner">Kuliner</string>
+    <string name="transportasi">Transportasi</string>
+    <string name="checkin_turis">Checkin Turis</string>
     <string name="atur_liburanmu">Atur Liburanmu !</string>
-    <string name="pilih_destinasi_mu">Choose destination</string>
+    <string name="pilih_destinasi_mu">Pilih destinasi mu</string>
     <string name="data_pemesan">Data pemesan</string>
     <string name="nomor_indentitas">nomor indentitas</string>
     <string name="nomor_telepon">nomor telepon</string>

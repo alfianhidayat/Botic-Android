@@ -149,21 +149,20 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
         mLastLocation = location;
         if (mCurrentMarker != null) {
             mCurrentMarker.remove();
-        }
-
-        LatLng latLngCurrent = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLngCurrent);
-        markerOptions.title("Start");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        mCurrentMarker = mGoogleMap.addMarker(markerOptions);
-
-        LatLng latLngDestination = new LatLng(item.getLat(), item.getLng());
-        markerOptions = new MarkerOptions();
-        markerOptions.position(latLngDestination);
-        markerOptions.title("Tujuan");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-        mCurrentMarker = mGoogleMap.addMarker(markerOptions);
+        } else {
+            LatLng latLngCurrent = new LatLng(location.getLatitude(), location.getLongitude());
+            MarkerOptions markerOptions = new MarkerOptions();
+//            markerOptions.position(latLngCurrent);
+//            markerOptions.title("Start");
+//            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+//            mCurrentMarker = mGoogleMap.addMarker(markerOptions);
+//            latLngs.add(new LatLng(location.getLatitude(), location.getLongitude()));
+            LatLng latLngDestination = new LatLng(item.getLat(), item.getLng());
+            markerOptions = new MarkerOptions();
+            markerOptions.position(latLngDestination);
+            markerOptions.title("Tujuan");
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+            mCurrentMarker = mGoogleMap.addMarker(markerOptions);
 
 //        String url = "http://maps.googleapis.com/maps/api/directions/xml?"
 //                + "origin=" + location.getLatitude() + "," + location.getLongitude()
@@ -171,15 +170,15 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
 //                + "&sensor=false&units=metric&mode=DRIVING";
 
 //        mPolylineOptions.addAll(decodePoly(url));
+            mGoogleMap.addPolyline(new PolylineOptions()
+                    .add(latLngCurrent, latLngDestination)
+                    .width(5)
+                    .geodesic(true)
+                    .color(Color.RED));
 
-        mGoogleMap.addPolyline(new PolylineOptions()
-                .add(latLngCurrent, latLngDestination)
-                .width(5)
-                .geodesic(false)
-                .color(Color.RED));
-
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLngDestination));
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLngDestination));
+            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        }
     }
 
 //    public List<LatLng> decodePoly(String encoded) {

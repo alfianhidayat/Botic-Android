@@ -55,6 +55,7 @@ public class checkin_2 extends Fragment implements View.OnClickListener, ItemCli
     private checkinAdapter mCheckinAdapter;
     String nama, asal;
     List<CheckInParams.Visitor> visitors = new ArrayList<>();
+    private int jmlTamu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,9 +80,9 @@ public class checkin_2 extends Fragment implements View.OnClickListener, ItemCli
         mCheckinAdapter.setClickListener(this);
 
         String jumlah = getArguments().getString("daftar");
-        int jmlTamu = Integer.parseInt(jumlah);
+        jmlTamu = Integer.parseInt(jumlah);
         for (int i = 0; i < jmlTamu; i++) {
-            CheckinData checkinData = new CheckinData("Isi Data Pengunjung - "+ (i + 1), asal);
+            CheckinData checkinData = new CheckinData("Isi Data Pengunjung - " + (i + 1), asal);
             mCheckinDataList.add(checkinData);
         }
         mCheckinAdapter.notifyDataSetChanged();
@@ -96,55 +97,55 @@ public class checkin_2 extends Fragment implements View.OnClickListener, ItemCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_checkin_tamu:
-                List<CheckInParams.Visitor> visitors = new ArrayList<>();
-                for (CheckinData data : mCheckinDataList) {
-                    visitors.add(new CheckInParams.Visitor(data.getNama(), Integer.parseInt(data.getUmur()), data.getAsal()));
+                if (visitors.size() == jmlTamu) {
+                    CheckInParams params = SessionLogin.getCheckIn();
+                    params.setVisitors(visitors);
+                    SessionLogin.saveCheckIn(params);
+                    RetrofitApi.getInstance(getActivity()).getApiService(SessionLogin.getAccessToken())
+                            .checkIn(SessionLogin.getCheckIn())
+                            .enqueue(new PageCallback<Object>(getActivity()) {
+                                @Override
+                                protected void onStart() {
+                                    dialog.show();
+                                }
+
+                                @Override
+                                protected void onFinish() {
+                                    dialog.dismiss();
+                                }
+
+                                @Override
+                                protected void onSuccess(Object data) {
+                                    Toast.makeText(getActivity(), "Checkin Berhasil", Toast.LENGTH_SHORT).show();
+                                    SessionLogin.deleteCheckInParams();
+                                    Intent intent = new Intent(getActivity(), mainInterface.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+
+                                @Override
+                                protected void onError(String message) {
+                                    super.onError(message);
+                                    Toast.makeText(getActivity(), "Checkin Gagal", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                protected void onUnauthorized() {
+                                    SessionLogin.reset();
+                                    Intent intent = new Intent(getActivity(), signIn.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+                            });
+                } else {
+                    Toast.makeText(getActivity(), "Inputkan semua data pengunjung", Toast.LENGTH_SHORT).show();
                 }
-                CheckInParams params = SessionLogin.getCheckIn();
-                params.setVisitors(visitors);
-                SessionLogin.saveCheckIn(params);
-                RetrofitApi.getInstance(getActivity()).getApiService(SessionLogin.getAccessToken())
-                        .checkIn(SessionLogin.getCheckIn())
-                        .enqueue(new PageCallback<Object>(getActivity()) {
-                            @Override
-                            protected void onStart() {
-                                dialog.show();
-                            }
-
-                            @Override
-                            protected void onFinish() {
-                                dialog.dismiss();
-                            }
-
-                            @Override
-                            protected void onSuccess(Object data) {
-                                Toast.makeText(getActivity(), "Checkin Berhasil", Toast.LENGTH_SHORT).show();
-                                SessionLogin.deleteCheckInParams();
-                                Intent intent = new Intent(getActivity(), mainInterface.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                            }
-
-                            @Override
-                            protected void onError(String message) {
-                                super.onError(message);
-                                Toast.makeText(getActivity(), "Checkin Gagal", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            protected void onUnauthorized() {
-                                SessionLogin.reset();
-                                Intent intent = new Intent(getActivity(), signIn.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                            }
-                        });
                 break;
         }
     }
 
     @Override
-    public void onClick(View view, final int position) {
+    public void onClick(final View view, final int position) {
         final CheckinData checkinData = mCheckinDataList.get(position);
         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getContext());
         View mView = layoutInflaterAndroid.inflate(R.layout.input_data_tamu, null);
@@ -163,6 +164,10 @@ public class checkin_2 extends Fragment implements View.OnClickListener, ItemCli
                         checkinData.setAsal(asal);
                         checkinData.setUmur(usiaInputDialogEditText.getText().toString());
                         mCheckinAdapter.notifyDataSetChanged();
+                        if (visitors.size() != jmlTamu)
+                            visitors.add(new CheckInParams.Visitor(checkinData.getNama(), Integer.parseInt(checkinData.getUmur()), checkinData.getAsal()));
+                        else
+                            visitors.set(position, new CheckInParams.Visitor(checkinData.getNama(), Integer.parseInt(checkinData.getUmur()), checkinData.getAsal()));
                     }
                 })
                 .setNegativeButton("Batal",

@@ -54,6 +54,10 @@
                 android:icon="@drawable/ic_menu_info"
                 android:title="@string/aboutapps" />
             <item
+                android:id="@+id/nav_language"
+                android:icon="@drawable/ic_language"
+                android:title="@string/changeLanguage" />
+            <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_menu_logout"
                 android:title="@string/logout" />

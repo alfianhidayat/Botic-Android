@@ -131,12 +131,12 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
                 String desGed = mDescGedung.getText().toString();
 
                 if (nama.isEmpty()  && noIdentitas.isEmpty() && noHP.isEmpty() && desGed.isEmpty()) {
-                    mName.setError("Nama wajib diisi!");
-                    mNoIdentias.setError("Nomor Identitas wajib diisi!");
-                    mNoHP.setError("Nomor HP wajib diisi!");
-                    mDescGedung.setError("Deskripsi Gedung wajib diisi");
+                    mName.setError("Required!");
+                    mNoIdentias.setError("Required!");
+                    mNoHP.setError("Required!");
+                    mDescGedung.setError("Required!");
                 } else if (!nama.matches("[a-zA-Z]+")){
-                    mName.setError("Nama Tidak Boleh Angka");
+                    mName.setError("Nama Tidak Boleh Angka!");
                 } else if (!isValidMobile(noHP)) {
                     mNoHP.setError("Nomer HP harus sesuai");
                 } else if (!aggrement.isChecked()) {
@@ -168,14 +168,14 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
 
                                 @Override
                                 protected void onSuccess(Object data) {
-                                    Toast.makeText(booking_gedung.this, "Booking Berhasil", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(booking_gedung.this, R.string.bookingberhasil, Toast.LENGTH_SHORT).show();
                                     BookingGedung();
                                 }
 
                                 @Override
                                 protected void onError(String message) {
                                     super.onError(message);
-                                    Toast.makeText(booking_gedung.this, "Booking Gagal", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(booking_gedung.this, R.string.bookinggagal, Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override

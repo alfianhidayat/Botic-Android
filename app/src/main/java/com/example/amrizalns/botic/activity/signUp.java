@@ -68,10 +68,10 @@ public class signUp extends AppCompatActivity {
                 String pass = inputPass.getText().toString();
                 String confpass = inputConfPass.getText().toString();
                 if (nama.isEmpty() && email.isEmpty() && pass.isEmpty() && confpass.isEmpty()){
-                    inputName.setError("Wajib Diisi!");
-                    inputEmail.setError("Wajib Diisi!");
-                    inputPass.setError("Wajib Diisi!");
-                    inputConfPass.setError("Wajib Diisi!");
+                    inputName.setError("Required!");
+                    inputEmail.setError("Required!");
+                    inputPass.setError("Required!");
+                    inputConfPass.setError("Required!");
                 } else if(!isValidMail(email)) {
                     inputEmail.setError("Email Tidak Valid");
                 } else if (inputPass.getText().toString().equals(inputConfPass.getText().toString()))
@@ -93,7 +93,7 @@ public class signUp extends AppCompatActivity {
 
                         @Override
                         protected void onSuccess(Object data) {
-                            Toast.makeText(signUp.this, "Registrasi Berhasil", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(signUp.this, R.string.suc_regis, Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), signIn.class);
                             startActivity(i);
                         }
@@ -101,12 +101,12 @@ public class signUp extends AppCompatActivity {
                         @Override
                         protected void onError(String message) {
                             super.onError(message);
-                            Toast.makeText(signUp.this, "Registrasi belum selesai!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(signUp.this, R.string.fail_regis, Toast.LENGTH_SHORT).show();
 //                            Toast.makeText(signUp.this, "Registrasi Gagal", Toast.LENGTH_SHORT).show();
                         }
                     });
                 else
-                    Toast.makeText(signUp.this, "Confirm Password tidak sama !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signUp.this, R.string.conf_pass, Toast.LENGTH_SHORT).show();
             }
         });
     }

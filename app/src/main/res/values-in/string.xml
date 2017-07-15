@@ -189,4 +189,20 @@
     <string name="selesai">Selesai</string>
     <string name="asal">Asal</string>
     <string name="Time">Waktu</string>
+    <string name="headerbooking">Proses booking assets digunakan untuk melakukan pendataan secara menyeluruh agar menciptakan kenyamanan transaksi dari pihak konsumen dan penyedian tempat.</string>
+    <string name="bookinggedung">Booking Gedung</string>
+    <string name="bookingkesenian">Booking Kesenian</string>
+    <string name="datatamuwisata">Data Tamu Wisatawan</string>
+    <string name="daftar">Daftar</string>
+    <string name="termsCheckIn">Saya bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut.</string>
+    <string name="daftarcheck">Lanjutkan</string>
+    <string name="bookingberhasil">Booking Berhasil</string>
+    <string name="bookinggagal">Booking Gagal</string>
+    <string name="batal_dContent">Batal</string>
+    <string name="suc_review">Review berhasil ditambahkan</string>
+    <string name="fail_review">Review gagal ditambahkan</string>
+    <string name="tujuan_Loc">Tujuan</string>
+    <string name="suc_regis">Registrasi Berhasil</string>
+    <string name="fail_regis">Registrasi belum selesai!</string>
+    <string name="conf_pass">Confirm Password tidak sama !</string>
 </resources>

@@ -154,7 +154,7 @@ public class detail_content extends AppCompatActivity {
                                 dialogBox.dismiss();
                             }
                         })
-                        .setNegativeButton("Batal",
+                        .setNegativeButton(R.string.batal_dContent,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialogBox, int id) {
                                         dialogBox.cancel();
@@ -247,13 +247,13 @@ public class detail_content extends AppCompatActivity {
                     @Override
                     protected void onSuccess(Review data) {
                         getReview(objectItem.getId());
-                        Toast.makeText(detail_content.this, "Review berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(detail_content.this, R.string.suc_review, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     protected void onError(String message) {
                         super.onError(message);
-                        Toast.makeText(detail_content.this, "Review gagal ditambahkan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(detail_content.this, R.string.fail_review, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

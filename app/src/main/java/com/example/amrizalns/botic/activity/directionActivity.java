@@ -152,24 +152,13 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
         } else {
             LatLng latLngCurrent = new LatLng(location.getLatitude(), location.getLongitude());
             MarkerOptions markerOptions = new MarkerOptions();
-//            markerOptions.position(latLngCurrent);
-//            markerOptions.title("Start");
-//            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-//            mCurrentMarker = mGoogleMap.addMarker(markerOptions);
-//            latLngs.add(new LatLng(location.getLatitude(), location.getLongitude()));
             LatLng latLngDestination = new LatLng(item.getLat(), item.getLng());
             markerOptions = new MarkerOptions();
             markerOptions.position(latLngDestination);
-            markerOptions.title("Tujuan");
+            markerOptions.title(getString(R.string.tujuan_Loc));
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
             mCurrentMarker = mGoogleMap.addMarker(markerOptions);
 
-//        String url = "http://maps.googleapis.com/maps/api/directions/xml?"
-//                + "origin=" + location.getLatitude() + "," + location.getLongitude()
-//                + "&destination=" + item.getLat() + "," + item.getLng()
-//                + "&sensor=false&units=metric&mode=DRIVING";
-
-//        mPolylineOptions.addAll(decodePoly(url));
             mGoogleMap.addPolyline(new PolylineOptions()
                     .add(latLngCurrent, latLngDestination)
                     .width(5)
@@ -181,37 +170,6 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-//    public List<LatLng> decodePoly(String encoded) {
-//// encoded is overview_polyline.points;
-//        List<LatLng> poly = new ArrayList<LatLng>();
-//        int index = 0, len = encoded.length();
-//        int lat = 0, lng = 0;
-//        while (index < len) {
-//            int b, shift = 0, result = 0;
-//            do {
-//                b = encoded.charAt(index++) - 63;
-//                result |= (b & 0x1f) << shift;
-//                shift += 5;
-//            } while (b >= 0x20);
-//            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-//            lat += dlat;
-//
-//            shift = 0;
-//            result = 0;
-//            do {
-//                b = encoded.charAt(index++) - 63;
-//                result |= (b & 0x1f) << shift;
-//                shift += 5;
-//            } while (b >= 0x20);
-//            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-//            lng += dlng;
-//
-//            LatLng p = new LatLng((((double) lat / 1E5)),
-//                    (((double) lng / 1E5)));
-//            poly.add(p);
-//        }
-//        return poly;
-//    }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 

@@ -39,6 +39,7 @@ import com.example.amrizalns.botic.fragment.event;
 import com.example.amrizalns.botic.fragment.favorite;
 import com.example.amrizalns.botic.fragment.kesehatan;
 import com.example.amrizalns.botic.fragment.keuangan;
+import com.example.amrizalns.botic.fragment.language;
 import com.example.amrizalns.botic.fragment.leisure;
 import com.example.amrizalns.botic.fragment.pelayananpublik;
 import com.example.amrizalns.botic.fragment.tempatIbadah;
@@ -153,7 +154,7 @@ public class mainInterface extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.nav_logout) {
             return true;
         }
 
@@ -307,6 +308,8 @@ public class mainInterface extends AppCompatActivity
             f = new booking();
         } else if (id == R.id.nav_aboutApp) {
             showPopUp();
+        } else if (id == R.id.nav_language) {
+            f = new language();
         } else if (id == R.id.nav_logout) {
             logoutFromFacebook();
             signOut();

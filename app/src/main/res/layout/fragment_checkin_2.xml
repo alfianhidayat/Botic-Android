@@ -30,7 +30,7 @@
             android:layout_marginStart="50dp"
             android:gravity="center"
             android:paddingTop="30dp"
-            android:text="Data tamu wisatawan"
+            android:text="@string/datatamuwisata"
             android:textColor="@color/colorContent"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -93,7 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/btn_set_act"
-                    android:text="Daftar"
+                    android:text="@string/daftar"
                     android:textAllCaps="false"
                     android:textColor="@color/colorMenu"
                     android:textSize="16sp"
@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:paddingEnd="0dp"
                     android:paddingStart="5dp"
-                    android:text="Saya bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut."
+                    android:text="@string/termsCheckIn"
                     android:textColor="@color/colorContent"
                     android:textSize="12sp" />
             </LinearLayout>

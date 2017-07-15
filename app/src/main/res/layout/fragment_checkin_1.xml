@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:gravity="center"
-                    android:text="Data penanggung jawab"
+                    android:text="@string/datapj"
                     android:textColor="@color/colorContent"
                     android:textSize="18sp"
                     android:textStyle="bold" />

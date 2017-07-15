@@ -35,7 +35,7 @@
             android:layout_marginRight="50dp"
             android:layout_marginTop="10dp"
             android:textSize="16sp"
-            android:text="Invoce Booking Gedung"
+            android:text="@string/invoicebookinggdg"
             android:textStyle="bold"
             android:textColor="@color/colorContent"/>
 
@@ -68,7 +68,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
-                android:text="Nomor Identitas"
+                android:text="@string/noID"
                 android:textStyle="bold"
                 android:textColor="@color/colorContent"/>
             <TextView
@@ -87,7 +87,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
-                android:text="Nama"
+                android:text="@string/Nama"
                 android:textStyle="bold"
                 android:textColor="@color/colorContent"/>
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
-                android:text="Nomor HP"
+                android:text="@string/NomorHP"
                 android:textStyle="bold"
                 android:textColor="@color/colorContent"/>
             <TextView
@@ -125,27 +125,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
-                android:text="Deskripsi Gedung"
-                android:textStyle="bold"
-                android:textColor="@color/colorContent"/>
-            <TextView
-                android:id="@+id/tv_desGedung"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
-                android:textColor="@color/colorContent"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
-                android:text="Jenis Gedung"
+                android:text="@string/jenisgedung"
                 android:textStyle="bold"
                 android:textColor="@color/colorContent"/>
             <TextView
@@ -165,7 +145,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
-                android:text="Tanggal Pemesanan"
+                android:text="@string/tanggalpesan"
                 android:textStyle="bold"
                 android:textColor="@color/colorContent"/>
             <TextView
@@ -183,8 +163,8 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:text="Waktu Sewa"
+                android:textSize="15sp"
+                android:text="@string/waktusewa"
                 android:textStyle="bold"
                 android:textColor="@color/colorContent"/>
             <TextView
@@ -196,12 +176,30 @@
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textColor="@color/colorContent"/>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:text="@string/deskripsi"
+                android:textStyle="bold"
+                android:textColor="@color/colorContent"/>
+            <TextView
+                android:id="@+id/tv_desGedung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textColor="@color/colorContent"/>
             <Button
                 android:id="@+id/selesai_gedung"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Selesai"
+                android:text="@string/selesai"
                 android:textAllCaps="false"
                 android:background="@drawable/btn_set_act"
                 android:layout_marginTop="15dp"

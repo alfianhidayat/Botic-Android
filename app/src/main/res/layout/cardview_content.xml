@@ -24,6 +24,7 @@
             android:layout_height="100dp"
             android:contentDescription="@string/action_settings"
             android:scaleType="center"
+            android:background="#BDBDBD"
             android:src="@drawable/ic_no_photo"
             />
 

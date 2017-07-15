@@ -41,7 +41,7 @@
                 android:id="@+id/detail_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Waktu"
+                android:text="@string/Time"
                 android:textColor="@color/colorContent"
                 android:textSize="12sp" />
             <View
@@ -52,7 +52,6 @@
                 android:background="#EEEEEE"
                 android:layout_gravity="bottom"
                 />
-
             <TextView
                 android:id="@+id/detail_desc"
                 android:layout_width="wrap_content"

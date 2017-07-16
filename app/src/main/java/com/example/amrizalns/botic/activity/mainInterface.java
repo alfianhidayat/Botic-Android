@@ -39,7 +39,6 @@ import com.example.amrizalns.botic.fragment.event;
 import com.example.amrizalns.botic.fragment.favorite;
 import com.example.amrizalns.botic.fragment.kesehatan;
 import com.example.amrizalns.botic.fragment.keuangan;
-import com.example.amrizalns.botic.fragment.language;
 import com.example.amrizalns.botic.fragment.leisure;
 import com.example.amrizalns.botic.fragment.pelayananpublik;
 import com.example.amrizalns.botic.fragment.tempatIbadah;
@@ -308,9 +307,15 @@ public class mainInterface extends AppCompatActivity
             f = new booking();
         } else if (id == R.id.nav_aboutApp) {
             showPopUp();
-        } else if (id == R.id.nav_language) {
-            f = new language();
         } else if (id == R.id.nav_logout) {
+            logoutFromFacebook();
+            signOut();
+            SessionLogin.reset();
+            if (SessionLogin.isExist()) {
+                Intent intent = new Intent(mainInterface.this, signIn.class);
+                startActivity(intent);
+            }
+        } else if (id == R.id.nav_logouts){
             logoutFromFacebook();
             signOut();
             SessionLogin.reset();
@@ -326,6 +331,8 @@ public class mainInterface extends AppCompatActivity
             ft.commit();
         }
     }
+
+
 
     private void showPopUp() {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);

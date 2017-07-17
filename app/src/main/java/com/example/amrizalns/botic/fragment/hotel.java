@@ -49,7 +49,7 @@ public class hotel extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_hotel, container, false);
-        lLayout = new GridLayoutManager(view.getContext(), 2);
+        lLayout = new GridLayoutManager(view.getContext(), 3);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);

@@ -45,11 +45,10 @@ public class beranda extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_beranda, null);
 
-        final ViewPager viewPager;
 
-        viewPager = (ViewPager) view.findViewById(R.id.vp);
+        mViewPager = (ViewPager) view.findViewById(R.id.vp);
         viewPagerAdapter vp = new viewPagerAdapter(getActivity());
-        viewPager.setAdapter(vp);
+        mViewPager.setAdapter(vp);
 
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
@@ -57,7 +56,7 @@ public class beranda extends Fragment {
                 if (currentPage == 3) {
                     currentPage = 0;
                 }
-                viewPager.setCurrentItem(currentPage++, true);
+                mViewPager.setCurrentItem(currentPage++, true);
             }
         };
 
@@ -69,7 +68,6 @@ public class beranda extends Fragment {
             }
         }, 1500, 3000);
 
-        mViewPager = (ViewPager) view.findViewById(R.id.vp);
         slider = (LinearLayout) view.findViewById(R.id.sliderContent);
         viewPagerAdapter = new viewPagerAdapter(getContext());
         mViewPager.setAdapter(viewPagerAdapter);

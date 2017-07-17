@@ -65,7 +65,7 @@ public class belanja extends Fragment {
         bundlePasar.putInt(Constants.TAG_ID_CATEGORY, 37);
         bundlePasar.putString(Constants.TAG_OBJECT_TYPE, Constants.TAG_SHOPPING);
         fragmentPasar.setArguments(bundlePasar);
-        adapter.addFragment(fragmentPasar, "Pasar");
+        adapter.addFragment(fragmentPasar, getString(R.string.pasar));
         viewPager.setAdapter(adapter);
     }
 

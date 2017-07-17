@@ -51,9 +51,9 @@ public class transportasi extends Fragment {
 
     private void setupViewPager(ViewPager viewPager){
         Adapter adapter = new Adapter(getFragmentManager());
-        adapter.addFragment(Utils.getFragmentWithArgument(14, Constants.TAG_TRANSPORTASI), "Bus");
-        adapter.addFragment(Utils.getFragmentWithArgument(15, Constants.TAG_TRANSPORTASI), "Kereta");
-        adapter.addFragment(Utils.getFragmentWithArgument(46, Constants.TAG_TRANSPORTASI), "Angkutan Wisata");
+        adapter.addFragment(Utils.getFragmentWithArgument(14, Constants.TAG_TRANSPORTASI), getString(R.string.bus));
+        adapter.addFragment(Utils.getFragmentWithArgument(15, Constants.TAG_TRANSPORTASI), getString(R.string.kereta));
+        adapter.addFragment(Utils.getFragmentWithArgument(46, Constants.TAG_TRANSPORTASI), getString(R.string.angkutanwisata));
         viewPager.setAdapter(adapter);
     }
 

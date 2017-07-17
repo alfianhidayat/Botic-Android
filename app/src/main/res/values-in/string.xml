@@ -207,4 +207,6 @@
     <string name="conf_pass">Confirm Password tidak sama !</string>
     <string name="favorite_toast">Berhasil ditambahkan sebagai Favorit</string>
     <string name="favorite_toast_remove">Dihapus dari Favorit</string>
+    <string name="respontidak">belum ada tanggapan admin</string>
+    <string name="respon">Tanggapan cs@botic :</string>
 </resources>

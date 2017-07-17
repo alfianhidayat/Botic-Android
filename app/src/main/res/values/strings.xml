@@ -207,5 +207,7 @@
     <string name="changeLanguage">Language</string>
     <string name="favorite_toast">Successfully Added to Favorite</string>
     <string name="favorite_toast_remove">Removed from Favorite</string>
+    <string name="respontidak">no response from admin</string>
+    <string name="respon">Response cs@botic :</string>
 
 </resources>

@@ -207,30 +207,7 @@
     <string name="changeLanguage">Language</string>
     <string name="favorite_toast">Successfully Added to Favorite</string>
     <string name="favorite_toast_remove">Removed from Favorite</string>
-    <string name="pasar">Market</string>
-    <string name="rumahsakit">Hospital</string>
-    <string name="clinic">Clinic</string>
-    <string name="kantorcabang">Branch Office</string>
-    <string name="unitpembantu">Unit Pembantu</string>
-    <string name="kantorkas">Kantor Kas</string>
-    <string name="restaurant">Restaurant</string>
-    <string name="cafe">Cafe</string>
-    <string name="pkl">Street Food</string>
-    <string name="salon">Salon</string>
-    <string name="pantipijat">Panti Pijat</string>
-    <string name="gym">Gym</string>
-    <string name="spa">Spa and Skin Care</string>
-    <string name="kedinasan">Kedinasan</string>
-    <string name="kecamatanperdaerah">Kec. and Perusahaan Daerah</string>
-    <string name="keamanan">Security</string>
-    <string name="umum">Public</string>
-    <string name="masjid">Mosque</string>
-    <string name="gereja">Church</string>
-    <string name="vihara">Monastery</string>
-    <string name="pura">Temple</string>
-    <string name="klenteng">Pagoda</string>
-    <string name="bus">Bus</string>
-    <string name="kereta">Train</string>
-    <string name="angkutanwisata">Angkutan Wisata</string>
+    <string name="respontidak">no response from admin</string>
+    <string name="respon">Response cs@botic :</string>
 
 </resources>

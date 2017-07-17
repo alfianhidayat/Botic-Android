@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:textColor="@color/colorContent"
-            android:textSize="14dp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
+            android:textSize="10sp"
             android:textColor="@color/colorContent" />
 
         <RatingBar
@@ -39,14 +40,31 @@
             android:theme="@style/RatingBar"
             style="@style/Widget.AppCompat.RatingBar.Small"
             />
+        <TextView
+            android:id="@+id/txt_header_response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginStart="50dp"
+            android:gravity="start"
+            android:text="@string/respon"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:textColor="@color/colorContent" />
 
         <TextView
             android:id="@+id/txt_response"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:gravity="right"
-            android:text="balasan : terima kasih reviewnya"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginStart="50dp"
+            android:gravity="start"
+            android:text="isi balasan"
+            android:textSize="10sp"
             android:textColor="@color/colorContent" />
 
         <View

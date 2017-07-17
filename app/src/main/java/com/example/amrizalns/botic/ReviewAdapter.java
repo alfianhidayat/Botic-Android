@@ -19,7 +19,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
     private List<Review> mReviewsList;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView nama, review;
+        public TextView nama, review, response;
         public RatingBar rating;
 
         public ViewHolder(View view) {
@@ -27,6 +27,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
             nama = (TextView) view.findViewById(R.id.txt_nama_review);
             review = (TextView) view.findViewById(R.id.txt_review_review);
             rating = (RatingBar) view.findViewById(R.id.rating_review);
+            response = (TextView) view.findViewById(R.id.txt_response);
         }
     }
 
@@ -48,6 +49,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         holder.nama.setText(review.getUser().getName());
         holder.review.setText(review.getReview());
         holder.rating.setRating(review.getRating());
+        if (review.getResponse().toString().trim().equals(""))
+            holder.response.setText("Response : tidak ada");
+        else {
+            holder.response.setText("Response : " + review.getResponse());
+        }
     }
 
     @Override

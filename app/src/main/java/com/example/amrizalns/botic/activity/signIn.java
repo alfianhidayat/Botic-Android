@@ -478,6 +478,12 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
     }
 
     @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 

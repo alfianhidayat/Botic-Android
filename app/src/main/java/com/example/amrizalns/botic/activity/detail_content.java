@@ -378,9 +378,11 @@ public class detail_content extends AppCompatActivity {
             realm.beginTransaction();
             realm.copyToRealm(object);
             realm.commitTransaction();
+            Toast.makeText(this, R.string.favorite_toast, Toast.LENGTH_SHORT).show();
         } else {
             fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
             RealmController.with(this).remove(objectItem.getId());
+            Toast.makeText(this, R.string.favorite_toast_remove, Toast.LENGTH_SHORT).show();
         }
     }
 }

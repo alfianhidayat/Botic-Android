@@ -30,6 +30,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
@@ -50,16 +51,6 @@
                 android:text="Location"
                 android:textColor="@color/colorContent"
                 android:textSize="12dp" />
-
-            <RatingBar
-                android:id="@+id/rb_fav"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:rating="0"
-                android:stepSize="1"
-                android:theme="@style/RatingBar" />
         </LinearLayout>
     </LinearLayout>
 

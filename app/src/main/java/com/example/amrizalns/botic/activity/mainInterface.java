@@ -136,7 +136,8 @@ public class mainInterface extends AppCompatActivity
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+                moveTaskToBack(true);
+//                finish();
             }
         });
         AlertDialog alertDialog = builder.create();
@@ -152,11 +153,22 @@ public class mainInterface extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
 
-        if (id == R.id.nav_logout) {
-            return true;
+        switch (id) {
+            case R.id.nav_logout:
+                logoutFromFacebook();
+                signOut();
+                SessionLogin.reset();
+                if (SessionLogin.isExist()) {
+                    Intent intent = new Intent(mainInterface.this, signIn.class);
+                    startActivity(intent);
+                }
+                break;
+            default:
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -169,6 +181,7 @@ public class mainInterface extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
 
         return true;
     }
@@ -315,15 +328,8 @@ public class mainInterface extends AppCompatActivity
                 Intent intent = new Intent(mainInterface.this, signIn.class);
                 startActivity(intent);
             }
-        } else if (id == R.id.nav_logouts){
-            logoutFromFacebook();
-            signOut();
-            SessionLogin.reset();
-            if (SessionLogin.isExist()) {
-                Intent intent = new Intent(mainInterface.this, signIn.class);
-                startActivity(intent);
-            }
         }
+
 
         if (f != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -331,7 +337,6 @@ public class mainInterface extends AppCompatActivity
             ft.commit();
         }
     }
-
 
 
     private void showPopUp() {

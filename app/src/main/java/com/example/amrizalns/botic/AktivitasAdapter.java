@@ -12,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.botic.coreapps.models.ObjectItem;
+import com.botic.coreapps.models.Picture;
 import com.example.amrizalns.botic.activity.detail_content;
 import com.example.amrizalns.botic.model.Aktivitas;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +25,7 @@ import java.util.List;
 
 public class AktivitasAdapter extends RecyclerView.Adapter<AktivitasAdapter.MyViewHolder> {
     private List<com.example.amrizalns.botic.model.ObjectItem> aktivitasList;
+    private List<Picture> mPictureList = new ArrayList<>();
 
     Context context;
 
@@ -33,14 +36,12 @@ public class AktivitasAdapter extends RecyclerView.Adapter<AktivitasAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, location;
-        public RatingBar rating;
         public ImageView image;
 
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.tv_title_fav);
             location = (TextView) view.findViewById(R.id.tv_loc_fav);
-            rating = (RatingBar) view.findViewById(R.id.rb_fav);
             image = (ImageView) view.findViewById(R.id.img_fav);
         }
     }
@@ -57,7 +58,6 @@ public class AktivitasAdapter extends RecyclerView.Adapter<AktivitasAdapter.MyVi
         final com.example.amrizalns.botic.model.ObjectItem aktivitas = aktivitasList.get(position);
         holder.title.setText(aktivitas.getName());
         holder.location.setText(aktivitas.getAddress());
-        holder.rating.setRating(aktivitas.getRating());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

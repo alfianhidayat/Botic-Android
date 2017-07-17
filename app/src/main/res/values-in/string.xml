@@ -205,4 +205,6 @@
     <string name="suc_regis">Registrasi Berhasil</string>
     <string name="fail_regis">Registrasi belum selesai!</string>
     <string name="conf_pass">Confirm Password tidak sama !</string>
+    <string name="favorite_toast">Berhasil ditambahkan sebagai Favorit</string>
+    <string name="favorite_toast_remove">Dihapus dari Favorit</string>
 </resources>

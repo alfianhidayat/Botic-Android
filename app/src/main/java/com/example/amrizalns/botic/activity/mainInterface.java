@@ -259,8 +259,8 @@ public class mainInterface extends AppCompatActivity
         userEmail.setText(mEmail);
         CustomPicasso.getInstance(mContext)
                 .load(uri)
-                .placeholder(R.mipmap.ic_botic)
-                .error(R.mipmap.ic_botic)
+                .placeholder(R.drawable.ic_account_circle)
+                .error(R.drawable.ic_account_circle)
                 .into(mProfileImageView);
     }
 

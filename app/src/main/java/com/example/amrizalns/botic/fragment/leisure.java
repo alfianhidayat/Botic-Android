@@ -51,7 +51,7 @@ public class leisure extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
         adapter.addFragment(Utils.getFragmentWithArgument(32, Constants.TAG_LEISURE), getString(R.string.spa));
-        adapter.addFragment(Utils.getFragmentWithArgument(51, Constants.TAG_LEISURE), getString(R.string.gym));
+        adapter.addFragment(Utils.getFragmentWithArgument(51, Constants.TAG_LEISURE), getString(R.string.Gym));
         adapter.addFragment(Utils.getFragmentWithArgument(31, Constants.TAG_LEISURE), getString(R.string.salon));
         adapter.addFragment(Utils.getFragmentWithArgument(55, Constants.TAG_LEISURE), getString(R.string.pantipijat));
 

@@ -49,7 +49,7 @@ public class keuangan extends Fragment {
 
     private void setupViewPager(ViewPager viewPager){
         belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(Utils.getFragmentWithArgument(40, Constants.TAG_FINANCE), getString(R.string.kantorcabang));
+        adapter.addFragment(Utils.getFragmentWithArgument(40, Constants.TAG_FINANCE), getString(R.string.kantorcaabang));
         adapter.addFragment(Utils.getFragmentWithArgument(47, Constants.TAG_FINANCE), getString(R.string.unitpembantu));
         adapter.addFragment(Utils.getFragmentWithArgument(56, Constants.TAG_FINANCE), getString(R.string.kantorkas));
         adapter.addFragment(Utils.getFragmentWithArgument(57, Constants.TAG_FINANCE), "ATM");

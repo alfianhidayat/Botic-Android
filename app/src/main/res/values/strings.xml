@@ -17,8 +17,8 @@
     <string name="belanja">Shopping</string>
     <string name="hotel">Hotel</string>
     <string name="kuliner">Culinary</string>
-    <string name="transportasi">Transpotation</string>
-    <string name="checkin_turis">Checkin Touris</string>
+    <string name="transportasi">Transportation</string>
+    <string name="checkin_turis">Check-in Tourist</string>
     <string name="atur_liburanmu">Atur Liburanmu !</string>
     <string name="pilih_destinasi_mu">Choose destination</string>
     <string name="data_pemesan">Customer data</string>
@@ -35,7 +35,7 @@
     <string name="selesaikan_pemesanan">Finish Booking</string>
     <string name="batal">Cancel</string>
     <string name="booking">Booking</string>
-    <string name="term">I have read all the terms and are responsible for the data I inputkan and can guarantee the truth of the data.</string>
+    <string name="term">I have read all the terms and are responsible for the data I have inputted and can guarantee the truth of the data.</string>
     <string name="jenis_kesenian">type of art :</string>
     <string name="nama_tempat">Place Name</string>
     <string name="lokasi">Location</string>
@@ -159,12 +159,12 @@
         "On a component level, components can move or be removed before they cause interference. "
         "On the layout level, design your app layout to minimize opportunities for interference. "
     </string>
-    <string name="termcondition_1">I have read the terms and conditions and are responsible for the data that I inputting and can guarantee the truth of the data.</string>
+    <string name="termcondition_1">I have read the terms and conditions and are responsible for the data that I have inputted and can guarantee the truth of the data.</string>
     <string name="namaIdentitas">name ( according to identity )</string>
     <string name="addstar">Add rating :</string>
     <string name="logout">Logout</string>
     <string name="aboutapps">About App</string>
-    <string name="bookingasset">Booking Assets</string>
+    <string name="bookingasset">Assets Booking</string>
     <string name="event">Event</string>
     <string name="aboutbjn">About Bojonegoro</string>
     <string name="leisure">Leisure</string>
@@ -174,14 +174,14 @@
     <string name="pelpublik">Public services</string>
     <string name="favorite">Favorite</string>
     <string name="beranda">Dashboard</string>
-    <string name="fitur">Feature</string>
+    <string name="fitur">Features</string>
     <string name="jenisidentitas">Identity type :</string>
-    <string name="syaratketentuan">Term and condition</string>
+    <string name="syaratketentuan">Terms and Conditions</string>
     <string name="invoicebookinggdg">Invoce Booking</string>
     <string name="noID">Identity number</string>
     <string name="Nama">Name</string>
     <string name="NomorHP">Phone number</string>
-    <string name="jenisgedung">Type of building</string>
+    <string name="jenisgedung">Building</string>
     <string name="tanggalpesan">Order date</string>
     <string name="waktusewa">Order time</string>
     <string name="selesai">Finish</string>
@@ -190,7 +190,7 @@
     <string name="datapj">Guide Data</string>
     <string name="headerbooking">The booking assets process is used to perform a comprehensive data collection to create the convenience of transactions from the consumer and the provision of the place.</string>
     <string name="bookinggedung">Booking Assets</string>
-    <string name="bookingkesenian">Booking Art</string>
+    <string name="bookingkesenian">Art Booking</string>
     <string name="datatamuwisata">Tourist Guest Data</string>
     <string name="daftar">Register</string>
     <string name="termsCheckIn">I am responsible for the data I input and can guarantee the truth of the data.</string>
@@ -209,5 +209,30 @@
     <string name="favorite_toast_remove">Removed from Favorite</string>
     <string name="respontidak">no response from admin</string>
     <string name="respon">Response cs@botic :</string>
+    <string name="pasar">Market</string>
+    <string name="rs">Hospital</string>
+    <string name="klinik">Clinic</string>
+    <string name="kantorcaabang">Branch Office</string>
+    <string name="unitpembantu">Sub Branch Office</string>
+    <string name="kantorkas">Kantor Kas</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="cafe">Cafe</string>
+    <string name="pkl">Street Food</string>
+    <string name="spa">Spa and Skin Care</string>
+    <string name="Gym">Gym</string>
+    <string name="salon">Salon</string>
+    <string name="pantipijat">Massage</string>
+    <string name="kedinasan">Government</string>
+    <string name="kecpd">Districts and Local Industry</string>
+    <string name="keamanan">Security</string>
+    <string name="umum">Public Service</string>
+    <string name="masjid">Mosque</string>
+    <string name="gereja">Church</string>
+    <string name="vihara">Monastery</string>
+    <string name="pura">Hindi Temple</string>
+    <string name="klenteng">China Temple</string>
+    <string name="bus">Bus</string>
+    <string name="kereta">Train</string>
+    <string name="angkutanwisata">Tour Rides</string>
 
 </resources>

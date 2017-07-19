@@ -1,4 +1,4 @@
-package com.example.maininterface;
+package com.bojonegorotic.maininterface;
 
 import java.util.ArrayList;
 import java.util.List;

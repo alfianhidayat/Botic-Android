@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.example.maininterface;
+package com.bojonegorotic.maininterface;
 
 import android.content.Context;
 import android.graphics.Point;

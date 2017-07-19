@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.amrizalns.botic">
+          package="com.bojonegorotic.amrizalns.botic">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <permission
-        android:name="com.example.amrizalns.botic.permission.MAPS_RECEIVE"
+        android:name="com.bojonegorotic.amrizalns.botic.permission.MAPS_RECEIVE"
         android:protectionLevel="signature"/>
 
-    <uses-permission android:name="com.example.amrizalns.botic.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.bojonegorotic.amrizalns.botic.permission.MAPS_RECEIVE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
-        android:name=".MyApplication"
+        android:name="com.bojonegorotic.amrizalns.botic.MyApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_botic"
@@ -27,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".activity.splashScreen"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.splashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -36,32 +36,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.signIn"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.signIn"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.signUp"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.signUp"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.mainInterface"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.mainInterface"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
-            android:name=".activity.booking_gedung"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.booking_gedung"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.booking_gedung_finish"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.booking_gedung_finish"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.booking_kesenian"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.booking_kesenian"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.popUp_sk_gedung"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.popUp_sk_gedung"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.detail_content"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.detail_content"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.directionActivity"
+            android:name="com.bojonegorotic.amrizalns.botic.activity.directionActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -78,10 +78,9 @@
             android:value="@string/facebook_app_id"/>
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAeMDiCbBv1kuZdTuGnhSdG0X37XfcAoDY"/>
+            android:value="AIzaSyB0dQH3hl7-eBtiHkxurMeilOW_uAjDQr0"/>
 
-        <activity android:name=".activity.changeLanguage">
-        </activity>
+
     </application>
 
 </manifest>

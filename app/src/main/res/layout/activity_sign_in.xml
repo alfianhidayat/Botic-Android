@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.amrizalns.botic.activity.signIn"
+    tools:context="com.bojonegorotic.amrizalns.botic.activity.signIn"
     android:background="@color/colorBackground"
     >
 

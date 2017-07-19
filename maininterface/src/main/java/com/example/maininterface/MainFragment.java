@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.example.maininterface;
+package com.bojonegorotic.maininterface;
 
 import java.net.URI;
 import java.util.Collections;

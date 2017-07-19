@@ -5,7 +5,7 @@
                                                  android:id="@+id/cor"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
-                                                 tools:context="com.example.amrizalns.botic.activity.mainInterface">
+                                                 tools:context="com.bojonegorotic.amrizalns.botic.activity.mainInterface">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

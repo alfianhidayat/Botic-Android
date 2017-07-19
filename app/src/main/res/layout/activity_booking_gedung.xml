@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.example.amrizalns.botic.activity.booking_gedung">
+    tools:context="com.bojonegorotic.amrizalns.botic.activity.booking_gedung">
 
     <LinearLayout
         android:id="@+id/banner"

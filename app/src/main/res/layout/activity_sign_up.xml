@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.amrizalns.botic.activity.signUp"
+    tools:context="com.bojonegorotic.amrizalns.botic.activity.signUp"
     android:background="@color/colorBackground"
     >
     <!-- activity_signUp progress -->

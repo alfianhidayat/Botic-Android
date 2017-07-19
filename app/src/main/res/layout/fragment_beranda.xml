@@ -3,7 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorBackground"
-                tools:context="com.example.amrizalns.botic.fragment.beranda">
+                tools:context="com.bojonegorotic.amrizalns.botic.fragment.beranda">
 
     <RelativeLayout
         android:id="@+id/vp_beranda"

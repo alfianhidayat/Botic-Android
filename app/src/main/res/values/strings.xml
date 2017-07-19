@@ -25,7 +25,7 @@
     <string name="nomor_indentitas">identity number</string>
     <string name="nomor_telepon">phone number</string>
     <string name="deskripsi_kegiatan">activity description</string>
-    <string name="jenis_gedung">type of building :  </string>
+    <string name="jenis_gedung">Building :  </string>
     <string name="tanggal_pesan">order date :</string>
     <string name="dd_mm_yyyy">dd/mm/yyyy</string>
     <string name="waktu_pesan">order time :</string>
@@ -189,7 +189,7 @@
     <string name="Time">Time</string>
     <string name="datapj">Guide Data</string>
     <string name="headerbooking">The booking assets process is used to perform a comprehensive data collection to create the convenience of transactions from the consumer and the provision of the place.</string>
-    <string name="bookinggedung">Booking Assets</string>
+    <string name="bookinggedung">Assets Booking</string>
     <string name="bookingkesenian">Art Booking</string>
     <string name="datatamuwisata">Tourist Guest Data</string>
     <string name="daftar">Register</string>

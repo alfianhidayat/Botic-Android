@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.example.amrizalns.botic.fragment.kesehatan">
+    tools:context="com.bojonegorotic.amrizalns.botic.fragment.kesehatan">
 
     <LinearLayout
         android:id="@+id/header"

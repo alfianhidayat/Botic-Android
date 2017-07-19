@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.example.maininterface;
+package com.bojonegorotic.maininterface;
 
 import android.support.v17.leanback.widget.AbstractDetailsDescriptionPresenter;
 

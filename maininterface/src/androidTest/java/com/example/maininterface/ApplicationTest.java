@@ -1,4 +1,4 @@
-package com.example.maininterface;
+package com.bojonegorotic.maininterface;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

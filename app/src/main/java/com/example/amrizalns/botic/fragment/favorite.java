@@ -9,11 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.botic.coreapps.models.ObjectItem;
-import com.example.amrizalns.botic.AktivitasAdapter;
+import com.example.amrizalns.botic.FavoriteAdapter;
 import com.example.amrizalns.botic.R;
 import com.example.amrizalns.botic.helper.RealmController;
-import com.example.amrizalns.botic.model.Aktivitas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,7 @@ public class favorite extends Fragment {
 
     private List<com.example.amrizalns.botic.model.ObjectItem> mAktivitasList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private AktivitasAdapter mAdapter;
+    private FavoriteAdapter mAdapter;
 
 
     @Override
@@ -37,7 +35,7 @@ public class favorite extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_aktivitas);
         mAktivitasList = RealmController.with(this).getObjects();
-        mAdapter = new AktivitasAdapter(getActivity(), mAktivitasList);
+        mAdapter = new FavoriteAdapter(getActivity(), mAktivitasList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -1,18 +1,13 @@
 package com.example.amrizalns.botic.fragment;
 
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,16 +16,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.CheckInParams;
 import com.botic.coreapps.networks.RetrofitApi;
-import com.example.amrizalns.botic.AktivitasAdapter;
 import com.example.amrizalns.botic.ItemClickListener;
 import com.example.amrizalns.botic.R;
-import com.example.amrizalns.botic.activity.booking_gedung;
 import com.example.amrizalns.botic.activity.mainInterface;
 import com.example.amrizalns.botic.activity.signIn;
 import com.example.amrizalns.botic.checkinAdapter;
@@ -38,8 +30,6 @@ import com.example.amrizalns.botic.model.CheckinData;
 import com.example.amrizalns.botic.utils.SessionLogin;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 

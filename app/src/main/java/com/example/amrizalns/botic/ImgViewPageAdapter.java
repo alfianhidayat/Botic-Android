@@ -48,9 +48,9 @@ public class ImgViewPageAdapter extends PagerAdapter {
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.img_pager_item);
 //        imageView.setImageResource(mResources[position]);
-        CustomPicasso.getInstance(mContext).load(AppsCore.BASE_URL + "image/" + ((pictureList.size() == 0) ? R.mipmap.ic_botic : pictureList.get(position).getOriginalFilename()))
-                .placeholder(R.mipmap.ic_botic)
-                .error(R.mipmap.ic_botic)
+        CustomPicasso.getInstance(mContext).load(AppsCore.BASE_URL + "image/" + ((pictureList.size() == 0) ? R.drawable.ic_no_photo : pictureList.get(position).getOriginalFilename()))
+                .placeholder(R.drawable.ic_no_photo)
+                .error(R.drawable.ic_no_photo)
                 .into(imageView);
 
         container.addView(itemView);

@@ -49,7 +49,6 @@
     <string name="email_address">alamat email</string>
     <string name="textheader">Bergabung dengan miliaran backpacker di seluruh dunia. Buka gadget yang Anda temukan di bagian lain dunia</string>
     <string name="password">kata sandi</string>
-    <string name="masuk">Masuk</string>
     <string name="anda_belum_punya_account">Anda Belum Punya Account ?</string>
     <string name="daftar_disini">Daftar Disini</string>
     <string name="nama">nama</string>
@@ -182,14 +181,13 @@
     <string name="noID">Nomor Identitas</string>
     <string name="Nama">Nama</string>
     <string name="NomorHP">Nomor HP</string>
-    <string name="descGdg">Deskripsi Gedung</string>
     <string name="jenisgedung">Jenis Gedung</string>
     <string name="tanggalpesan">Tanggal Pemesanan</string>
     <string name="waktusewa">Waktu Sewa</string>
     <string name="selesai">Selesai</string>
     <string name="asal">Asal</string>
     <string name="Time">Waktu</string>
-    <string name="headerbooking">Proses booking assets digunakan untuk melakukan pendataan secara menyeluruh agar menciptakan kenyamanan transaksi dari pihak konsumen dan penyedian tempat.</string>
+    <string name="headerbooking">Proses booking assets digunakan untuk melakukan pendataan secara menyeluruh agar menciptakan kenyamanan transaksi dari pihak konsumen dan pengelola.</string>
     <string name="bookinggedung">Booking Gedung</string>
     <string name="bookingkesenian">Booking Kesenian</string>
     <string name="datatamuwisata">Data Tamu Wisatawan</string>
@@ -234,4 +232,7 @@
     <string name="bus">Bis</string>
     <string name="kereta">Kereta</string>
     <string name="angkutanwisata">Angkutan Wisata</string>
+    <string name="signin">Masuk</string>
+    <string name="datapj">Data Penanggung Jawab</string>
+    <string name="changeLanguage">Bahasa</string>
 </resources>

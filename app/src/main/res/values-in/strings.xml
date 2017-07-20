@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Botic</string>
 
@@ -234,5 +235,9 @@
     <string name="angkutanwisata">Angkutan Wisata</string>
     <string name="signin">Masuk</string>
     <string name="datapj">Data Penanggung Jawab</string>
-    <string name="changeLanguage">Bahasa</string>
+    <string name="aboutbjn_1">Kabupaten Bojonegoro adalah sebuah kabupaten di Provinsi Jawa Timur, Indonesia. Ibu kotanya adalah Bojonegoro. Kabupaten ini berbatasan dengan Kabupaten Tuban di utara, Kabupaten Lamongan di timur, Kabupaten Nganjuk, Kabupaten Madiun, dan Kabupaten Ngawi di selatan, serta Kabupaten Blora (Jawa Tengah) di barat. Bagian barat Bojonegoro (perbatasan dengan Jawa Tengah) merupakan bagian dari Blok Cepu, salah satu sumber deposit minyak bumi terbesar di Indonesia.</string>
+    <string name="aboutbjn_2">Bojonegoro juga menyimpan potensi wisata yang tak kalah eksotis nya dengan daerah lain, setidaknnya ada lebih dari dua puluh jenis wisata yang dapat dinikmati oleh wisatawan seperti diantaranya ada wisata yang menyajikan pemandangan alam dari puncak tertinggi di Bojonegoro yaitu Negri atas angin, sampai menikmati keajaiban alam seperti api abadi yang ada di Kayangan Api.
+    Nikmati dan dapatkan keseruan yang berbeda dan tak terlupakan selama berada di bojonegoro
+        - Limitless Bojonegoro
+    </string>
 </resources>

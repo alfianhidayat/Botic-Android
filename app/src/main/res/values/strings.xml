@@ -204,7 +204,6 @@
     <string name="suc_regis">Successfull Registered</string>
     <string name="fail_regis">Failde Registered</string>
     <string name="conf_pass">Confirm Password doesnt match !</string>
-    <string name="changeLanguage">Language</string>
     <string name="favorite_toast">Successfully Added to Favorite</string>
     <string name="favorite_toast_remove">Removed from Favorite</string>
     <string name="respontidak">no response from admin</string>

@@ -1,37 +1,41 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.bojonegorotic.amrizalns.botic.fragment.kesehatan">
+    tools:context="com.bojonegorotic.amrizalns.botic.fragment.event">
 
     <LinearLayout
-        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:id="@+id/header"
+        >
         <ImageView
-            android:layout_width="0dp"
+            android:scaleType="fitStart"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_weight="1"
-            android:scaleType="fitXY"
-            android:src="@drawable/banner_event" />
+            android:src="@drawable/banner_event"
+            />
     </LinearLayout>
 
     <LinearLayout
+        android:layout_below="@id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header"
-        android:gravity="start"
-        android:padding="5dp">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_event"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorBackground"
-            android:scrollbars="vertical" />
+            android:scrollbars="horizontal"
+            android:orientation="horizontal"
+            />
+
     </LinearLayout>
 
 </RelativeLayout>

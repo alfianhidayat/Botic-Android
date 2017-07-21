@@ -38,9 +38,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.tvDesc.setText(eventList.get(position).getDescription());
         holder.tvDate.setText(eventList.get(position).getTime());
         holder.tvName.setText(eventList.get(position).getName());
-        CustomPicasso.getInstance(context).load(AppsCore.BASE_URL + "image/" + ((eventList.get(position).getPicture().size() == 0) ? R.mipmap.ic_botic : eventList.get(position).getPicture().get(0).getOriginalFilename()))
-                .placeholder(R.mipmap.ic_botic)
-                .error(R.mipmap.ic_botic)
+        CustomPicasso.getInstance(context).load(AppsCore.BASE_URL + "image/" + ((eventList.get(position).getPicture().size() == 0) ? R.drawable.ic_no_photo : eventList.get(position).getPicture().get(0).getOriginalFilename()))
+                .placeholder(R.drawable.ic_no_photo)
+                .error(R.drawable.ic_no_photo)
                 .into(holder.ivPhoto);
     }
 

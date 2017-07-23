@@ -69,7 +69,7 @@ public class RealmController {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                RealmResults<ObjectItem> rows = realm.where(ObjectItem.class).equalTo("id", id).equalTo("id_menu", idMenu).findAll();
+                RealmResults<ObjectItem> rows = realm.where(ObjectItem.class).equalTo("idObject", id).equalTo("idMenu", idMenu).findAll();
                 rows.clear();
             }
         });

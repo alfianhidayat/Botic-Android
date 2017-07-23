@@ -3,7 +3,6 @@
           package="com.bojonegorotic.amrizalns.botic">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
     <permission
         android:name="com.bojonegorotic.amrizalns.botic.permission.MAPS_RECEIVE"
         android:protectionLevel="signature"/>

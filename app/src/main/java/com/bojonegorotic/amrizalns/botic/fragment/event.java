@@ -10,9 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bojonegorotic.amrizalns.botic.ImgViewPageAdapter;
+import com.bojonegorotic.amrizalns.botic.activity.detail_content;
+import com.bojonegorotic.amrizalns.botic.utils.CustomPicasso;
+import com.botic.coreapps.AppsCore;
 import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.Event;
+import com.botic.coreapps.models.Picture;
 import com.botic.coreapps.networks.RetrofitApi;
 import com.bojonegorotic.amrizalns.botic.EventAdapter;
 import com.bojonegorotic.amrizalns.botic.R;

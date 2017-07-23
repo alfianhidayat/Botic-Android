@@ -60,7 +60,7 @@ public class AktivitasAdapter extends RecyclerView.Adapter<AktivitasAdapter.MyVi
             public void onClick(View v) {
                 Intent i = new Intent(context, detail_content.class);
                 ObjectItem object = new ObjectItem();
-                object.setId(aktivitas.getId());
+                object.setId(aktivitas.getIdObject());
                 object.setPhone(aktivitas.getPhone());
                 object.setAddress(aktivitas.getAddress());
                 object.setClose(aktivitas.getClose());

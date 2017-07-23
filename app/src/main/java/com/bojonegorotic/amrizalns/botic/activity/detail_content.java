@@ -23,6 +23,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bojonegorotic.amrizalns.botic.utils.Utils;
 import com.botic.coreapps.AppsCore;
 import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.ObjectItem;
@@ -105,8 +106,8 @@ public class detail_content extends AppCompatActivity {
             time_open.setText(objectItem.getOpen());
             time_close.setText(objectItem.getClose());
             desc.setText(objectItem.getDescription());
-            getReview(objectItem.getId());
-            getPicture(objectItem.getId());
+            getReview(objectItem.getId(), objectItem.getIdMenu());
+            getPicture(objectItem.getId(), objectItem.getIdMenu());
         }
 
         direction.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +178,7 @@ public class detail_content extends AppCompatActivity {
             }
         });
 
-        com.bojonegorotic.amrizalns.botic.model.ObjectItem item = RealmController.with(this).getObject(objectItem.getId());
+        com.bojonegorotic.amrizalns.botic.model.ObjectItem item = RealmController.with(this).getObject(objectItem.getId(), objectItem.getIdMenu());
         if (item != null) {
             fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite));
             isChecked = true;
@@ -238,7 +239,7 @@ public class detail_content extends AppCompatActivity {
 
                     @Override
                     protected void onSuccess(Review data) {
-                        getReview(objectItem.getId());
+                        getReview(objectItem.getId(), objectItem.getIdMenu());
                         Toast.makeText(detail_content.this, R.string.suc_review, Toast.LENGTH_SHORT).show();
                     }
 
@@ -258,9 +259,9 @@ public class detail_content extends AppCompatActivity {
                 });
     }
 
-    private void getReview(int id) {
+    private void getReview(int id, int idMenu) {
         RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
-                .getReview(id)
+                .getReview(id, idMenu)
                 .enqueue(new PageCallback<List<Review>>(detail_content.this) {
                     @Override
                     protected void onStart() {
@@ -294,9 +295,9 @@ public class detail_content extends AppCompatActivity {
                 });
     }
 
-    private void getPicture(int id) {
+    private void getPicture(int id, int idMenu) {
         RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
-                .getPicture(id)
+                .getPicture(id, idMenu)
                 .enqueue(new PageCallback<List<Picture>>(detail_content.this) {
                     @Override
                     protected void onStart() {
@@ -357,7 +358,8 @@ public class detail_content extends AppCompatActivity {
         if (isChecked()) {
             fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite));
             com.bojonegorotic.amrizalns.botic.model.ObjectItem object = new com.bojonegorotic.amrizalns.botic.model.ObjectItem();
-            object.setId(objectItem.getId());
+            object.setId((int) (objectItem.getId() + System.currentTimeMillis()));
+            object.setIdObject(objectItem.getId());
             object.setPhone(objectItem.getPhone());
             object.setAddress(objectItem.getAddress());
             object.setClose(objectItem.getClose());
@@ -373,7 +375,7 @@ public class detail_content extends AppCompatActivity {
             Toast.makeText(this, R.string.favorite_toast, Toast.LENGTH_SHORT).show();
         } else {
             fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
-            RealmController.with(this).remove(objectItem.getId());
+            RealmController.with(this).remove(objectItem.getId(), objectItem.getIdMenu());
             Toast.makeText(this, R.string.favorite_toast_remove, Toast.LENGTH_SHORT).show();
         }
     }

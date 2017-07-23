@@ -65,11 +65,11 @@ public class RealmController {
         realm.commitTransaction();
     }
 
-    public void remove(final int id) {
+    public void remove(final int id, final int idMenu) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                RealmResults<ObjectItem> rows = realm.where(ObjectItem.class).equalTo("id", id).findAll();
+                RealmResults<ObjectItem> rows = realm.where(ObjectItem.class).equalTo("id", id).equalTo("id_menu", idMenu).findAll();
                 rows.clear();
             }
         });
@@ -82,8 +82,8 @@ public class RealmController {
     }
 
     //query a single item with the given id
-    public ObjectItem getObject(int id) {
-        return realm.where(ObjectItem.class).equalTo("id", id).findFirst();
+    public ObjectItem getObject(int id, int idMenu) {
+        return realm.where(ObjectItem.class).equalTo("idObject", id).equalTo("idMenu", idMenu).findFirst();
     }
 
     //check if Book.class is empty

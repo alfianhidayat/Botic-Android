@@ -114,8 +114,9 @@ public interface ApiService {
     @POST("api/checkin")
     Call<BaseResponse<Object>> checkIn(@Body CheckInParams params);
 
-    @GET("api/review/{id}")
-    Call<BaseResponse<List<Review>>> getReview(@Path("id") int id);
+    @GET("api/review/{id}/menu/{idMenu}")
+    Call<BaseResponse<List<Review>>> getReview(@Path("id") int id,
+                                               @Path("idMenu") int idMenu);
 
     @FormUrlEncoded
     @POST("api/review")
@@ -124,8 +125,9 @@ public interface ApiService {
                                       @Field("id_object") int idObject,
                                       @Field("id_menu") int idMenu);
 
-    @GET("api/picture/{id}")
-    Call<BaseResponse<List<Picture>>> getPicture(@Path("id") int id);
+    @GET("api/picture/{id}/menu/{idMenu}")
+    Call<BaseResponse<List<Picture>>> getPicture(@Path("id") int id,
+                                                 @Path("idMenu") int idMenu);
 
 
     @GET("api/event")

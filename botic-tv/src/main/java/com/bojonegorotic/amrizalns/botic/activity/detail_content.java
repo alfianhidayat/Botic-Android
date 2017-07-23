@@ -83,8 +83,8 @@ public class detail_content extends AppCompatActivity {
             time_open.setText(objectItem.getOpen());
             time_close.setText(objectItem.getClose());
             desc.setText(objectItem.getDescription());
-            getReview(objectItem.getId());
-            getPicture(objectItem.getId());
+            getReview(objectItem.getId(), objectItem.getIdMenu());
+            getPicture(objectItem.getId(), objectItem.getIdMenu());
         }
 
         direction.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +165,7 @@ public class detail_content extends AppCompatActivity {
 
                     @Override
                     protected void onSuccess(Review data) {
-                        getReview(objectItem.getId());
+                        getReview(objectItem.getId(), objectItem.getIdMenu());
                         Toast.makeText(detail_content.this, "Review berhasil ditambahkan", Toast.LENGTH_SHORT).show();
                     }
 
@@ -185,9 +185,9 @@ public class detail_content extends AppCompatActivity {
                 });
     }
 
-    private void getReview(int id) {
+    private void getReview(int id, int idMenu) {
         RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
-                .getReview(id)
+                .getReview(id, idMenu)
                 .enqueue(new PageCallback<List<Review>>(detail_content.this) {
                     @Override
                     protected void onStart() {
@@ -221,9 +221,9 @@ public class detail_content extends AppCompatActivity {
                 });
     }
 
-    private void getPicture(int id) {
+    private void getPicture(int id, int idMenu) {
         RetrofitApi.getInstance(this).getApiService(SessionLogin.getAccessToken())
-                .getPicture(id)
+                .getPicture(id, idMenu)
                 .enqueue(new PageCallback<List<Picture>>(detail_content.this) {
                     @Override
                     protected void onStart() {

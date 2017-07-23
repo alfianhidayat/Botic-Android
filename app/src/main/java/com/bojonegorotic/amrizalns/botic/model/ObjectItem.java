@@ -13,6 +13,9 @@ public class ObjectItem extends RealmObject {
     @SerializedName("id")
     @Expose
     private int id;
+    @SerializedName("id_object")
+    @Expose
+    private int idObject;
     @SerializedName("name")
     @Expose
     private String name;
@@ -71,6 +74,14 @@ public class ObjectItem extends RealmObject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdObject() {
+        return idObject;
+    }
+
+    public void setIdObject(int idObject) {
+        this.idObject = idObject;
     }
 
     public String getName() {

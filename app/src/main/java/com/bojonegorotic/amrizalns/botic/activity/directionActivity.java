@@ -7,26 +7,27 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
-
-import com.botic.coreapps.models.ObjectItem;
-import com.google.android.gms.location.LocationListener;
-
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.widget.Toast;
 
 import com.bojonegorotic.amrizalns.botic.R;
+import com.botic.coreapps.models.ObjectItem;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -60,15 +61,46 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_direction);
 
-        mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
-        setSupportActionBar(mActionBarToolbar);
-        getSupportActionBar().setTitle("Direction");
+//        mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+//        setSupportActionBar(mActionBarToolbar);
+//        getSupportActionBar().setTitle("Direction");
+//
+        try {
+            initilizeMap();
 
-        mMapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mMapFragment.getMapAsync(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+//        mMapFragment.getMapAsync(this);
+
+
+//        FragmentManager fm = getSupportFragmentManager();
+//        mMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
+//        if (mMapFragment == null){
+//            mMapFragment = SupportMapFragment.newInstance();
+//            fm.beginTransaction().replace(R.id.map, mMapFragment).commit();
+//        }
+//        mMapFragment.getMapAsync(this);
+
+
         if (getIntent().hasExtra("object"))
             item = getIntent().getParcelableExtra("object");
+    }
+
+    private void initilizeMap() {
+        if (mMapFragment == null) {
+            mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+            mMapFragment.getMapAsync(this);
+
+            // check if map is created successfully or not
+            if (mMapFragment == null) {
+                Toast.makeText(getApplicationContext(),
+                        "Sorry! unable to create maps", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
     }
 
     public static void start(Context context, ObjectItem item) {
@@ -102,6 +134,7 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
             buildGoogleApiClient();
             mGoogleMap.setMyLocationEnabled(true);
         }
+
     }
 
     protected synchronized void buildGoogleApiClient() {

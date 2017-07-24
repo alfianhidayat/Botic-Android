@@ -3,6 +3,7 @@ package com.bojonegorotic.amrizalns.botic.activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.IntentCompat;
@@ -39,6 +40,7 @@ import com.bojonegorotic.amrizalns.botic.utils.SessionLogin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import io.realm.Realm;
 
@@ -113,7 +115,10 @@ public class detail_content extends AppCompatActivity {
         direction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                directionActivity.start(detail_content.this, objectItem);
+//                directionActivity.start(detail_content.this, objectItem);
+                String geoUri = "http://maps.google.com/maps?q=loc:" + objectItem.getLat() + "," + objectItem.getLng() + " (" + objectItem.getName() + ")";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
+                startActivity(intent);
             }
         });
         dialog = new ProgressDialog(this);

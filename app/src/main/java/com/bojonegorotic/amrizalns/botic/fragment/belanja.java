@@ -54,18 +54,28 @@ public class belanja extends Fragment {
         bundleSwalayan.putString(Constants.TAG_OBJECT_TYPE, Constants.TAG_SHOPPING);
         fragmentSwalayan.setArguments(bundleSwalayan);
         adapter.addFragment(fragmentSwalayan, "Mall & Swalayan");
+
         item_content fragmentMinimarket = new item_content();
         Bundle bundleMinimarket = new Bundle();
         bundleMinimarket.putInt(Constants.TAG_ID_CATEGORY, 36);
         bundleMinimarket.putString(Constants.TAG_OBJECT_TYPE, Constants.TAG_SHOPPING);
         fragmentMinimarket.setArguments(bundleMinimarket);
         adapter.addFragment(fragmentMinimarket, "Minimarket");
+
         item_content fragmentPasar = new item_content();
         Bundle bundlePasar = new Bundle();
         bundlePasar.putInt(Constants.TAG_ID_CATEGORY, 37);
         bundlePasar.putString(Constants.TAG_OBJECT_TYPE, Constants.TAG_SHOPPING);
         fragmentPasar.setArguments(bundlePasar);
         adapter.addFragment(fragmentPasar, getString(R.string.pasar));
+        viewPager.setAdapter(adapter);
+
+        item_content fragmentOlehOleh = new item_content();
+        Bundle bundleOlehOleh = new Bundle();
+        bundleOlehOleh.putInt(Constants.TAG_ID_CATEGORY, 58);
+        bundleOlehOleh.putString(Constants.TAG_OBJECT_TYPE, Constants.TAG_SHOPPING);
+        fragmentOlehOleh.setArguments(bundleOlehOleh);
+        adapter.addFragment(fragmentOlehOleh, "Oleh - Oleh");
         viewPager.setAdapter(adapter);
     }
 

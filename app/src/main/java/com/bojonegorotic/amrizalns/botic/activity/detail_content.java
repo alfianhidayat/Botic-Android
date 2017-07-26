@@ -136,7 +136,7 @@ public class detail_content extends AppCompatActivity {
             public void onClick(View v) {
                 LayoutInflater layoutInflaterAndroid = LayoutInflater.from(detail_content.this);
                 View mView = layoutInflaterAndroid.inflate(R.layout.input_data_review, null);
-                AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(detail_content.this);
+                final AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(detail_content.this);
                 alertDialogBuilderUserInput.setView(mView);
                 final EditText reviewInput = (EditText) mView.findViewById(R.id.tambah_review);
                 final RatingBar rb_review = (RatingBar) mView.findViewById(R.id.rb_review);
@@ -147,10 +147,19 @@ public class detail_content extends AppCompatActivity {
                             public void onClick(DialogInterface dialogBox, int id) {
                                 String reviews = reviewInput.getText().toString();
                                 String rating = String.valueOf(rb_review.getRating());
-                                    float a = Float.parseFloat(rating);
+                                float a = Float.parseFloat(rating);
+                                if (reviews.isEmpty() && a == 0.0) {
+                                    Toast.makeText(detail_content.this, "Review dan Rating Wajib Diisi!", Toast.LENGTH_SHORT).show();
+                                } else if (a == 0.0) {
+                                    Toast.makeText(detail_content.this, "Rating Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
+                                } else if (reviews.length() == 0){
+                                    Toast.makeText(detail_content.this, "Review Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
+                                } else {
                                     rb_review.setRating((float) a);
                                     review(reviews, (int) rb_review.getRating());
                                     dialogBox.dismiss();
+
+                                }
                             }
                         })
                         .setNegativeButton(R.string.batal_dContent,
@@ -180,7 +189,7 @@ public class detail_content extends AppCompatActivity {
                 String sAux = "\nLet me recommend you this application\n\n";
                 sAux = sAux + "https://play.google.com/store/apps/details?id=com.bojonegorotic.amrizalns.botic \n\n";
                 shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName() + "\n" + objectItem.getAddress()+ "\n" + sAux);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName() + "\n" + objectItem.getAddress() + "\n" + sAux);
                 shareIntent.setType("text/plain");
                 startActivity(shareIntent);
             }

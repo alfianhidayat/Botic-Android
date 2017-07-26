@@ -177,8 +177,10 @@ public class detail_content extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent shareIntent = new Intent();
+                String sAux = "\nLet me recommend you this application\n\n";
+                sAux = sAux + "https://play.google.com/store/apps/details?id=com.bojonegorotic.amrizalns.botic \n\n";
                 shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName() + "\n" + objectItem.getAddress());
+                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName() + "\n" + objectItem.getAddress()+ "\n" + sAux);
                 shareIntent.setType("text/plain");
                 startActivity(shareIntent);
             }

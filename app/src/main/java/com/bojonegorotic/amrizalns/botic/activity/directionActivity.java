@@ -1,6 +1,7 @@
 package com.bojonegorotic.amrizalns.botic.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,6 +36,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+
 
 import java.util.ArrayList;
 
@@ -87,6 +89,7 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
 
         if (getIntent().hasExtra("object"))
             item = getIntent().getParcelableExtra("object");
+
     }
 
     private void initilizeMap() {

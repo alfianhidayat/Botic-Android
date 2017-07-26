@@ -49,6 +49,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         holder.nama.setText(review.getUser().getName());
         holder.review.setText(review.getReview());
         holder.rating.setRating(review.getRating());
+
         if (review.getResponse().toString().trim().equals(""))
             holder.response.setText(R.string.respontidak);
         else {

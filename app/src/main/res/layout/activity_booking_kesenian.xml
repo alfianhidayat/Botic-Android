@@ -14,9 +14,10 @@
         android:id="@+id/banner"
         >
         <ImageView
+            android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:src="@drawable/banner_booking"
+            android:src="@drawable/banner_sk_kesenian"
             />
     </LinearLayout>
 

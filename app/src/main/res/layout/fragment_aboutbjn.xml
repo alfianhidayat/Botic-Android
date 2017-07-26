@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="120dp"
             android:layout_weight="1"
-            android:scaleType="fitStart"
+            android:scaleType="fitXY"
             android:src="@drawable/banner_aboutbjn"
             />
     </LinearLayout>

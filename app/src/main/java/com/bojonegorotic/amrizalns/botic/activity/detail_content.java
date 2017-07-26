@@ -140,16 +140,17 @@ public class detail_content extends AppCompatActivity {
                 alertDialogBuilderUserInput.setView(mView);
                 final EditText reviewInput = (EditText) mView.findViewById(R.id.tambah_review);
                 final RatingBar rb_review = (RatingBar) mView.findViewById(R.id.rb_review);
+
                 alertDialogBuilderUserInput
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialogBox, int id) {
                                 String reviews = reviewInput.getText().toString();
                                 String rating = String.valueOf(rb_review.getRating());
-                                float a = Float.parseFloat(rating);
-                                rb_review.setRating((float) a);
-                                review(reviews, (int) rb_review.getRating());
-                                dialogBox.dismiss();
+                                    float a = Float.parseFloat(rating);
+                                    rb_review.setRating((float) a);
+                                    review(reviews, (int) rb_review.getRating());
+                                    dialogBox.dismiss();
                             }
                         })
                         .setNegativeButton(R.string.batal_dContent,

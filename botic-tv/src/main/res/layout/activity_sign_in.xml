@@ -75,6 +75,7 @@
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:inputType="textEmailAddress"
+                    android:focusable="false"
                     />
 
                 <TextView
@@ -98,6 +99,7 @@
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:inputType="textPassword"
+                    android:focusable="false"
                     />
 
                 <Button

@@ -318,8 +318,6 @@ public class mainInterface extends AppCompatActivity
             f = new event();
         } else if (id == R.id.nav_booking) {
             f = new booking();
-        } else if (id == R.id.nav_aboutApp) {
-            showPopUp();
         } else if (id == R.id.nav_logout) {
             logoutFromFacebook();
             signOut();
@@ -336,32 +334,5 @@ public class mainInterface extends AppCompatActivity
             ft.replace(R.id.main_container, f);
             ft.commit();
         }
-    }
-
-
-    private void showPopUp() {
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-        View customView = inflater.inflate(R.layout.popup, null);
-        mPopupWindow = new PopupWindow(
-                customView,
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.WRAP_CONTENT
-        );
-        if (Build.VERSION.SDK_INT >= 21) {
-            mPopupWindow.setElevation(5.0f);
-        }
-
-        ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
-        TextView tvVersion = (TextView) customView.findViewById(R.id.tv_version);
-
-        tvVersion.setText("version " + BuildConfig.VERSION_NAME);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPopupWindow.dismiss();
-            }
-        });
-        mPopupWindow.showAtLocation(mCoordinatorLayout, Gravity.CENTER, 0, 0);
     }
 }

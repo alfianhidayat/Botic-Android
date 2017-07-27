@@ -72,7 +72,6 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
     private TextView mRegis;
     private EditText mEmail, mPassword;
     private ProgressDialog mProgressDialog;
-    private JSONParser mJSONParser = new JSONParser();
     private static String url = "";
     private static final String TAG_SUCCESS = "success";
     private CallbackManager mCallbackManager;

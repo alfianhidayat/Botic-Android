@@ -49,6 +49,10 @@ public class booking_gedung_finish extends AppCompatActivity{
 
 
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(booking_gedung_finish.this, mainInterface.class);
+        startActivity(intent);
+    }
 
 }

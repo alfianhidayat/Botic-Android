@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Botic Tv</string>
+
+    <string name="aboutapp">versi</string>
+    <string name="copyright">Copyright Disbudpar Bojonegoro © 2017</string>
+
+    <string name="title_activity_main_interface">mainInterface</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="masuk">Masuk</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wisata">Wisata</string>
+    <string name="belanja">Belanja</string>
+    <string name="hotel">Hotel</string>
+    <string name="kuliner">Kuliner</string>
+    <string name="transportasi">Transportasi</string>
+    <string name="checkin_turis">Checkin Turis</string>
+    <string name="atur_liburanmu">Atur Liburanmu !</string>
+    <string name="pilih_destinasi_mu">Pilih destinasi mu</string>
+    <string name="data_pemesan">Data pemesan</string>
+    <string name="nomor_indentitas">nomor indentitas</string>
+    <string name="nomor_telepon">nomor telepon</string>
+    <string name="deskripsi_kegiatan">deskripsi kegiatan</string>
+    <string name="jenis_gedung">jenis gedung :  </string>
+    <string name="tanggal_pesan">tanggal pesan :</string>
+    <string name="dd_mm_yyyy">dd/mm/yyyy</string>
+    <string name="waktu_pesan">Waktu pesan :</string>
+    <string name="siang_06_00_15_00_wib">Siang ( 06:00 s/d 15:00 WIB )</string>
+    <string name="malam_16_00_22_00_wib">Malam ( 16:00 s/d 22:00 WIB )</string>
+    <string name="siang_malam_24_jam">Siang - Malam ( 24 Jam )</string>
+    <string name="selesaikan_pemesanan">Selesaikan Pemesanan</string>
+    <string name="batal">Batal</string>
+    <string name="booking">Booking</string>
+    <string name="term">Saya sudah membaca segala ketentuan dan bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut.</string>
+    <string name="jenis_kesenian">jenis kesenian :</string>
+    <string name="nama_tempat">Nama Tempat</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="harga_tiket">Harga tiket</string>
+    <string name="open">Buka</string>
+    <string name="close">Tutup</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="review">Review</string>
+    <string name="add_review">tambah review</string>
+    <string name="share">Bagikan</string>
+    <string name="email_address">alamat email</string>
+    <string name="textheader">Bergabung dengan miliaran backpacker di seluruh dunia. Buka gadget yang Anda temukan di bagian lain dunia</string>
+    <string name="password">kata sandi</string>
+    <string name="anda_belum_punya_account">Anda Belum Punya Account ?</string>
+    <string name="daftar_disini">Daftar Disini</string>
+    <string name="nama">nama</string>
+    <string name="confirm_password">konfirmasi kata sandi</string>
+    <string-array name="array_gedung">
+        <item>Gedung Serbaguna</item>
+        <item>Gedung Pesanggrahan Tirtawana</item>
+        <item>Rumah Singgah Wonocolo</item>
+    </string-array>
+
+    <string-array name="array_identitas">
+        <item>KTP</item>
+        <item>SIM</item>
+        <item>Pasport</item>
+    </string-array>
+
+    <string name="facebook_app_id">457961017871793</string>
+
+    <string name="success_login">Berhasil Login</string>
+    <string name="failure_login">Login Gagal, Email atau Password Anda Salah!</string>
+    <string name="title_activity_detail_konten">detail_konten</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "On a component level, components can move or be removed before they cause interference. "
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+    </string>
+    <string name="termcondition_1">Saya sudah membaca syarat dan ketentuan serta bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut.</string>
+    <string name="namaIdentitas">nama ( sesuai identitas )</string>
+    <string name="addstar">Berikan bintang :</string>
+    <string name="logout">Logout</string>
+    <string name="aboutapps">About App</string>
+    <string name="bookingasset">Booking Assets</string>
+    <string name="event">Event</string>
+    <string name="aboutbjn">Tentang Bojonegoro</string>
+    <string name="leisure">Leisure</string>
+    <string name="kesehatan">Kesehatan</string>
+    <string name="keuangan">Keuangan</string>
+    <string name="tmpibadah">Tempat Ibadah</string>
+    <string name="pelpublik">Pelayanan Publik</string>
+    <string name="favorite">Favorite</string>
+    <string name="beranda">Beranda</string>
+    <string name="fitur">Fitur</string>
+    <string name="jenisidentitas">jenis Identitas :</string>
+    <string name="syaratketentuan">Syarat dan Ketentuan</string>
+    <string name="invoicebookinggdg">Invoce Booking Gedung</string>
+    <string name="noID">Nomor Identitas</string>
+    <string name="Nama">Nama</string>
+    <string name="NomorHP">Nomor HP</string>
+    <string name="jenisgedung">Jenis Gedung</string>
+    <string name="tanggalpesan">Tanggal Pemesanan</string>
+    <string name="waktusewa">Waktu Sewa</string>
+    <string name="selesai">Selesai</string>
+    <string name="asal">Asal</string>
+    <string name="Time">Waktu</string>
+    <string name="headerbooking">Proses booking assets digunakan untuk melakukan pendataan secara menyeluruh agar menciptakan kenyamanan transaksi dari pihak konsumen dan pengelola.</string>
+    <string name="bookinggedung">Booking Gedung</string>
+    <string name="bookingkesenian">Booking Kesenian</string>
+    <string name="datatamuwisata">Data Tamu Wisatawan</string>
+    <string name="daftar">Daftar</string>
+    <string name="termsCheckIn">Saya bertanggung jawab atas data yang saya inputkan dan dapat menjamin kebenaran akan data tersebut.</string>
+    <string name="daftarcheck">Lanjutkan</string>
+    <string name="bookingberhasil">Booking Berhasil</string>
+    <string name="bookinggagal">Booking Gagal</string>
+    <string name="batal_dContent">Batal</string>
+    <string name="suc_review">Review berhasil ditambahkan</string>
+    <string name="fail_review">Review gagal ditambahkan</string>
+    <string name="tujuan_Loc">Tujuan</string>
+    <string name="suc_regis">Registrasi Berhasil</string>
+    <string name="fail_regis">Registrasi belum selesai!</string>
+    <string name="conf_pass">Confirm Password tidak sama !</string>
+    <string name="favorite_toast">Berhasil ditambahkan sebagai Favorit</string>
+    <string name="favorite_toast_remove">Dihapus dari Favorit</string>
+    <string name="respontidak">belum ada tanggapan admin</string>
+    <string name="respon">Tanggapan cs@botic :</string>
+    <string name="pasar">Pasar</string>
+    <string name="rs">Rumah Sakit</string>
+    <string name="klinik">Puskesmas</string>
+    <string name="kantorcaabang">Kantor Cabang</string>
+    <string name="unitpembantu">Unit Pembantu</string>
+    <string name="kantorkas">Kantor Kas</string>
+    <string name="restaurant">Restauran</string>
+    <string name="cafe">Cafe</string>
+    <string name="pkl">PKL</string>
+    <string name="spa">Spa dan Skin Care</string>
+    <string name="Gym">Gym</string>
+    <string name="salon">Salon</string>
+    <string name="pantipijat">Panti Pijat</string>
+    <string name="kedinasan">Kedinasaan</string>
+    <string name="kecpd">Kec. dan Perusahaan Daerah</string>
+    <string name="keamanan">Keamanan</string>
+    <string name="umum">Umum</string>
+    <string name="masjid">Masjid</string>
+    <string name="gereja">Gereja</string>
+    <string name="vihara">Vihara</string>
+    <string name="pura">Pura</string>
+    <string name="klenteng">Klenteng</string>
+    <string name="bus">Bis</string>
+    <string name="kereta">Kereta</string>
+    <string name="angkutanwisata">Angkutan Wisata</string>
+    <string name="signin">Masuk</string>
+    <string name="datapj">Data Penanggung Jawab</string>
+    <string name="aboutbjn_1">Kabupaten Bojonegoro adalah sebuah kabupaten di Provinsi Jawa Timur, Indonesia. Ibu kotanya adalah Bojonegoro. Kabupaten ini berbatasan dengan Kabupaten Tuban di utara, Kabupaten Lamongan di timur, Kabupaten Nganjuk, Kabupaten Madiun, dan Kabupaten Ngawi di selatan, serta Kabupaten Blora (Jawa Tengah) di barat. Bagian barat Bojonegoro (perbatasan dengan Jawa Tengah) merupakan bagian dari Blok Cepu, salah satu sumber deposit minyak bumi terbesar di Indonesia.</string>
+    <string name="aboutbjn_2">Bojonegoro juga menyimpan potensi wisata yang tak kalah eksotis nya dengan daerah lain, setidaknnya ada lebih dari dua puluh jenis wisata yang dapat dinikmati oleh wisatawan seperti diantaranya ada wisata yang menyajikan pemandangan alam dari puncak tertinggi di Bojonegoro yaitu Negri atas angin, sampai menikmati keajaiban alam seperti api abadi yang ada di Kayangan Api.
+    Nikmati dan dapatkan keseruan yang berbeda dan tak terlupakan selama berada di bojonegoro
+        - Limitless Bojonegoro
+    </string>
+</resources>

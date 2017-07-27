@@ -14,9 +14,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.botic.coreapps.models.CheckInParams;
 import com.bojonegorotic.amrizalns.botic.R;
 import com.bojonegorotic.amrizalns.botic.utils.SessionLogin;
+import com.botic.coreapps.models.CheckInParams;
 
 public class checkin_1 extends Fragment {
 
@@ -64,12 +64,13 @@ public class checkin_1 extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (Integer.parseInt(s.toString()) <= 10 && Integer.parseInt(s.toString()) > 0) {
-                daftar_pj.setEnabled(true);
-            } else {
-                daftar_pj.setEnabled(false);
-                Toast.makeText(getActivity(), "Maksimal 10", Toast.LENGTH_SHORT).show();
-            }
+            if (!s.toString().isEmpty())
+                if (Integer.parseInt(s.toString()) <= 10 && Integer.parseInt(s.toString()) > 0) {
+                    daftar_pj.setEnabled(true);
+                } else {
+                    daftar_pj.setEnabled(false);
+                    Toast.makeText(getActivity(), "Maksimal 10", Toast.LENGTH_SHORT).show();
+                }
         }
 
         @Override
@@ -78,21 +79,21 @@ public class checkin_1 extends Fragment {
         }
     };
 
-    private void VerifikasiDaftar() {
-        final String names = mNamaPJ.getText().toString();
-        if (names.length() == 0) {
-            mNamaPJ.requestFocus();
-            mNamaPJ.setError("Wajib Diisi");
-        } else if (!names.matches("[a-zA-Z ]+")) {
-            mNamaPJ.requestFocus();
-            mNamaPJ.setError("Harus Huruf!");
-        }
+    private boolean isValidMobile(String phone) {
+        return android.util.Patterns.PHONE.matcher(phone).matches();
+    }
 
-        if (!aggrement.isChecked()) {
-            mNamaPJ.setError("Wajib Diisi!");
-            mNohp.setError("Wajib Diisi!");
-            mJumlahTamu.setError("Wajib Diisi!");
+    private void VerifikasiDaftar() {
+        String noHP = mNohp.getText().toString();
+        String jml = mJumlahTamu.getText().toString();
+
+        if (noHP.isEmpty() && jml.isEmpty()) {
+            mNohp.setError("Harus Diisi!");
+            mJumlahTamu.setError("Harus Diisi!");
+        } else if (!aggrement.isChecked()) {
             aggrement.setError("Harus Dicentang!");
+        } else if (!isValidMobile(noHP)) {
+            mNohp.setError("Nomer HP harus sesuai");
         } else {
             CheckInParams params = new CheckInParams();
             params.setPhone(mNohp.getText().toString());

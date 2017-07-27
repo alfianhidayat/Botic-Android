@@ -3,60 +3,60 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/colorMain1"
     >
-    <item android:title="Discover Bojonegoro"
-
-        >
-        <item
-            android:id="@+id/nav_beranda"
-            android:icon="@drawable/ic_menu_beranda"
-            android:title="Beranda" />
-        <item
-            android:id="@+id/nav_favorite"
-            android:icon="@drawable/ic_favorite_border_white"
-            android:title="Favorite" />
-        <item
-            android:id="@+id/nav_layanan"
-            android:icon="@drawable/ic_menu_service"
-            android:title="Pelayanan Publik" />
-        <item
-            android:id="@+id/nav_tmpIbadah"
-            android:icon="@drawable/ic_menu_ibadah"
-            android:title="Tempat Ibadah" />
-        <item
-            android:id="@+id/nav_keuangan"
-            android:icon="@drawable/ic_menu_keuangan"
-            android:title="Keuangan" />
-        <item
-            android:id="@+id/nav_kesehatan"
-            android:icon="@drawable/ic_menu_kesehatan"
-            android:title="Kesehatan" />
-        <item
-            android:id="@+id/nav_leisure"
-            android:icon="@drawable/ic_menu_leisure"
-            android:title="Leisure" />
-        <item
-            android:id="@+id/nav_aboutBjn"
-            android:icon="@drawable/ic_menu_about1"
-            android:title="Tentang Bojonegoro" />
+    <item android:title="Discover Bojonegoro">
+        <menu>
+            <item
+                android:id="@+id/nav_beranda"
+                android:icon="@drawable/ic_menu_beranda"
+                android:title="@string/beranda" />
+            <item
+                android:id="@+id/nav_aktivitas"
+                android:icon="@drawable/ic_favorite_border_white"
+                android:title="@string/favorite" />
+            <item
+                android:id="@+id/nav_layanan"
+                android:icon="@drawable/ic_menu_service"
+                android:title="@string/pelpublik" />
+            <item
+                android:id="@+id/nav_tmpIbadah"
+                android:icon="@drawable/ic_menu_ibadah"
+                android:title="@string/tmpibadah" />
+            <item
+                android:id="@+id/nav_keuangan"
+                android:icon="@drawable/ic_menu_keuangan"
+                android:title="@string/keuangan" />
+            <item
+                android:id="@+id/nav_kesehatan"
+                android:icon="@drawable/ic_menu_kesehatan"
+                android:title="@string/kesehatan" />
+            <item
+                android:id="@+id/nav_leisure"
+                android:icon="@drawable/ic_menu_leisure"
+                android:title="@string/leisure" />
+            <item
+                android:id="@+id/nav_aboutBjn"
+                android:icon="@drawable/ic_menu_about1"
+                android:title="@string/aboutbjn" />
+        </menu>
     </item>
-    <item android:title="Features">
+    <item android:title="@string/fitur">
         <menu>
             <item
                 android:id="@+id/nav_event"
                 android:icon="@drawable/ic_menu_event"
-                android:title="Event" />
+                android:title="@string/event" />
             <item
                 android:id="@+id/nav_booking"
                 android:icon="@drawable/ic_menu_booking"
-                android:title="Booking Assets" />
+                android:title="@string/bookingasset" />
             <item
                 android:id="@+id/nav_aboutApp"
                 android:icon="@drawable/ic_menu_info"
-                android:title="About App" />
+                android:title="@string/aboutapps" />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_menu_logout"
-                android:title="Logout" />
+                android:title="@string/logout" />
         </menu>
     </item>
 

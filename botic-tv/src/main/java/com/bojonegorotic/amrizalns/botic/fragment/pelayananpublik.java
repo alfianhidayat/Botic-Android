@@ -49,10 +49,10 @@ public class pelayananpublik extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(Utils.getFragmentWithArgument(19, Constants.TAG_PUBLIC_SERVICE), "Kedinasan");
-        adapter.addFragment(Utils.getFragmentWithArgument(21, Constants.TAG_PUBLIC_SERVICE), "Kecamatan & Perusahaan Daerah");
-        adapter.addFragment(Utils.getFragmentWithArgument(22, Constants.TAG_PUBLIC_SERVICE), "Keamanan");
-        adapter.addFragment(Utils.getFragmentWithArgument(23, Constants.TAG_PUBLIC_SERVICE), "Umum");
+        adapter.addFragment(Utils.getFragmentWithArgument(19, Constants.TAG_PUBLIC_SERVICE), getString(R.string.kedinasan));
+        adapter.addFragment(Utils.getFragmentWithArgument(21, Constants.TAG_PUBLIC_SERVICE), getString(R.string.kecpd));
+        adapter.addFragment(Utils.getFragmentWithArgument(22, Constants.TAG_PUBLIC_SERVICE), getString(R.string.keamanan));
+        adapter.addFragment(Utils.getFragmentWithArgument(23, Constants.TAG_PUBLIC_SERVICE), getString(R.string.umum));
         viewPager.setAdapter(adapter);
     }
 

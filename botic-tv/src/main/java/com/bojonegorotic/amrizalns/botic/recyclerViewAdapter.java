@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.botic.coreapps.AppsCore;
-import com.botic.coreapps.models.ObjectItem;
 import com.bojonegorotic.amrizalns.botic.activity.detail_content;
 import com.bojonegorotic.amrizalns.botic.utils.CustomPicasso;
+import com.botic.coreapps.AppsCore;
+import com.botic.coreapps.models.ObjectItem;
 
 import java.util.List;
 
@@ -37,10 +37,10 @@ public class recyclerViewAdapter extends RecyclerView.Adapter<recyclerViewHolder
 
     @Override
     public void onBindViewHolder(recyclerViewHolder holder, final int position) {
-        holder.img.setImageResource(R.mipmap.ic_botic);
-        CustomPicasso.getInstance(context).load(AppsCore.BASE_URL + "image/" + ((itemList.get(position).getPicture().size() == 0) ? R.mipmap.ic_botic : itemList.get(position).getPicture().get(0).getOriginalFilename()))
-                .placeholder(R.mipmap.ic_botic)
-                .error(R.mipmap.ic_botic)
+//        holder.img.setImageResource(R.drawable.ic_no_photo);
+        CustomPicasso.getInstance(context).load(AppsCore.BASE_URL + "image/" + ((itemList.get(position).getPicture().size() == 0) ? R.drawable.ic_no_photo : itemList.get(position).getPicture().get(0).getOriginalFilename()))
+                .placeholder(R.drawable.ic_no_photo)
+                .error(R.drawable.ic_no_photo)
                 .into(holder.img);
 //        Glide.get(context).getRegistry()
 //                .register(GlideUrl.class, InputStream.class, (ResourceTranscoder<GlideUrl, InputStream>) new OkHttpUrlLoader.Factory(Utils.builder(context)));

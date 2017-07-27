@@ -48,8 +48,8 @@ public class kesehatan extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getFragmentManager());
-        adapter.addFragment(Utils.getFragmentWithArgument(53, Constants.TAG_HEALTH), "Rumah Sakit");
-        adapter.addFragment(Utils.getFragmentWithArgument(54, Constants.TAG_HEALTH), "Puskesmas");
+        adapter.addFragment(Utils.getFragmentWithArgument(53, Constants.TAG_HEALTH), getString(R.string.rs));
+        adapter.addFragment(Utils.getFragmentWithArgument(54, Constants.TAG_HEALTH), getString(R.string.klinik));
 
         viewPager.setAdapter(adapter);
     }

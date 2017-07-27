@@ -27,16 +27,13 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.botic.coreapps.models.User;
-import com.botic.coreapps.networks.RetrofitApi;
-import com.botic.coreapps.responses.BaseResponse;
 import com.bojonegorotic.amrizalns.botic.BuildConfig;
 import com.bojonegorotic.amrizalns.botic.R;
 import com.bojonegorotic.amrizalns.botic.fragment.aboutbjn;
-import com.bojonegorotic.amrizalns.botic.fragment.favorite;
 import com.bojonegorotic.amrizalns.botic.fragment.beranda;
 import com.bojonegorotic.amrizalns.botic.fragment.booking;
 import com.bojonegorotic.amrizalns.botic.fragment.event;
+import com.bojonegorotic.amrizalns.botic.fragment.favorite;
 import com.bojonegorotic.amrizalns.botic.fragment.kesehatan;
 import com.bojonegorotic.amrizalns.botic.fragment.keuangan;
 import com.bojonegorotic.amrizalns.botic.fragment.leisure;
@@ -46,6 +43,9 @@ import com.bojonegorotic.amrizalns.botic.utils.Constants;
 import com.bojonegorotic.amrizalns.botic.utils.CustomPicasso;
 import com.bojonegorotic.amrizalns.botic.utils.SessionLogin;
 import com.bojonegorotic.amrizalns.botic.utils.SharedPrefManager;
+import com.botic.coreapps.models.User;
+import com.botic.coreapps.networks.RetrofitApi;
+import com.botic.coreapps.responses.BaseResponse;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
@@ -136,7 +136,8 @@ public class mainInterface extends AppCompatActivity
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+                moveTaskToBack(true);
+//                finish();
             }
         });
         AlertDialog alertDialog = builder.create();
@@ -152,11 +153,22 @@ public class mainInterface extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
 
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.nav_logout:
+                logoutFromFacebook();
+                signOut();
+                SessionLogin.reset();
+                if (SessionLogin.isExist()) {
+                    Intent intent = new Intent(mainInterface.this, signIn.class);
+                    startActivity(intent);
+                }
+                break;
+            default:
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -169,6 +181,7 @@ public class mainInterface extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
 
         return true;
     }
@@ -246,8 +259,8 @@ public class mainInterface extends AppCompatActivity
         userEmail.setText(mEmail);
         CustomPicasso.getInstance(mContext)
                 .load(uri)
-                .placeholder(R.mipmap.ic_botic)
-                .error(R.mipmap.ic_botic)
+                .placeholder(R.drawable.ic_account_circle) 
+                .error(R.drawable.ic_account_circle)
                 .into(mProfileImageView);
     }
 
@@ -287,7 +300,7 @@ public class mainInterface extends AppCompatActivity
 
         if (id == R.id.nav_beranda) {
             f = new beranda();
-        } else if (id == R.id.nav_favorite) {
+        } else if (id == R.id.nav_aktivitas) {
             f = new favorite();
         } else if (id == R.id.nav_layanan) {
             f = new pelayananpublik();
@@ -317,12 +330,14 @@ public class mainInterface extends AppCompatActivity
             }
         }
 
+
         if (f != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.main_container, f);
             ft.commit();
         }
     }
+
 
     private void showPopUp() {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -341,7 +356,6 @@ public class mainInterface extends AppCompatActivity
         TextView tvVersion = (TextView) customView.findViewById(R.id.tv_version);
 
         tvVersion.setText("version " + BuildConfig.VERSION_NAME);
-
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

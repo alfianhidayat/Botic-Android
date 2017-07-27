@@ -53,9 +53,9 @@ public class kuliner extends Fragment {
      */
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getFragmentManager());
-        adapter.addFragment(Utils.getFragmentWithArgument(48, Constants.TAG_KULINER), "Restaurant");
-        adapter.addFragment(Utils.getFragmentWithArgument(49, Constants.TAG_KULINER), "Cafe");
-        adapter.addFragment(Utils.getFragmentWithArgument(50, Constants.TAG_KULINER), "PKL");
+        adapter.addFragment(Utils.getFragmentWithArgument(48, Constants.TAG_KULINER), getString(R.string.restaurant));
+        adapter.addFragment(Utils.getFragmentWithArgument(49, Constants.TAG_KULINER), getString(R.string.cafe));
+        adapter.addFragment(Utils.getFragmentWithArgument(50, Constants.TAG_KULINER), getString(R.string.pkl));
         viewPager.setAdapter(adapter);
     }
 

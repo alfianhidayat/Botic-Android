@@ -48,11 +48,11 @@ public class tempatIbadah extends Fragment {
 
     private void setupViewPager(ViewPager viewPager){
         belanja.Adapter adapter = new belanja.Adapter(getFragmentManager());
-        adapter.addFragment(Utils.getFragmentWithArgument(39, Constants.TAG_PRAYING), "Masjid");
-        adapter.addFragment(Utils.getFragmentWithArgument(41, Constants.TAG_PRAYING), "Gereja");
-        adapter.addFragment(Utils.getFragmentWithArgument(44, Constants.TAG_PRAYING), "Vihara");
-        adapter.addFragment(Utils.getFragmentWithArgument(43, Constants.TAG_PRAYING), "Pura");
-        adapter.addFragment(Utils.getFragmentWithArgument(42, Constants.TAG_PRAYING), "Klenteng");
+        adapter.addFragment(Utils.getFragmentWithArgument(39, Constants.TAG_PRAYING), getString(R.string.masjid));
+        adapter.addFragment(Utils.getFragmentWithArgument(41, Constants.TAG_PRAYING), getString(R.string.gereja));
+        adapter.addFragment(Utils.getFragmentWithArgument(44, Constants.TAG_PRAYING), getString(R.string.vihara));
+        adapter.addFragment(Utils.getFragmentWithArgument(43, Constants.TAG_PRAYING), getString(R.string.pura));
+        adapter.addFragment(Utils.getFragmentWithArgument(42, Constants.TAG_PRAYING), getString(R.string.klenteng));
         viewPager.setAdapter(adapter);
     }
 

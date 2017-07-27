@@ -3,9 +3,12 @@ package com.bojonegorotic.amrizalns.botic.activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.IntentCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,23 +19,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bojonegorotic.amrizalns.botic.ImgViewPageAdapter;
+import com.bojonegorotic.amrizalns.botic.R;
+import com.bojonegorotic.amrizalns.botic.ReviewAdapter;
+import com.bojonegorotic.amrizalns.botic.helper.RealmController;
+import com.bojonegorotic.amrizalns.botic.utils.CustomPicasso;
+import com.bojonegorotic.amrizalns.botic.utils.SessionLogin;
 import com.botic.coreapps.AppsCore;
 import com.botic.coreapps.callbacks.PageCallback;
 import com.botic.coreapps.models.ObjectItem;
 import com.botic.coreapps.models.Picture;
 import com.botic.coreapps.models.Review;
 import com.botic.coreapps.networks.RetrofitApi;
-import com.bojonegorotic.amrizalns.botic.R;
-import com.bojonegorotic.amrizalns.botic.ReviewAdapter;
-import com.bojonegorotic.amrizalns.botic.utils.CustomPicasso;
-import com.bojonegorotic.amrizalns.botic.utils.SessionLogin;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.Realm;
 
 public class detail_content extends AppCompatActivity {
 
@@ -43,7 +51,7 @@ public class detail_content extends AppCompatActivity {
     ImageView img, button_share, button_review, fav;
     TextView name, loc, desc, cost, time_open, time_close;
     FloatingActionButton direction;
-
+    private Realm realm;
     int img_detail;
     String name_detail;
     String loc_detail;
@@ -53,15 +61,27 @@ public class detail_content extends AppCompatActivity {
     String timeclose_detail;
     private ObjectItem objectItem;
     ProgressDialog dialog;
+    boolean isChecked = false;
+    ViewPager mViewPager;
+    LinearLayout slider;
+    private int imgcount;
+    private ImageView[] img_content;
+    ImgViewPageAdapter viewPagerAdapter;
+    private int[] layouts = new int[]{
+            R.drawable.ic_no_photo,
+            R.drawable.ic_no_photo,
+            R.drawable.ic_no_photo
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.realm = RealmController.with(this).getRealm();
         setContentView(R.layout.activity_detail_content);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        img = (ImageView) findViewById(R.id.detail_img);
+        img = (ImageView) findViewById(R.id.iv_photo);
         name = (TextView) findViewById(R.id.detail_name);
         loc = (TextView) findViewById(R.id.detail_loc);
         desc = (TextView) findViewById(R.id.detail_desc);
@@ -76,7 +96,7 @@ public class detail_content extends AppCompatActivity {
         Intent i = getIntent();
         if (i.hasExtra("object")) {
             objectItem = i.getParcelableExtra("object");
-            img.setImageResource(R.mipmap.ic_botic);
+//            img.setImageResource(R.mipmap.ic_botic);
             name.setText(objectItem.getName());
             loc.setText(objectItem.getAddress());
             cost.setText(objectItem.getPrice());
@@ -90,7 +110,10 @@ public class detail_content extends AppCompatActivity {
         direction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                directionActivity.start(detail_content.this, objectItem);
+//                directionActivity.start(detail_content.this, objectItem);
+                String geoUri = "http://maps.google.com/maps?q=loc:" + objectItem.getLat() + "," + objectItem.getLng() + " (" + objectItem.getName() + ")";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
+                startActivity(intent);
             }
         });
         dialog = new ProgressDialog(this);
@@ -108,10 +131,11 @@ public class detail_content extends AppCompatActivity {
             public void onClick(View v) {
                 LayoutInflater layoutInflaterAndroid = LayoutInflater.from(detail_content.this);
                 View mView = layoutInflaterAndroid.inflate(R.layout.input_data_review, null);
-                AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(detail_content.this);
+                final AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(detail_content.this);
                 alertDialogBuilderUserInput.setView(mView);
                 final EditText reviewInput = (EditText) mView.findViewById(R.id.tambah_review);
                 final RatingBar rb_review = (RatingBar) mView.findViewById(R.id.rb_review);
+
                 alertDialogBuilderUserInput
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -119,12 +143,21 @@ public class detail_content extends AppCompatActivity {
                                 String reviews = reviewInput.getText().toString();
                                 String rating = String.valueOf(rb_review.getRating());
                                 float a = Float.parseFloat(rating);
-                                rb_review.setRating((float) a);
-                                review(reviews, (int) rb_review.getRating());
-                                dialogBox.dismiss();
+                                if (reviews.isEmpty() && a == 0.0) {
+                                    Toast.makeText(detail_content.this, "Review dan Rating Wajib Diisi!", Toast.LENGTH_SHORT).show();
+                                } else if (a == 0.0) {
+                                    Toast.makeText(detail_content.this, "Rating Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
+                                } else if (reviews.length() == 0){
+                                    Toast.makeText(detail_content.this, "Review Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    rb_review.setRating((float) a);
+                                    review(reviews, (int) rb_review.getRating());
+                                    dialogBox.dismiss();
+
+                                }
                             }
                         })
-                        .setNegativeButton("Batal",
+                        .setNegativeButton(R.string.batal_dContent,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialogBox, int id) {
                                         dialogBox.cancel();
@@ -137,14 +170,67 @@ public class detail_content extends AppCompatActivity {
             }
         });
 
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setChecked(!isChecked);
+            }
+        });
+
         button_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent shareIntent = new Intent();
+                String sAux = "\nLet me recommend you this application\n\n";
+                sAux = sAux + "https://play.google.com/store/apps/details?id=com.bojonegorotic.amrizalns.botic \n\n";
                 shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName() + "\n" + objectItem.getAddress());
+                shareIntent.putExtra(Intent.EXTRA_TEXT, objectItem.getName() + "\n" + objectItem.getAddress() + "\n" + sAux);
                 shareIntent.setType("text/plain");
                 startActivity(shareIntent);
+            }
+        });
+
+        com.bojonegorotic.amrizalns.botic.model.ObjectItem item = RealmController.with(this).getObject(objectItem.getId(), objectItem.getIdMenu());
+        if (item != null) {
+            fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite));
+            isChecked = true;
+        }
+    }
+
+    private void slider() {
+        imgcount = viewPagerAdapter.getCount();
+        img_content = new ImageView[imgcount];
+
+        for (int i = 0; i < imgcount; i++) {
+            img_content[i] = new ImageView(this);
+            img_content[i].setImageDrawable(getResources().getDrawable(R.drawable.nonactive_dots));
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(4, 0, 4, 0);
+            slider.addView(img_content[i], params);
+        }
+        img_content[0].setImageDrawable(getResources().getDrawable(R.drawable.actived_dots));
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                for (int i = 0; i < imgcount; i++) {
+                    img_content[i].setImageDrawable(getResources().getDrawable(R.drawable.nonactive_dots));
+                }
+                img_content[position].setImageDrawable(getResources().getDrawable(R.drawable.actived_dots));
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
     }
@@ -166,13 +252,13 @@ public class detail_content extends AppCompatActivity {
                     @Override
                     protected void onSuccess(Review data) {
                         getReview(objectItem.getId(), objectItem.getIdMenu());
-                        Toast.makeText(detail_content.this, "Review berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(detail_content.this, R.string.suc_review, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     protected void onError(String message) {
                         super.onError(message);
-                        Toast.makeText(detail_content.this, "Review gagal ditambahkan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(detail_content.this, R.string.fail_review, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -240,10 +326,18 @@ public class detail_content extends AppCompatActivity {
                         mPictureList.clear();
                         mPictureList.addAll(data);
                         mAdapter.notifyDataSetChanged();
-                        CustomPicasso.getInstance(detail_content.this).load(AppsCore.BASE_URL + "image/" + ((mPictureList.size() == 0) ? R.mipmap.ic_botic : mPictureList.get(0).getOriginalFilename()))
-                                .placeholder(R.mipmap.ic_botic)
-                                .error(R.mipmap.ic_botic)
-                                .into(img);
+                        viewPagerAdapter = new ImgViewPageAdapter(detail_content.this, layouts);
+                        viewPagerAdapter.setPictureList(mPictureList);
+                        mViewPager.setAdapter(viewPagerAdapter);
+                        if (mPictureList.size() != 0) {
+                            slider();
+                            img.setVisibility(View.GONE);
+                        } else {
+                            CustomPicasso.getInstance(detail_content.this).load(AppsCore.BASE_URL + "image/" + ((mPictureList.size() == 0) ? R.drawable.ic_no_photo : mPictureList.get(0).getOriginalFilename()))
+                                    .placeholder(R.drawable.ic_no_photo)
+                                    .error(R.drawable.ic_no_photo)
+                                    .into(img);
+                        }
                     }
 
                     @Override
@@ -265,5 +359,36 @@ public class detail_content extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    private boolean isChecked() {
+        return isChecked;
+    }
+
+    private void setChecked(boolean checked) {
+        isChecked = checked;
+        if (isChecked()) {
+            fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite));
+            com.bojonegorotic.amrizalns.botic.model.ObjectItem object = new com.bojonegorotic.amrizalns.botic.model.ObjectItem();
+            object.setId((int) (objectItem.getId() + System.currentTimeMillis()));
+            object.setIdObject(objectItem.getId());
+            object.setPhone(objectItem.getPhone());
+            object.setAddress(objectItem.getAddress());
+            object.setClose(objectItem.getClose());
+            object.setDescription(objectItem.getDescription());
+            object.setIdCategory(objectItem.getIdCategory());
+            object.setRating(objectItem.getRating());
+            object.setIdMenu(objectItem.getIdMenu());
+            object.setOpen(objectItem.getOpen());
+            object.setName(objectItem.getName());
+            realm.beginTransaction();
+            realm.copyToRealm(object);
+            realm.commitTransaction();
+            Toast.makeText(this, R.string.favorite_toast, Toast.LENGTH_SHORT).show();
+        } else {
+            fav.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
+            RealmController.with(this).remove(objectItem.getId(), objectItem.getIdMenu());
+            Toast.makeText(this, R.string.favorite_toast_remove, Toast.LENGTH_SHORT).show();
+        }
     }
 }

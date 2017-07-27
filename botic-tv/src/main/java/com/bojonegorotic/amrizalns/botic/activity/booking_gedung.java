@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -20,14 +21,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.botic.coreapps.callbacks.PageCallback;
-import com.botic.coreapps.models.Asset;
-import com.botic.coreapps.models.IdentityType;
-import com.botic.coreapps.networks.RetrofitApi;
 import com.bojonegorotic.amrizalns.botic.R;
 import com.bojonegorotic.amrizalns.botic.SpinnerItemAdapter;
 import com.bojonegorotic.amrizalns.botic.model.Booking;
 import com.bojonegorotic.amrizalns.botic.utils.SessionLogin;
+import com.botic.coreapps.callbacks.PageCallback;
+import com.botic.coreapps.models.Asset;
+import com.botic.coreapps.models.IdentityType;
+import com.botic.coreapps.networks.RetrofitApi;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,8 +46,10 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
     private RadioButton mRadioButton;
     private TextView mdates, mterm;
     private Button next;
-    private String mItemJenisGedung, mItemJenisIdentitas, mWaktu, mDate;
+    private String mItemJenisGedung, mItemJenisIdentitas, mDate;
+    String mWaktu = "Siang - Malam ( 24 Jam )";
     ProgressDialog dialog;
+    private CheckBox aggrement;
 
     List<String> spListGedung = new ArrayList<>();
     List<String> spListIdentity = new ArrayList<>();
@@ -67,6 +70,8 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         mName = (EditText) findViewById(R.id.field_name);
         mNoHP = (EditText) findViewById(R.id.field_number_call);
         mDescGedung = (EditText) findViewById(R.id.field_desc_gedung);
+
+        aggrement = (CheckBox) findViewById(R.id.check_gedung);
 
         mJenisGedung = (Spinner) findViewById(R.id.jenis_gedung);
 
@@ -115,11 +120,22 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mName.length() == 0 || mNoIdentias.length() == 0 || mNoHP.length() == 0 || mDescGedung.length() == 0) {
-                    mName.setError("Nama wajib diisi!");
-                    mNoIdentias.setError("Nomor Identitas wajib diisi!");
-                    mNoHP.setError("Nomor HP wajib diisi!");
-                    mDescGedung.setError("Deskripsi Gedung wajib diisi");
+                String nama = mName.getText().toString();
+                String noIdentitas = mNoIdentias.getText().toString();
+                String noHP = mNoHP.getText().toString();
+                String desGed = mDescGedung.getText().toString();
+
+                if (nama.isEmpty()  && noIdentitas.isEmpty() && noHP.isEmpty() && desGed.isEmpty()) {
+                    mName.setError("Required!");
+                    mNoIdentias.setError("Required!");
+                    mNoHP.setError("Required!");
+                    mDescGedung.setError("Required!");
+                } else if (!nama.matches("[a-zA-Z]+")){
+                    mName.setError("Nama Tidak Boleh Angka!");
+                } else if (!isValidMobile(noHP)) {
+                    mNoHP.setError("Nomer HP harus sesuai");
+                } else if (!aggrement.isChecked()) {
+                    aggrement.setError("Harus Dicentang!");
                 } else {
                     int radioButtonID = mRadioGroupWaktu.getCheckedRadioButtonId();
                     View radioButton = mRadioGroupWaktu.findViewById(radioButtonID);
@@ -147,14 +163,14 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
 
                                 @Override
                                 protected void onSuccess(Object data) {
-                                    Toast.makeText(booking_gedung.this, "Booking Berhasil", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(booking_gedung.this, R.string.bookingberhasil, Toast.LENGTH_SHORT).show();
                                     BookingGedung();
                                 }
 
                                 @Override
                                 protected void onError(String message) {
                                     super.onError(message);
-                                    Toast.makeText(booking_gedung.this, "Booking Gagal", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(booking_gedung.this, R.string.bookinggagal, Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
@@ -190,6 +206,10 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         });
         getListIdentity();
         getListAsset();
+    }
+
+    private boolean isValidMobile(String phone) {
+        return android.util.Patterns.PHONE.matcher(phone).matches();
     }
 
     private void getListAsset() {
@@ -330,6 +350,7 @@ public class booking_gedung extends AppCompatActivity implements DatePickerDialo
         Calendar c = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String formatdate = sdf.format(c.getTime());
+        mDate = formatdate;
         return formatdate;
     }
 }

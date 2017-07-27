@@ -16,15 +16,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.botic.coreapps.models.Token;
-import com.botic.coreapps.models.User;
-import com.botic.coreapps.networks.RetrofitApi;
-import com.botic.coreapps.responses.BaseResponse;
 import com.bojonegorotic.amrizalns.botic.R;
 import com.bojonegorotic.amrizalns.botic.utils.SessionLogin;
 import com.bojonegorotic.amrizalns.botic.utils.SharedPrefManager;
 import com.bojonegorotic.amrizalns.botic.utils.Utils;
 import com.bojonegorotic.amrizalns.botic.viewholder.JSONParser;
+import com.botic.coreapps.models.Token;
+import com.botic.coreapps.models.User;
+import com.botic.coreapps.networks.RetrofitApi;
+import com.botic.coreapps.responses.BaseResponse;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -461,25 +461,9 @@ public class signIn extends AppCompatActivity implements GoogleApiClient.Connect
 
     @Override
     public void onBackPressed() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(signIn.this);
-        builder.setTitle("Exit");
-        builder.setMessage("Are you sure to exit Botic App ?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        moveTaskToBack(true);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

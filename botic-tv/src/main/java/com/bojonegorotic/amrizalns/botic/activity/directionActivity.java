@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,8 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
-import com.botic.coreapps.models.ObjectItem;
 import com.bojonegorotic.amrizalns.botic.R;
+import com.botic.coreapps.models.ObjectItem;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -30,6 +31,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 
@@ -49,21 +51,54 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
     LatLng origin;
     LatLng dest;
     ObjectItem item;
+    PolylineOptions mPolylineOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_direction);
 
-        mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
-        setSupportActionBar(mActionBarToolbar);
-        getSupportActionBar().setTitle("Direction");
+//        mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+//        setSupportActionBar(mActionBarToolbar);
+//        getSupportActionBar().setTitle("Direction");
+//
+        try {
+            initilizeMap();
 
-        mMapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mMapFragment.getMapAsync(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+//        mMapFragment.getMapAsync(this);
+
+
+//        FragmentManager fm = getSupportFragmentManager();
+//        mMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
+//        if (mMapFragment == null){
+//            mMapFragment = SupportMapFragment.newInstance();
+//            fm.beginTransaction().replace(R.id.map, mMapFragment).commit();
+//        }
+//        mMapFragment.getMapAsync(this);
+
+
         if (getIntent().hasExtra("object"))
             item = getIntent().getParcelableExtra("object");
+
+    }
+
+    private void initilizeMap() {
+        if (mMapFragment == null) {
+            mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+            mMapFragment.getMapAsync(this);
+
+            // check if map is created successfully or not
+            if (mMapFragment == null) {
+                Toast.makeText(getApplicationContext(),
+                        "Sorry! unable to create maps", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
     }
 
     public static void start(Context context, ObjectItem item) {
@@ -98,25 +133,6 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
             mGoogleMap.setMyLocationEnabled(true);
         }
 
-//        mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-//            @Override
-//            public void onMapClick(LatLng latLng) {
-//                if (mMarkerPoints.size() > 1) {
-//                    mGoogleMap.clear();
-//                    mMarkerPoints.clear();
-//                    mMarkerPoints = new ArrayList<>();
-//                }
-//                mMarkerPoints.add(latLng);
-//                MarkerOptions options = new MarkerOptions();
-//                options.position(latLng);
-//                drawMarker(latLng);
-//                mGoogleMap.addMarker(options);
-//                if (mMarkerPoints.size() >= 2) {
-//                    origin = mMarkerPoints.get(0);
-//                    dest = mMarkerPoints.get(1);
-//                }
-//            }
-//        });
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -128,23 +144,11 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
         mGoogleApiClient.connect();
     }
 
-    private void drawMarker(LatLng point) {
-        mMarkerPoints.add(point);
-
-        MarkerOptions options = new MarkerOptions();
-        if (mMarkerPoints.size() == 1) {
-            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        } else if (mMarkerPoints.size() == 2) {
-            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        }
-        mGoogleMap.addMarker(options);
-    }
-
     @Override
     public void onConnected(Bundle bundle) {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(1000);
-        mLocationRequest.setFastestInterval(1000);
+//        mLocationRequest.setInterval(1000);
+//        mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -168,24 +172,27 @@ public class directionActivity extends AppCompatActivity implements OnMapReadyCa
         mLastLocation = location;
         if (mCurrentMarker != null) {
             mCurrentMarker.remove();
+        } else {
+            LatLng latLngCurrent = new LatLng(location.getLatitude(), location.getLongitude());
+            MarkerOptions markerOptions = new MarkerOptions();
+            LatLng latLngDestination = new LatLng(item.getLat(), item.getLng());
+            markerOptions = new MarkerOptions();
+            markerOptions.position(latLngDestination);
+            markerOptions.title(getString(R.string.tujuan_Loc));
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+            mCurrentMarker = mGoogleMap.addMarker(markerOptions);
+
+            mGoogleMap.addPolyline(new PolylineOptions()
+                    .add(latLngCurrent, latLngDestination)
+                    .width(5)
+                    .geodesic(true)
+                    .color(Color.RED));
+
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLngDestination));
+            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
         }
-
-        LatLng latLngCurrent = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLngCurrent);
-        markerOptions.title("here!");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-        mCurrentMarker = mGoogleMap.addMarker(markerOptions);
-
-        LatLng latLngDestination = new LatLng(item.getLat(), item.getLng());
-        markerOptions = new MarkerOptions();
-        markerOptions.position(latLngDestination);
-        markerOptions.title("to!");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-        mCurrentMarker = mGoogleMap.addMarker(markerOptions);
-
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngDestination, 13));
     }
+
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 

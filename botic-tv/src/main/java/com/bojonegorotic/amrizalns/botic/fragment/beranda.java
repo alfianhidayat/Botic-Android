@@ -1,43 +1,25 @@
 package com.bojonegorotic.amrizalns.botic.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bojonegorotic.amrizalns.botic.R;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class beranda extends Fragment {
 
     View view;
-    private int currentPage = 0;
-    private Timer timer;
-
-    public beranda() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment beranda.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static beranda newInstance(String param1, String param2) {
-        beranda fragment = new beranda();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +32,8 @@ public class beranda extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_beranda, null);
+
+
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 

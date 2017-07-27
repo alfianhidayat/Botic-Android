@@ -20,13 +20,13 @@ import java.util.List;
  * Created by user on 10/07/2017.
  */
 
-public class AktivitasAdapter extends RecyclerView.Adapter<AktivitasAdapter.MyViewHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MyViewHolder> {
     private List<com.bojonegorotic.amrizalns.botic.model.ObjectItem> aktivitasList;
     private List<Picture> mPictureList = new ArrayList<>();
 
     Context context;
 
-    public AktivitasAdapter(Context context, List<com.bojonegorotic.amrizalns.botic.model.ObjectItem> aktivitasList) {
+    public FavoriteAdapter(Context context, List<com.bojonegorotic.amrizalns.botic.model.ObjectItem> aktivitasList) {
         this.aktivitasList = aktivitasList;
         this.context = context;
     }
@@ -46,7 +46,7 @@ public class AktivitasAdapter extends RecyclerView.Adapter<AktivitasAdapter.MyVi
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.aktivitas_list_row, parent, false);
+                .inflate(R.layout.favorite_list_row, parent, false);
         return new MyViewHolder(itemView);
     }
 

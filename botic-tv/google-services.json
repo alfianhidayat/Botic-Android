@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "411617241873",
-    "project_id": "firebase-botic"
+    "project_number": "93132916043",
+    "project_id": "boticapps-174209"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:411617241873:android:b0cc953cb8c530f3",
+        "mobilesdk_app_id": "1:93132916043:android:6d1bb4163e545ac7",
         "android_client_info": {
-          "package_name": "com.example.amrizalns.botic"
+          "package_name": "com.bojonegorotic.amrizalns.botic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "411617241873-vdu8v380r7mvsnkvsh3cdabd7ea3c7e2.apps.googleusercontent.com",
+          "client_id": "93132916043-83ntup4mdumfpim89bqmtadtko0q2vfs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.amrizalns.botic",
+            "package_name": "com.bojonegorotic.amrizalns.botic",
             "certificate_hash": "ba5e9afb5aa4af976654eb1ea088c8c6ec30ca45"
           }
         },
         {
-          "client_id": "411617241873-29q0vbuq4d1ijmqvb0dhkfg3dtc0rqi3.apps.googleusercontent.com",
+          "client_id": "93132916043-403b8k24sa6u7dko9l3b143g10oqnijn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZ_2OT4bKll6zsArxsUyGQl4dO2RG8r88"
+          "current_key": "AIzaSyB0dQH3hl7-eBtiHkxurMeilOW_uAjDQr0"
         }
       ],
       "services": {

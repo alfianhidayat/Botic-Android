@@ -6,7 +6,7 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        applicationId "com.example.amrizalns.botic"
+        applicationId "com.bojonegorotic.amrizalns.botic"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1

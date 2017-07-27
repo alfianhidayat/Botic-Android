@@ -39,7 +39,7 @@ import java.util.List;
 
 public class booking_gedung extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    public static String SER_KEY = "com.example.amrizalns.botic.model.Booking";
+    public static String SER_KEY = "com.bojonegorotic.amrizalns.botic.model.Booking";
     private EditText mNoIdentias, mNoHP, mDescGedung, mName;
     private Spinner mJenisGedung, mJenisIdentitas;
     private RadioGroup mRadioGroupWaktu;

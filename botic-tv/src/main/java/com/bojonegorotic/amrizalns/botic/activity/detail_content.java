@@ -93,6 +93,9 @@ public class detail_content extends AppCompatActivity {
         button_share = (ImageView) findViewById(R.id.btn_share);
         fav = (ImageView) findViewById(R.id.btn_fav);
 
+        mViewPager = (ViewPager) findViewById(R.id.vp_content);
+        slider = (LinearLayout) findViewById(R.id.sliderContent);
+
         Intent i = getIntent();
         if (i.hasExtra("object")) {
             objectItem = i.getParcelableExtra("object");
